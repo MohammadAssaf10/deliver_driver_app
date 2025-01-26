@@ -3,5 +3,6 @@ class Assets {
   Assets._();
 
   static const String deliverDriverApp = '.env';
+  static const String imagesPickupImage = 'assets/images/pickup_image.jpg';
 
 }

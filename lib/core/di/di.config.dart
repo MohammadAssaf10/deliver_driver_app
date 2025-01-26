@@ -20,6 +20,12 @@ import '../../app/data/data_sources/local/app_local_data_source_impl.dart'
     as _i746;
 import '../../app/data/repositories/app_repository.dart' as _i245;
 import '../../app/presentation/bloc/app_cubit.dart' as _i571;
+import '../../features/main/data/data_sources/remote/main_remote_data_source.dart'
+    as _i1003;
+import '../../features/main/data/data_sources/remote/main_remote_data_source_impl.dart'
+    as _i724;
+import '../../features/main/data/repositories/main_repository.dart' as _i1027;
+import '../../features/main/presentation/bloc/main_bloc.dart' as _i1014;
 import '../../features/sign_in/data/data_sources/remote/sign_in_remote_data_source.dart'
     as _i533;
 import '../../features/sign_in/data/data_sources/remote/sign_in_remote_data_source_impl.dart'
@@ -37,6 +43,14 @@ import '../../features/sign_up/presentation/bloc/sign_up_bloc.dart' as _i148;
 import '../../features/splash/data/repositories/splash_repository.dart'
     as _i120;
 import '../../features/splash/presentation/bloc/splash_bloc.dart' as _i442;
+import '../../features/verification_code/data/data_sources/remote/verification_code_remote_data_source.dart'
+    as _i89;
+import '../../features/verification_code/data/data_sources/remote/verification_code_remote_data_source_impl.dart'
+    as _i673;
+import '../../features/verification_code/data/repositories/verification_code_repository.dart'
+    as _i61;
+import '../../features/verification_code/presentation/bloc/verification_code_bloc.dart'
+    as _i59;
 import '../data_source/remote/base_remote_data_source.dart' as _i755;
 import '../data_source/remote/base_remote_data_source_impl.dart' as _i330;
 import '../network/network_info.dart' as _i932;
@@ -65,14 +79,22 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i120.SplashRepository>(() => _i120.SplashRepository());
   gh.lazySingleton<_i212.AppLocalDataSource>(
       () => _i746.AppLocalDataSourceImpl());
+  gh.lazySingleton<_i1003.MainRemoteDataSource>(
+      () => _i724.MainRemoteDataSourceImpl());
   gh.lazySingleton<_i533.SignInRemoteDataSource>(
       () => _i1024.SignInRemoteDataSourceImpl());
+  gh.lazySingleton<_i1027.MainRepository>(
+      () => _i1027.MainRepository(gh<_i1003.MainRemoteDataSource>()));
   gh.lazySingleton<_i964.SignUpRemoteDataSource>(
       () => _i42.SignUpRemoteDataSourceImpl());
+  gh.lazySingleton<_i89.VerificationCodeRemoteDataSource>(
+      () => _i673.VerificationCodeRemoteDataSourceImpl());
   gh.lazySingleton<_i245.AppRepository>(
       () => _i245.AppRepository(gh<_i212.AppLocalDataSource>()));
   gh.lazySingleton<_i755.BaseRemoteDataSource>(
       () => _i330.BaseRemoteDataSourceImpl());
+  gh.factory<_i1014.MainBloc>(
+      () => _i1014.MainBloc(gh<_i1027.MainRepository>()));
   gh.lazySingleton<_i932.NetworkInfo>(
       () => _i932.NetworkInfoImpl(gh<_i895.Connectivity>()));
   gh.lazySingleton<_i115.SignInRepository>(
@@ -87,8 +109,15 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i120.SplashRepository>(),
         gh<_i115.SignInRepository>(),
       ));
+  gh.lazySingleton<_i61.VerificationCodeRepository>(
+      () => _i61.VerificationCodeRepository(
+            gh<_i89.VerificationCodeRemoteDataSource>(),
+            gh<_i115.SignInRepository>(),
+          ));
   gh.factory<_i148.SignUpBloc>(
       () => _i148.SignUpBloc(gh<_i83.SignUpRepository>()));
+  gh.factory<_i59.VerificationCodeBloc>(
+      () => _i59.VerificationCodeBloc(gh<_i61.VerificationCodeRepository>()));
   return getIt;
 }
 

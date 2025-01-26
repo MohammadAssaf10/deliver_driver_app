@@ -27,6 +27,7 @@ class SignUpPage extends StatelessWidget {
         if (state.isError) {
           closeLoadingDialogIfVisible();
         } else if (state.isSuccess) {
+          closeLoadingDialogIfVisible();
           context.pushNamed(Routes.verificationCodePage);
         } else if (state.isLoading) {
           showLoadingDialog(context);

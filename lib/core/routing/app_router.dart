@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/main/presentation/bloc/main_bloc.dart';
+import '../../features/main/presentation/pages/main_page.dart';
 import '../../features/sign_in/presentation/bloc/sign_in_bloc.dart';
 import '../../features/sign_in/presentation/pages/sign_in_page.dart';
 import '../../features/sign_up/presentation/bloc/sign_up_bloc.dart';
 import '../../features/sign_up/presentation/pages/sign_up_page.dart';
 import '../../features/splash/presentation/bloc/splash_bloc.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
+import '../../features/verification_code/presentation/bloc/verification_code_bloc.dart';
+import '../../features/verification_code/presentation/pages/verification_code_page.dart';
 import '../di/di.dart';
 import 'routes.dart';
 
@@ -23,13 +27,13 @@ class AppRouter {
             child: const SplashPage(),
           ),
         );
-      // case Routes.mainPage:
-      //   return MaterialPageRoute(
-      //     builder: (_) => BlocProvider<MainBloc>(
-      //       create: (_) => getIt<MainBloc>()..getCurrentTrip(),
-      //       child: const MainPage(),
-      //     ),
-      //   );
+      case Routes.mainPage:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<MainBloc>(
+            create: (_) => getIt<MainBloc>()..getCurrentTrip(),
+            child: const MainPage(),
+          ),
+        );
       case Routes.signInPage:
         return MaterialPageRoute(
           builder: (_) => BlocProvider<SignInBloc>(
@@ -44,14 +48,14 @@ class AppRouter {
             child: const SignUpPage(),
           ),
         );
-      // case Routes.verificationCodePage:
-      //   return MaterialPageRoute(
-      //     builder: (_) => BlocProvider<VerificationCodeBloc>(
-      //       create: (context) =>
-      //           getIt<VerificationCodeBloc>()..generateVerificationCode(),
-      //       child: const VerificationCodePage(),
-      //     ),
-      //   );
+      case Routes.verificationCodePage:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<VerificationCodeBloc>(
+            create: (context) =>
+                getIt<VerificationCodeBloc>()..generateVerificationCode(),
+            child: const VerificationCodePage(),
+          ),
+        );
       // case Routes.mapPage:
       //   final Trip? trip = arguments as Trip?;
       //   return MaterialPageRoute(

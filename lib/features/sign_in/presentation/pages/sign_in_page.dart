@@ -30,6 +30,7 @@ class SignInPage extends StatelessWidget {
             predicate: (_) => false,
           );
         } else if (state.isSuccess && !state.isPhoneNumberVerified) {
+          closeLoadingDialogIfVisible();
           context.pushNamed(Routes.verificationCodePage);
         } else if (state.isError) {
           closeLoadingDialogIfVisible();
@@ -89,9 +90,7 @@ class SignInPage extends StatelessWidget {
                             ? Icons.visibility_off
                             : Icons.visibility,
                         suffixIconAction: () {
-                          context
-                              .read<SignInBloc>()
-                              .changePasswordVisibility();
+                          context.read<SignInBloc>().changePasswordVisibility();
                         },
                         onFieldSubmitted: (_) {
                           if (context
@@ -126,10 +125,7 @@ class SignInPage extends StatelessWidget {
                     subTitle: S.of(context).registerHere,
                     subTitleOnPress: () {
                       context.pushNamed(Routes.signUpPage);
-                      context
-                          .read<SignInBloc>()
-                          .phoneNumberController
-                          .clear();
+                      context.read<SignInBloc>().phoneNumberController.clear();
                       context.read<SignInBloc>().passwordController.clear();
                     },
                   ),
