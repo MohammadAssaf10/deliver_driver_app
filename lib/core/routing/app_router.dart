@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/sign_in/presentation/bloc/sign_in_bloc.dart';
 import '../../features/sign_in/presentation/pages/sign_in_page.dart';
+import '../../features/sign_up/presentation/bloc/sign_up_bloc.dart';
+import '../../features/sign_up/presentation/pages/sign_up_page.dart';
 import '../../features/splash/presentation/bloc/splash_bloc.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
 import '../di/di.dart';
 import 'routes.dart';
-
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -36,13 +37,13 @@ class AppRouter {
             child: const SignInPage(),
           ),
         );
-      // case Routes.signUpPage:
-      //   return MaterialPageRoute(
-      //     builder: (_) => BlocProvider<SignUpBloc>(
-      //       create: (context) => getIt<SignUpBloc>(),
-      //       child: const SignUpPage(),
-      //     ),
-      //   );
+      case Routes.signUpPage:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<SignUpBloc>(
+            create: (context) => getIt<SignUpBloc>(),
+            child: const SignUpPage(),
+          ),
+        );
       // case Routes.verificationCodePage:
       //   return MaterialPageRoute(
       //     builder: (_) => BlocProvider<VerificationCodeBloc>(

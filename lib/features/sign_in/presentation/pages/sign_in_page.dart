@@ -133,7 +133,7 @@ class SignInPage extends StatelessWidget {
                       context.read<SignInBloc>().passwordController.clear();
                     },
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.19),
+                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.17),
                   SelectLanguage(),
                 ],
               ),
