@@ -34,72 +34,102 @@ class TripCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Container(
+        height: 215,
         width: double.infinity,
-        clipBehavior: Clip.antiAlias,
+        margin:
+            margin ?? const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         decoration: BoxDecoration(
           color: ColorsManager.customPurple,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(
+            colors: [
+              ColorsManager.customPurple.withValues(alpha: 0.9),
+              ColorsManager.customPurple.withValues(alpha: 0.7),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
         ),
-        margin: margin,
-        child: Row(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TripTile(
-                      title: S.of(context).tripNumber,
-                      subtitle: tripNumber.toString(),
-                    ),
-                    if (status != null)
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 14, left: 14, top: 14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: 3,
+                    children: [
                       TripTile(
-                        title: S.of(context).status,
-                        subtitle: status!.name,
+                        title: S.of(context).tripNumber,
+                        subtitle: tripNumber.toString(),
+                        icon: Icons.confirmation_number_outlined,
                       ),
-                    TripTile(
-                      title: S.of(context).estimatedTime,
-                      subtitle: S
-                          .of(context)
-                          .minute(estimatedTime.removeDecimalZero()),
-                    ),
-                    TripTile(
-                      title: S.of(context).distance,
-                      subtitle: S.of(context).km(distance.removeDecimalZero()),
-                    ),
-                    if (profitForCaptain != null)
+                      if (status != null)
+                        TripTile(
+                          title: S.of(context).status,
+                          subtitle: status!.name,
+                          icon: Icons.info_outline,
+                        ),
                       TripTile(
-                        title: S.of(context).profitForCaptain,
-                        subtitle: profitForCaptain.toString(),
+                        title: S.of(context).estimatedTime,
+                        subtitle: S
+                            .of(context)
+                            .minute(estimatedTime.removeDecimalZero()),
+                        icon: Icons.access_time,
                       ),
-                    TripTile(
-                      title: S.of(context).date,
-                      subtitle: date,
-                    ),
-                    AppTextButton(
-                      onPressed: () {},
-                      borderRadius: 15,
-                      buttonHeight: 40,
-                      child: CustomAutoSizeText(
-                        text: 'Accept trip',
-                        minFontSize: 12,
-                        initialFontSize: 14,
-                        maxFontSize: 16,
-                        color: ColorsManager.darkWhite,
+                      TripTile(
+                        title: S.of(context).distance,
+                        subtitle:
+                            S.of(context).km(distance.removeDecimalZero()),
+                        icon: Icons.directions_car,
                       ),
-                    )
-                  ],
+                      if (profitForCaptain != null)
+                        TripTile(
+                          title: S.of(context).yourProfits,
+                          subtitle: S
+                              .of(context)
+                              .syr(profitForCaptain!.removeDecimalZero()),
+                          icon: Icons.attach_money,
+                        ),
+                      TripTile(
+                        title: S.of(context).date,
+                        subtitle: date,
+                        icon: Icons.calendar_today,
+                      ),
+                      AppTextButton(
+                        onPressed: () {},
+                        borderRadius: 15,
+                        buttonHeight: 40,
+                        backgroundColor: ColorsManager.darkGrey,
+                        child: CustomAutoSizeText(
+                          text: 'Accept Trip',
+                          minFontSize: 12,
+                          initialFontSize: 14,
+                          maxFontSize: 16,
+                          color: ColorsManager.darkWhite,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Image.asset(
-              Assets.imagesPickupImage,
-              fit: BoxFit.cover,
-              width: MediaQuery.sizeOf(context).width * 0.4,
-              height: 192,
-            )
-          ],
+              // Image on the right side
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+                child: Image.asset(
+                  Assets.imagesPickupImage,
+                  fit: BoxFit.cover,
+                  width: MediaQuery.sizeOf(context).width * 0.35,
+                  height: double.infinity,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(value) => "${value} min";
 
+  static String m2(value) => "${value} SYR";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "account": MessageLookupByLibrary.simpleMessage("Account"),
@@ -40,7 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "currentTrip": MessageLookupByLibrary.simpleMessage("Current Trip"),
     "date": MessageLookupByLibrary.simpleMessage("Date"),
     "deliver": MessageLookupByLibrary.simpleMessage("Deliver"),
-    "distance": MessageLookupByLibrary.simpleMessage("Distance: "),
+    "distance": MessageLookupByLibrary.simpleMessage("Distance"),
     "doNotHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account?",
     ),
@@ -56,7 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterYourAccountDetailsHere": MessageLookupByLibrary.simpleMessage(
       "Enter your account details here.",
     ),
-    "estimatedTime": MessageLookupByLibrary.simpleMessage("Estimated time: "),
+    "estimatedTime": MessageLookupByLibrary.simpleMessage("Estimated time"),
     "from": MessageLookupByLibrary.simpleMessage("From"),
     "getStartWithDeliver": MessageLookupByLibrary.simpleMessage(
       "Get Start With Deliver",
@@ -152,6 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Something went wrong",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
+    "syr": m2,
     "to": MessageLookupByLibrary.simpleMessage("To"),
     "tripCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Trip created successfully",
@@ -167,5 +170,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "whereAreYouGoing": MessageLookupByLibrary.simpleMessage(
       "Where are you going?",
     ),
+    "yourProfits": MessageLookupByLibrary.simpleMessage("Your profits"),
   };
 }

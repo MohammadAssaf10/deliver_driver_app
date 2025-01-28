@@ -48,8 +48,8 @@
   "orderNow": "Order now",
   "from": "From",
   "to": "To",
-  "estimatedTime": "Estimated time: ",
-  "distance": "Distance: ",
+  "estimatedTime": "Estimated time",
+  "distance": "Distance",
   "cancel": "Cancel",
   "pleaseSelectStartTripLocation": "Please select start trip location",
   "pleaseSelectEndTripLocation": "Please select end trip location",
@@ -58,6 +58,7 @@
   "pickupLocation": "Pickup location",
   "tripCreatedSuccessfully": "Trip created successfully",
   "km": "{value} KM",
+  "syr": "{value} SYR",
   "enterPickupPoint": "Enter pickup point",
   "now": "Now",
   "readyThenLetsRoll": "Ready? Then let's roll",
@@ -73,5 +74,6 @@
   "account": "Account",
   "retry": "Retry",
   "availableTrips": "Available trips",
-  "profitForCaptain": "Profit for captain"
+  "profitForCaptain": "Profit for captain",
+  "yourProfits": "Your profits"
 }

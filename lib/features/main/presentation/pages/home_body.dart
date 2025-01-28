@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/colors_manager.dart';
+import '../../../../core/widget/custom_error_widget.dart';
 import '../../../../core/widget/loader.dart';
 import '../bloc/main_bloc.dart';
 import '../bloc/main_state.dart';
@@ -21,9 +22,15 @@ class HomeBody extends StatelessWidget {
               ? Loader(
                   color: ColorsManager.customWhite,
                 )
-              : state.currentTrip == null
-                  ? UserDoNotHaveTripWidget(trips: state.trips)
-                  : UserHaveTripWidget(currentTrip: state.currentTrip!),
+              : state.isError
+                  ? CustomErrorWidget(
+                      errorMessage:
+                          'Oops! Something went wrong. Please try again.',
+                      onRetry: () {},
+                    )
+                  : state.currentTrip == null
+                      ? UserDoNotHaveTripWidget(trips: state.trips)
+                      : UserHaveTripWidget(currentTrip: state.currentTrip!),
         );
       },
     );

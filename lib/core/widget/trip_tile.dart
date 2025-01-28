@@ -7,11 +7,13 @@ import 'custom_auto_size_text.dart';
 class TripTile extends StatelessWidget {
   final String title;
   final String subtitle;
+  final IconData icon;
 
   const TripTile({
     super.key,
     required this.title,
     required this.subtitle,
+    required this.icon,
   });
 
   @override
@@ -21,6 +23,12 @@ class TripTile extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Icon(
+            icon,
+            size: 20,
+            color: ColorsManager.darkGrey.withValues(alpha: 0.8),
+          ),
+          const SizedBox(width: 6),
           CustomAutoSizeText(
             text: "$title: ",
             minFontSize: 14,

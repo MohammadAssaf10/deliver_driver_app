@@ -20,7 +20,9 @@ class UserDoNotHaveTripWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       controller: context.read<MainBloc>().controller,
-      itemCount: trips.isFinished ? trips.items.length : trips.items.length + 1,
+      itemCount: trips.isFinished || !trips.isLoading
+          ? trips.items.length
+          : trips.items.length + 1,
       itemBuilder: (context, index) {
         return index >= trips.items.length
             ? Loader(
@@ -31,7 +33,7 @@ class UserDoNotHaveTripWidget extends StatelessWidget {
                 tripNumber: trips.items[index].id,
                 estimatedTime: trips.items[index].calculatedDuration,
                 distance: trips.items[index].calculatedDistance,
-                profitForCaptain: trips.items[index].captainProfit ,
+                profitForCaptain: trips.items[index].captainProfit,
                 date: '',
                 margin: EdgeInsets.only(
                   top: index == 0 ? 0 : 5,

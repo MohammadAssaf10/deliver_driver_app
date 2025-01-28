@@ -3,6 +3,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/entities/pagination_state_data.dart';
 import '../../../../core/utils/app_functions.dart';
 import '../../data/repositories/main_repository.dart';
 import '../pages/home_body.dart';
@@ -34,39 +35,54 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       emit(state.rebuild((b) => b..pageIndex = event.pageIndex));
     });
     on<GetCurrentTrip>((event, emit) async {
-      emit(state.rebuild((b) => b..isLoading = true));
+      emit(state.rebuild(
+        (b) => b
+          ..isLoading = true
+          ..isError = false
+          ..trips.replace(PaginationStateData.initial()),
+      ));
       final result = await _mainRepository.getCurrentTrip();
       result.fold((failure) {
-        showToastMessage(
-          failure.errorMessage,
-          isError: true,
-        );
-        emit(state.rebuild((b) => b..isLoading = false));
+        emit(state.rebuild(
+          (b) => b
+            ..isLoading = false
+            ..isError = true,
+        ));
       }, (data) {
         emit(state.rebuild(
           (b) => b
             ..isLoading = false
             ..currentTrip = data,
         ));
+        if (data == null) {
+          getAvailableTrips();
+        }
       });
     });
     on<GetAvailableTrips>((event, emit) async {
       if (state.trips.currentPage == 1) {
-        emit(state.rebuild((b) => b..isLoading = true));
+        emit(state.rebuild(
+          (b) => b
+            ..isLoading = true
+            ..isError = false,
+        ));
       } else {
         emit(state.rebuild((b) => b..trips.isLoading = true));
       }
       final result =
           await _mainRepository.getAvailableTrips(state.trips.currentPage);
       result.fold((failure) {
-        showToastMessage(
-          failure.errorMessage,
-          isError: true,
-        );
+        if (state.trips.currentPage > 1) {
+          showToastMessage(
+            failure.errorMessage,
+            isError: true,
+          );
+        }
         emit(state.rebuild(
           (b) => b
             ..isLoading = false
-            ..trips.isLoading = false,
+            ..trips.isLoading = false
+            ..isError = state.trips.currentPage > 1 ? state.isError : true,
         ));
       }, (data) {
         emit(state.rebuild(

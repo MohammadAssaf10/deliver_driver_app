@@ -10,6 +10,8 @@ class _$MainState extends MainState {
   @override
   final bool isLoading;
   @override
+  final bool isError;
+  @override
   final int pageIndex;
   @override
   final CurrentTrip? currentTrip;
@@ -23,12 +25,14 @@ class _$MainState extends MainState {
 
   _$MainState._(
       {required this.isLoading,
+      required this.isError,
       required this.pageIndex,
       this.currentTrip,
       required this.trips,
       required this.isListenerAdded})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(isLoading, r'MainState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(isError, r'MainState', 'isError');
     BuiltValueNullFieldError.checkNotNull(pageIndex, r'MainState', 'pageIndex');
     BuiltValueNullFieldError.checkNotNull(trips, r'MainState', 'trips');
     BuiltValueNullFieldError.checkNotNull(
@@ -47,6 +51,7 @@ class _$MainState extends MainState {
     if (identical(other, this)) return true;
     return other is MainState &&
         isLoading == other.isLoading &&
+        isError == other.isError &&
         pageIndex == other.pageIndex &&
         currentTrip == other.currentTrip &&
         trips == other.trips &&
@@ -57,6 +62,7 @@ class _$MainState extends MainState {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, isLoading.hashCode);
+    _$hash = $jc(_$hash, isError.hashCode);
     _$hash = $jc(_$hash, pageIndex.hashCode);
     _$hash = $jc(_$hash, currentTrip.hashCode);
     _$hash = $jc(_$hash, trips.hashCode);
@@ -69,6 +75,7 @@ class _$MainState extends MainState {
   String toString() {
     return (newBuiltValueToStringHelper(r'MainState')
           ..add('isLoading', isLoading)
+          ..add('isError', isError)
           ..add('pageIndex', pageIndex)
           ..add('currentTrip', currentTrip)
           ..add('trips', trips)
@@ -83,6 +90,10 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   bool? _isLoading;
   bool? get isLoading => _$this._isLoading;
   set isLoading(bool? isLoading) => _$this._isLoading = isLoading;
+
+  bool? _isError;
+  bool? get isError => _$this._isError;
+  set isError(bool? isError) => _$this._isError = isError;
 
   int? _pageIndex;
   int? get pageIndex => _$this._pageIndex;
@@ -110,6 +121,7 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
     final $v = _$v;
     if ($v != null) {
       _isLoading = $v.isLoading;
+      _isError = $v.isError;
       _pageIndex = $v.pageIndex;
       _currentTrip = $v.currentTrip;
       _trips = $v.trips.toBuilder();
@@ -140,6 +152,8 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
           new _$MainState._(
             isLoading: BuiltValueNullFieldError.checkNotNull(
                 isLoading, r'MainState', 'isLoading'),
+            isError: BuiltValueNullFieldError.checkNotNull(
+                isError, r'MainState', 'isError'),
             pageIndex: BuiltValueNullFieldError.checkNotNull(
                 pageIndex, r'MainState', 'pageIndex'),
             currentTrip: currentTrip,

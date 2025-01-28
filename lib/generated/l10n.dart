@@ -445,19 +445,19 @@ class S {
     return Intl.message('To', name: 'to', desc: '', args: []);
   }
 
-  /// `Estimated time: `
+  /// `Estimated time`
   String get estimatedTime {
     return Intl.message(
-      'Estimated time: ',
+      'Estimated time',
       name: 'estimatedTime',
       desc: '',
       args: [],
     );
   }
 
-  /// `Distance: `
+  /// `Distance`
   String get distance {
-    return Intl.message('Distance: ', name: 'distance', desc: '', args: []);
+    return Intl.message('Distance', name: 'distance', desc: '', args: []);
   }
 
   /// `Cancel`
@@ -523,6 +523,11 @@ class S {
   /// `{value} KM`
   String km(Object value) {
     return Intl.message('$value KM', name: 'km', desc: '', args: [value]);
+  }
+
+  /// `{value} SYR`
+  String syr(Object value) {
+    return Intl.message('$value SYR', name: 'syr', desc: '', args: [value]);
   }
 
   /// `Enter pickup point`
@@ -635,6 +640,16 @@ class S {
     return Intl.message(
       'Profit for captain',
       name: 'profitForCaptain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your profits`
+  String get yourProfits {
+    return Intl.message(
+      'Your profits',
+      name: 'yourProfits',
       desc: '',
       args: [],
     );

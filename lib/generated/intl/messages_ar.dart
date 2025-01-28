@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(value) => "${value} دقيقة";
 
+  static String m2(value) => "${value} ل.س";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "account": MessageLookupByLibrary.simpleMessage("الحساب"),
@@ -40,7 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "currentTrip": MessageLookupByLibrary.simpleMessage("الرحلة الحالية"),
     "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
     "deliver": MessageLookupByLibrary.simpleMessage("دليفر"),
-    "distance": MessageLookupByLibrary.simpleMessage("المسافة: "),
+    "distance": MessageLookupByLibrary.simpleMessage("المسافة"),
     "doNotHaveAnAccount": MessageLookupByLibrary.simpleMessage("لا تملك حساب؟"),
     "done": MessageLookupByLibrary.simpleMessage("تم"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
@@ -54,7 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterYourAccountDetailsHere": MessageLookupByLibrary.simpleMessage(
       "أدخل تفاصيل حسابك هنا.",
     ),
-    "estimatedTime": MessageLookupByLibrary.simpleMessage("الوقت المتوقع: "),
+    "estimatedTime": MessageLookupByLibrary.simpleMessage("الوقت المتوقع"),
     "from": MessageLookupByLibrary.simpleMessage("من"),
     "getStartWithDeliver": MessageLookupByLibrary.simpleMessage(
       "ابدأ مع Deliver",
@@ -142,6 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "signUpYourAccount": MessageLookupByLibrary.simpleMessage("سجل حسابك"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
     "status": MessageLookupByLibrary.simpleMessage("الحالة"),
+    "syr": m2,
     "to": MessageLookupByLibrary.simpleMessage("إلى"),
     "tripCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم إنشاء الرحلة بنجاح",
@@ -157,5 +160,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "whereAreYouGoing": MessageLookupByLibrary.simpleMessage(
       "إلى أين أنت ذاهب؟",
     ),
+    "yourProfits": MessageLookupByLibrary.simpleMessage("أرباحك"),
   };
 }

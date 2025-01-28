@@ -9,6 +9,8 @@ part 'main_state.g.dart';
 abstract class MainState implements Built<MainState, MainStateBuilder> {
   bool get isLoading;
 
+  bool get isError;
+
   int get pageIndex;
 
   CurrentTrip? get currentTrip;
@@ -25,9 +27,10 @@ abstract class MainState implements Built<MainState, MainStateBuilder> {
     return MainState(
       (b) => b
         ..isLoading = false
+        ..isError = false
         ..pageIndex = 0
         ..currentTrip = null
-        ..trips.replace(PaginationStateData.initial())
+        ..trips.replace(PaginationStateData<TripModel>.initial())
         ..isListenerAdded = false,
     );
   }

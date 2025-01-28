@@ -48,8 +48,8 @@
   "orderNow": "اطلب الآن",
   "from": "من",
   "to": "إلى",
-  "estimatedTime": "الوقت المتوقع: ",
-  "distance": "المسافة: ",
+  "estimatedTime": "الوقت المتوقع",
+  "distance": "المسافة",
   "cancel": "إلغاء",
   "pleaseSelectStartTripLocation": "الرجاء تحديد موقع بدء الرحلة",
   "pleaseSelectEndTripLocation": "الرجاء تحديد موقع نهاية الرحلة",
@@ -58,6 +58,7 @@
   "pickupLocation": "مكان الانطلاق",
   "tripCreatedSuccessfully": "تم إنشاء الرحلة بنجاح",
   "km": "{value} كم",
+  "syr": "{value} ل.س",
   "enterPickupPoint": "اختيار نقطة الاستلام",
   "now": "الآن",
   "readyThenLetsRoll": "هل أنت مستعد؟ إذن فلنبدأ",
@@ -73,5 +74,6 @@
   "account": "الحساب",
   "retry": "إعادة المحاولة",
   "availableTrips": "الرحلات المتاحة",
-  "profitForCaptain": "الربح للكابتن"
+  "profitForCaptain": "الربح للكابتن",
+  "yourProfits": "أرباحك"
 }
