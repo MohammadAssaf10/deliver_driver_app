@@ -17,6 +17,7 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
     );
 
 const _$MarkerStateEnumMap = {
+  MarkerState.nullLocation: 'nullLocation',
   MarkerState.tripStartLocation: 'tripStartLocation',
   MarkerState.tripEndLocation: 'tripEndLocation',
   MarkerState.currentLocation: 'currentLocation',

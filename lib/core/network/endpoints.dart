@@ -9,4 +9,5 @@ class Endpoints {
   static String getVerificationCode = '/Account/getVerificationCode';
   static String verifyPhoneNumber = '/Account/verifyPhone';
   static String currentTrip = '/driver/trip/current';
+  static String availableTrips = '/driver/trip/available';
 }

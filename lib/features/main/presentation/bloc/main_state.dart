@@ -1,6 +1,8 @@
 import 'package:built_value/built_value.dart';
 
-import '../../../../core/entities/trip.dart';
+import '../../../../core/entities/pagination_state_data.dart';
+import '../../data/models/trip_model.dart';
+import '../../domain/entities/current_trip.dart';
 
 part 'main_state.g.dart';
 
@@ -9,7 +11,11 @@ abstract class MainState implements Built<MainState, MainStateBuilder> {
 
   int get pageIndex;
 
-  Trip? get trip;
+  CurrentTrip? get currentTrip;
+
+  PaginationStateData<TripModel> get trips;
+
+  bool get isListenerAdded;
 
   MainState._();
 
@@ -20,7 +26,9 @@ abstract class MainState implements Built<MainState, MainStateBuilder> {
       (b) => b
         ..isLoading = false
         ..pageIndex = 0
-        ..trip = null,
+        ..currentTrip = null
+        ..trips.replace(PaginationStateData.initial())
+        ..isListenerAdded = false,
     );
   }
 }

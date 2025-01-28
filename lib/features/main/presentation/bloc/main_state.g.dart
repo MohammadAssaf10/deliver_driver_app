@@ -12,15 +12,27 @@ class _$MainState extends MainState {
   @override
   final int pageIndex;
   @override
-  final Trip? trip;
+  final CurrentTrip? currentTrip;
+  @override
+  final PaginationStateData<TripModel> trips;
+  @override
+  final bool isListenerAdded;
 
   factory _$MainState([void Function(MainStateBuilder)? updates]) =>
       (new MainStateBuilder()..update(updates))._build();
 
-  _$MainState._({required this.isLoading, required this.pageIndex, this.trip})
+  _$MainState._(
+      {required this.isLoading,
+      required this.pageIndex,
+      this.currentTrip,
+      required this.trips,
+      required this.isListenerAdded})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(isLoading, r'MainState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(pageIndex, r'MainState', 'pageIndex');
+    BuiltValueNullFieldError.checkNotNull(trips, r'MainState', 'trips');
+    BuiltValueNullFieldError.checkNotNull(
+        isListenerAdded, r'MainState', 'isListenerAdded');
   }
 
   @override
@@ -36,7 +48,9 @@ class _$MainState extends MainState {
     return other is MainState &&
         isLoading == other.isLoading &&
         pageIndex == other.pageIndex &&
-        trip == other.trip;
+        currentTrip == other.currentTrip &&
+        trips == other.trips &&
+        isListenerAdded == other.isListenerAdded;
   }
 
   @override
@@ -44,7 +58,9 @@ class _$MainState extends MainState {
     var _$hash = 0;
     _$hash = $jc(_$hash, isLoading.hashCode);
     _$hash = $jc(_$hash, pageIndex.hashCode);
-    _$hash = $jc(_$hash, trip.hashCode);
+    _$hash = $jc(_$hash, currentTrip.hashCode);
+    _$hash = $jc(_$hash, trips.hashCode);
+    _$hash = $jc(_$hash, isListenerAdded.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -54,7 +70,9 @@ class _$MainState extends MainState {
     return (newBuiltValueToStringHelper(r'MainState')
           ..add('isLoading', isLoading)
           ..add('pageIndex', pageIndex)
-          ..add('trip', trip))
+          ..add('currentTrip', currentTrip)
+          ..add('trips', trips)
+          ..add('isListenerAdded', isListenerAdded))
         .toString();
   }
 }
@@ -70,9 +88,21 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   int? get pageIndex => _$this._pageIndex;
   set pageIndex(int? pageIndex) => _$this._pageIndex = pageIndex;
 
-  Trip? _trip;
-  Trip? get trip => _$this._trip;
-  set trip(Trip? trip) => _$this._trip = trip;
+  CurrentTrip? _currentTrip;
+  CurrentTrip? get currentTrip => _$this._currentTrip;
+  set currentTrip(CurrentTrip? currentTrip) =>
+      _$this._currentTrip = currentTrip;
+
+  PaginationStateDataBuilder<TripModel>? _trips;
+  PaginationStateDataBuilder<TripModel> get trips =>
+      _$this._trips ??= new PaginationStateDataBuilder<TripModel>();
+  set trips(PaginationStateDataBuilder<TripModel>? trips) =>
+      _$this._trips = trips;
+
+  bool? _isListenerAdded;
+  bool? get isListenerAdded => _$this._isListenerAdded;
+  set isListenerAdded(bool? isListenerAdded) =>
+      _$this._isListenerAdded = isListenerAdded;
 
   MainStateBuilder();
 
@@ -81,7 +111,9 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
     if ($v != null) {
       _isLoading = $v.isLoading;
       _pageIndex = $v.pageIndex;
-      _trip = $v.trip;
+      _currentTrip = $v.currentTrip;
+      _trips = $v.trips.toBuilder();
+      _isListenerAdded = $v.isListenerAdded;
       _$v = null;
     }
     return this;
@@ -102,14 +134,30 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   MainState build() => _build();
 
   _$MainState _build() {
-    final _$result = _$v ??
-        new _$MainState._(
-          isLoading: BuiltValueNullFieldError.checkNotNull(
-              isLoading, r'MainState', 'isLoading'),
-          pageIndex: BuiltValueNullFieldError.checkNotNull(
-              pageIndex, r'MainState', 'pageIndex'),
-          trip: trip,
-        );
+    _$MainState _$result;
+    try {
+      _$result = _$v ??
+          new _$MainState._(
+            isLoading: BuiltValueNullFieldError.checkNotNull(
+                isLoading, r'MainState', 'isLoading'),
+            pageIndex: BuiltValueNullFieldError.checkNotNull(
+                pageIndex, r'MainState', 'pageIndex'),
+            currentTrip: currentTrip,
+            trips: trips.build(),
+            isListenerAdded: BuiltValueNullFieldError.checkNotNull(
+                isListenerAdded, r'MainState', 'isListenerAdded'),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'trips';
+        trips.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'MainState', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

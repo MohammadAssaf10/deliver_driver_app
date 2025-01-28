@@ -619,6 +619,26 @@ class S {
   String get retry {
     return Intl.message('Retry', name: 'retry', desc: '', args: []);
   }
+
+  /// `Available trips`
+  String get availableTrips {
+    return Intl.message(
+      'Available trips',
+      name: 'availableTrips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profit for captain`
+  String get profitForCaptain {
+    return Intl.message(
+      'Profit for captain',
+      name: 'profitForCaptain',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

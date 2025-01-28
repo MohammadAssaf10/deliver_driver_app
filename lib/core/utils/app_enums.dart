@@ -3,6 +3,7 @@ enum StringColor { black, red, green, yellow, blue, magenta, cyan, white }
 enum Language { en, ar }
 
 enum MarkerState {
+  nullLocation,
   tripStartLocation,
   tripEndLocation,
   currentLocation,

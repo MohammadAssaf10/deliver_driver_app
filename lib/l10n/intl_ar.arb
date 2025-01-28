@@ -71,5 +71,7 @@
   "services": "الخدمات",
   "activities": "الأنشطة",
   "account": "الحساب",
-  "retry": "إعادة المحاولة"
+  "retry": "إعادة المحاولة",
+  "availableTrips": "الرحلات المتاحة",
+  "profitForCaptain": "الربح للكابتن"
 }

@@ -8,10 +8,8 @@ class AppTextButton extends StatelessWidget {
   final Color? overlayColor;
   final double? buttonWidth;
   final double? buttonHeight;
-  final String? buttonText;
-  final TextStyle? textStyle;
   final VoidCallback? onPressed;
-  final Widget? child;
+  final Widget child;
   final BorderSide borderSide;
   final double? outerVerticalPadding;
   final double? outerHorizontalPadding;
@@ -24,9 +22,7 @@ class AppTextButton extends StatelessWidget {
     this.outerHorizontalPadding,
     this.buttonHeight,
     this.buttonWidth,
-    this.child,
-    this.buttonText,
-    this.textStyle,
+    required this.child,
     this.outerVerticalPadding,
     this.borderSide = BorderSide.none,
     required this.onPressed,
@@ -40,30 +36,25 @@ class AppTextButton extends StatelessWidget {
         horizontal: outerHorizontalPadding ?? 0,
       ),
       child: TextButton(
-        style: ButtonStyle(
-          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius ?? 5),
-              side: borderSide,
+          style: ButtonStyle(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(borderRadius ?? 5),
+                side: borderSide,
+              ),
+            ),
+            backgroundColor: WidgetStatePropertyAll(
+              backgroundColor,
+            ),
+            fixedSize: WidgetStateProperty.all(
+              Size(buttonWidth ?? double.maxFinite, buttonHeight ?? 50),
+            ),
+            overlayColor: WidgetStateProperty.all(
+              overlayColor ?? ColorsManager.grey.withValues(alpha: 0.03),
             ),
           ),
-          backgroundColor: WidgetStatePropertyAll(
-            backgroundColor,
-          ),
-          fixedSize: WidgetStateProperty.all(
-            Size(buttonWidth ?? double.maxFinite, buttonHeight ?? 50),
-          ),
-          overlayColor: WidgetStateProperty.all(
-            overlayColor ?? ColorsManager.grey.withValues(alpha: 0.03),
-          ),
-        ),
-        onPressed: onPressed,
-        child: child ??
-            Text(
-              buttonText ?? "",
-              style: textStyle,
-            ),
-      ),
+          onPressed: onPressed,
+          child: child),
     );
   }
 }

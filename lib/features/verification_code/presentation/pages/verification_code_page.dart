@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/colors_manager.dart';
-import '../../../../core/theming/styles_manager.dart';
+import '../../../../core/theming/font_manager.dart';
 import '../../../../core/widget/app_text_button.dart';
+import '../../../../core/widget/custom_auto_size_text.dart';
 import '../../../../generated/l10n.dart';
 import '../bloc/verification_code_bloc.dart';
 import '../widgets/verification_code_fields.dart';
@@ -30,9 +31,13 @@ class VerificationCodePage extends StatelessWidget {
                 size: 100,
               ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
-              Text(
-                S.of(context).weSentOTPCodeToVerifyYourNumber,
-                style: TextStyles.font18BlackBold,
+              CustomAutoSizeText(
+                text: S.of(context).weSentOTPCodeToVerifyYourNumber,
+                minFontSize: 16,
+                initialFontSize: 18,
+                maxFontSize: 20,
+                color: ColorsManager.darkGrey,
+                fontWeight: FontWeightHelper.bold,
               ),
               const SizedBox(height: 20),
               const VerificationCodeFields(),
@@ -47,9 +52,14 @@ class VerificationCodePage extends StatelessWidget {
                     context.read<VerificationCodeBloc>().verifyPhoneNumber();
                   }
                 },
-                buttonText: S.of(context).confirm,
-                textStyle: TextStyles.font14WhiteRegular,
                 borderRadius: 10,
+                child: CustomAutoSizeText(
+                  text: S.of(context).confirm,
+                  minFontSize: 12,
+                  initialFontSize: 14,
+                  maxFontSize: 16,
+                  color: ColorsManager.white,
+                ),
               ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
             ],

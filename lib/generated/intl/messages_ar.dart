@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "لديك حساب بالفعل؟",
     ),
     "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+    "availableTrips": MessageLookupByLibrary.simpleMessage("الرحلات المتاحة"),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "continue1": MessageLookupByLibrary.simpleMessage("متابعة"),
@@ -121,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "الرجاء تشغيل خدمة الموقع ثم المحاولة مرة أخرى",
         ),
+    "profitForCaptain": MessageLookupByLibrary.simpleMessage("الربح للكابتن"),
     "readyThenLetsRoll": MessageLookupByLibrary.simpleMessage(
       "هل أنت مستعد؟ إذن فلنبدأ",
     ),

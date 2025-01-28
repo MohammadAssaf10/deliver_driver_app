@@ -21,9 +21,9 @@ class HomeBody extends StatelessWidget {
               ? Loader(
                   color: ColorsManager.customWhite,
                 )
-              : state.trip == null
-                  ? UserDoNotHaveTripWidget()
-                  : UserHaveTripWidget(trip: state.trip!),
+              : state.currentTrip == null
+                  ? UserDoNotHaveTripWidget(trips: state.trips)
+                  : UserHaveTripWidget(currentTrip: state.currentTrip!),
         );
       },
     );

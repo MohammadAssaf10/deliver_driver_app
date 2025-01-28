@@ -4,8 +4,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/colors_manager.dart';
-import '../../../../core/theming/styles_manager.dart';
+import '../../../../core/theming/font_manager.dart';
 import '../../../../core/utils/app_extensions.dart';
+import '../../../../core/widget/custom_auto_size_text.dart';
 import '../bloc/splash_bloc.dart';
 import '../bloc/splash_state.dart';
 import '../widgets/splash_error_dialog.dart';
@@ -39,9 +40,14 @@ class SplashPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Deliver Driver App",
-                style: TextStyles.font40BlackBoldItalic,
+              CustomAutoSizeText(
+                text: "Deliver Driver App",
+                minFontSize: 38,
+                initialFontSize: 40,
+                maxFontSize: 42,
+                color: ColorsManager.darkGrey,
+                fontWeight: FontWeightHelper.bold,
+                fontStyle: FontStyle.italic,
               ),
               SizedBox(height: 10),
               SpinKitThreeBounce(

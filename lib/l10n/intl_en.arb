@@ -71,5 +71,7 @@
   "services": "Services",
   "activities": "Activities",
   "account": "Account",
-  "retry": "Retry"
+  "retry": "Retry",
+  "availableTrips": "Available trips",
+  "profitForCaptain": "Profit for captain"
 }

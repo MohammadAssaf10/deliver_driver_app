@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
@@ -11,6 +12,7 @@ import 'main_state.dart';
 @injectable
 class MainBloc extends Bloc<MainEvent, MainState> {
   final PageController pageController = PageController();
+  final ScrollController controller = ScrollController();
   final List<Widget> pages = const [
     HomeBody(),
     // ActivitiesPage(),
@@ -22,6 +24,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       add(SetPageIndex((b) => b..pageIndex = pageIndex));
 
   void getCurrentTrip() => add(GetCurrentTrip());
+
+  void getAvailableTrips() => add(GetAvailableTrips());
 
   MainBloc(
     this._mainRepository,
@@ -42,9 +46,46 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         emit(state.rebuild(
           (b) => b
             ..isLoading = false
-            ..trip = data,
+            ..currentTrip = data,
         ));
       });
     });
+    on<GetAvailableTrips>((event, emit) async {
+      if (state.trips.currentPage == 1) {
+        emit(state.rebuild((b) => b..isLoading = true));
+      } else {
+        emit(state.rebuild((b) => b..trips.isLoading = true));
+      }
+      final result =
+          await _mainRepository.getAvailableTrips(state.trips.currentPage);
+      result.fold((failure) {
+        showToastMessage(
+          failure.errorMessage,
+          isError: true,
+        );
+        emit(state.rebuild(
+          (b) => b
+            ..isLoading = false
+            ..trips.isLoading = false,
+        ));
+      }, (data) {
+        emit(state.rebuild(
+          (b) => b
+            ..isLoading = false
+            ..trips.isLoading = false
+            ..trips.items.addAll(data)
+            ..trips.currentPage = b.trips.currentPage! + 1
+            ..trips.isFinished = data.isEmpty,
+        ));
+        if (!state.isListenerAdded) {
+          controller.addListener(() {
+            if (state.trips.shouldGetMoreData(controller)) {
+              getAvailableTrips();
+            }
+          });
+          emit(state.rebuild((b) => b..isListenerAdded = true));
+        }
+      });
+    }, transformer: droppable());
   }
 }

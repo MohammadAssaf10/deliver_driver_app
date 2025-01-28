@@ -149,4 +149,63 @@ class GetCurrentTripBuilder
   }
 }
 
+class _$GetAvailableTrips extends GetAvailableTrips {
+  factory _$GetAvailableTrips(
+          [void Function(GetAvailableTripsBuilder)? updates]) =>
+      (new GetAvailableTripsBuilder()..update(updates))._build();
+
+  _$GetAvailableTrips._() : super._();
+
+  @override
+  GetAvailableTrips rebuild(void Function(GetAvailableTripsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GetAvailableTripsBuilder toBuilder() =>
+      new GetAvailableTripsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetAvailableTrips;
+  }
+
+  @override
+  int get hashCode {
+    return 396847181;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GetAvailableTrips').toString();
+  }
+}
+
+class GetAvailableTripsBuilder
+    implements Builder<GetAvailableTrips, GetAvailableTripsBuilder> {
+  _$GetAvailableTrips? _$v;
+
+  GetAvailableTripsBuilder();
+
+  @override
+  void replace(GetAvailableTrips other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GetAvailableTrips;
+  }
+
+  @override
+  void update(void Function(GetAvailableTripsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetAvailableTrips build() => _build();
+
+  _$GetAvailableTrips _build() {
+    final _$result = _$v ?? new _$GetAvailableTrips._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Already have an account?",
     ),
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+    "availableTrips": MessageLookupByLibrary.simpleMessage("Available trips"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "continue1": MessageLookupByLibrary.simpleMessage("Continue"),
@@ -123,6 +124,9 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Please turn on location service and try again",
         ),
+    "profitForCaptain": MessageLookupByLibrary.simpleMessage(
+      "Profit for captain",
+    ),
     "readyThenLetsRoll": MessageLookupByLibrary.simpleMessage(
       "Ready? Then let\'s roll",
     ),

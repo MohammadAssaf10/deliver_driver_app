@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/entities/trip.dart';
-import '../../../../core/theming/styles_manager.dart';
-import '../../../../generated/l10n.dart';
-import 'current_trip_card.dart';
+import '../../domain/entities/current_trip.dart';
 
 class UserHaveTripWidget extends StatelessWidget {
-  final Trip trip;
+  final CurrentTrip currentTrip;
 
   const UserHaveTripWidget({
     super.key,
-    required this.trip,
+    required this.currentTrip,
   });
 
   @override
@@ -19,14 +16,14 @@ class UserHaveTripWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
-              S.of(context).currentTrip,
-              style: TextStyles.font25DarkWhiteBold,
-            ),
-          ),
-          CurrentTripCard(trip: trip),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 10),
+          //   child: Text(
+          //     S.of(context).currentTrip,
+          //     style: TextStyles.font25DarkWhiteBold,
+          //   ),
+          // ),
+          // CurrentTripCard(currentTrip: currentTrip),
         ],
       ),
     );
