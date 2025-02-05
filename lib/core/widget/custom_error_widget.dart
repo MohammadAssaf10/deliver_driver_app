@@ -24,10 +24,14 @@ class CustomErrorWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Icon to visually indicate an error
-            Icon(
-              Icons.error_outline,
-              size: 64,
-              color: Colors.red.withValues(alpha: 0.7),
+            CircleAvatar(
+              radius: 38,
+              backgroundColor: ColorsManager.error.withValues(alpha: 0.2),
+              child: Icon(
+                Icons.error_outline,
+                size: 64,
+                color: ColorsManager.error.withValues(alpha: 0.7),
+              ),
             ),
             const SizedBox(height: 16),
 

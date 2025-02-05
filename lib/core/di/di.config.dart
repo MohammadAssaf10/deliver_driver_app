@@ -25,6 +25,8 @@ import '../../features/main/data/data_sources/remote/main_remote_data_source.dar
 import '../../features/main/data/data_sources/remote/main_remote_data_source_impl.dart'
     as _i724;
 import '../../features/main/data/repositories/main_repository.dart' as _i1027;
+import '../../features/main/domain/use_cases/accept_trip_use_case.dart'
+    as _i1035;
 import '../../features/main/presentation/bloc/main_bloc.dart' as _i1014;
 import '../../features/sign_in/data/data_sources/remote/sign_in_remote_data_source.dart'
     as _i533;
@@ -83,18 +85,24 @@ Future<_i174.GetIt> $initGetIt(
       () => _i724.MainRemoteDataSourceImpl());
   gh.lazySingleton<_i533.SignInRemoteDataSource>(
       () => _i1024.SignInRemoteDataSourceImpl());
+  gh.factory<_i442.SplashBloc>(
+      () => _i442.SplashBloc(gh<_i120.SplashRepository>()));
   gh.lazySingleton<_i1027.MainRepository>(
       () => _i1027.MainRepository(gh<_i1003.MainRemoteDataSource>()));
   gh.lazySingleton<_i964.SignUpRemoteDataSource>(
       () => _i42.SignUpRemoteDataSourceImpl());
+  gh.factory<_i1014.MainBloc>(() => _i1014.MainBloc(
+        gh<_i1027.MainRepository>(),
+        gh<_i645.Location>(),
+      ));
   gh.lazySingleton<_i89.VerificationCodeRemoteDataSource>(
       () => _i673.VerificationCodeRemoteDataSourceImpl());
   gh.lazySingleton<_i245.AppRepository>(
       () => _i245.AppRepository(gh<_i212.AppLocalDataSource>()));
   gh.lazySingleton<_i755.BaseRemoteDataSource>(
       () => _i330.BaseRemoteDataSourceImpl());
-  gh.factory<_i1014.MainBloc>(
-      () => _i1014.MainBloc(gh<_i1027.MainRepository>()));
+  gh.lazySingleton<_i1035.AcceptTripUseCase>(
+      () => _i1035.AcceptTripUseCase(gh<_i1027.MainRepository>()));
   gh.lazySingleton<_i932.NetworkInfo>(
       () => _i932.NetworkInfoImpl(gh<_i895.Connectivity>()));
   gh.lazySingleton<_i115.SignInRepository>(
@@ -105,10 +113,6 @@ Future<_i174.GetIt> $initGetIt(
       () => _i83.SignUpRepository(gh<_i964.SignUpRemoteDataSource>()));
   gh.lazySingleton<_i571.AppCubit>(
       () => _i571.AppCubit(gh<_i245.AppRepository>()));
-  gh.factory<_i442.SplashBloc>(() => _i442.SplashBloc(
-        gh<_i120.SplashRepository>(),
-        gh<_i115.SignInRepository>(),
-      ));
   gh.lazySingleton<_i61.VerificationCodeRepository>(
       () => _i61.VerificationCodeRepository(
             gh<_i89.VerificationCodeRemoteDataSource>(),

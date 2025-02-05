@@ -26,7 +26,9 @@ class HomeBody extends StatelessWidget {
                   ? CustomErrorWidget(
                       errorMessage:
                           'Oops! Something went wrong. Please try again.',
-                      onRetry: () {},
+                      onRetry: () {
+                        context.read<MainBloc>().getCurrentTrip();
+                      },
                     )
                   : state.currentTrip == null
                       ? UserDoNotHaveTripWidget(trips: state.trips)

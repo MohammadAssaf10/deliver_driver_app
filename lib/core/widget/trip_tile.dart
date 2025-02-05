@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../theming/colors_manager.dart';
 import '../theming/font_manager.dart';
-import 'custom_auto_size_text.dart';
 
 class TripTile extends StatelessWidget {
   final String title;
@@ -29,21 +28,21 @@ class TripTile extends StatelessWidget {
             color: ColorsManager.darkGrey.withValues(alpha: 0.8),
           ),
           const SizedBox(width: 6),
-          CustomAutoSizeText(
-            text: "$title: ",
-            minFontSize: 14,
-            initialFontSize: 16,
-            maxFontSize: 18,
-            fontWeight: FontWeightHelper.bold,
-            color: ColorsManager.darkGrey,
+          Text(
+            "$title: ",
+            style: TextStyle(
+              fontSize: 16,
+              color: ColorsManager.darkGrey,
+              fontWeight: FontWeightHelper.bold,
+            ),
           ),
           Expanded(
-            child: CustomAutoSizeText(
-              text: subtitle,
-              minFontSize: 14,
-              initialFontSize: 16,
-              maxFontSize: 18,
-              color: ColorsManager.darkGrey,
+            child: Text(
+              subtitle,
+              style: TextStyle(
+                fontSize: 16,
+                color: ColorsManager.darkGrey,
+              ),
               maxLines: 1,
             ),
           ),

@@ -30,7 +30,7 @@ class UserDoNotHaveTripWidget extends StatelessWidget {
                 color: ColorsManager.customWhite,
               )
             : TripCard(
-                tripNumber: trips.items[index].id,
+                tripId: trips.items[index].id,
                 estimatedTime: trips.items[index].calculatedDuration,
                 distance: trips.items[index].calculatedDistance,
                 profitForCaptain: trips.items[index].captainProfit,

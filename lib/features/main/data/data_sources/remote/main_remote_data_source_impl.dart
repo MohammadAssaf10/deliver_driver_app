@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/data_source/remote/base_remote_data_source_impl.dart';
+import '../../../../../core/models/location_request.dart';
 import '../../../../../core/network/endpoints.dart';
 import '../../models/available_trips_model.dart';
 import '../../models/current_trip_model.dart';
@@ -27,5 +28,22 @@ class MainRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
       },
     );
     return AvailableTripsModel.fromJson(result.data);
+  }
+
+  @override
+  Future<void> acceptTrip({
+    required int tripId,
+    required LocationRequest locationRequest,
+  }) async {
+    await performPutRequest(
+      endpoint: Endpoints.acceptTrip,
+      body: {
+        "tripId": tripId,
+        "driverAddress": {
+          "longitude": locationRequest.longitude,
+          "latitude": locationRequest.latitude,
+        }
+      },
+    );
   }
 }

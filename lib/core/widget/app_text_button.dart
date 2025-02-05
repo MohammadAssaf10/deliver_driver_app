@@ -11,19 +11,17 @@ class AppTextButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget child;
   final BorderSide borderSide;
-  final double? outerVerticalPadding;
-  final double? outerHorizontalPadding;
+  final EdgeInsetsGeometry outerPadding;
 
   const AppTextButton({
     super.key,
     this.borderRadius,
     this.backgroundColor = ColorsManager.darkGrey,
     this.overlayColor,
-    this.outerHorizontalPadding,
+    this.outerPadding = EdgeInsets.zero,
     this.buttonHeight,
     this.buttonWidth,
     required this.child,
-    this.outerVerticalPadding,
     this.borderSide = BorderSide.none,
     required this.onPressed,
   });
@@ -31,30 +29,28 @@ class AppTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: outerVerticalPadding ?? 0,
-        horizontal: outerHorizontalPadding ?? 0,
-      ),
+      padding: outerPadding,
       child: TextButton(
-          style: ButtonStyle(
-            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(borderRadius ?? 5),
-                side: borderSide,
-              ),
-            ),
-            backgroundColor: WidgetStatePropertyAll(
-              backgroundColor,
-            ),
-            fixedSize: WidgetStateProperty.all(
-              Size(buttonWidth ?? double.maxFinite, buttonHeight ?? 50),
-            ),
-            overlayColor: WidgetStateProperty.all(
-              overlayColor ?? ColorsManager.grey.withValues(alpha: 0.03),
+        style: ButtonStyle(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius ?? 5),
+              side: borderSide,
             ),
           ),
-          onPressed: onPressed,
-          child: child),
+          backgroundColor: WidgetStatePropertyAll(
+            backgroundColor,
+          ),
+          fixedSize: WidgetStateProperty.all(
+            Size(buttonWidth ?? double.maxFinite, buttonHeight ?? 50),
+          ),
+          overlayColor: WidgetStateProperty.all(
+            overlayColor ?? ColorsManager.grey.withValues(alpha: 0.03),
+          ),
+        ),
+        onPressed: onPressed,
+        child: child,
+      ),
     );
   }
 }

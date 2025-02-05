@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../utils/app_enums.dart';
+import 'location_request.dart';
 
 part 'address.g.dart';
 
@@ -25,6 +26,13 @@ class Address extends Equatable {
 
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
+
+  LocationRequest toLocationRequest() {
+    return LocationRequest(
+      longitude: longitude,
+      latitude: latitude,
+    );
+  }
 
   Address copyWith({
     MarkerState? markerState,

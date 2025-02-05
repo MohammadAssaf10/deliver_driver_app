@@ -1,10 +1,16 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:location/location.dart';
 
 import '../../../../core/entities/pagination_state_data.dart';
+import '../../../../core/models/address.dart';
+import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_functions.dart';
+import '../../../../generated/l10n.dart';
 import '../../data/repositories/main_repository.dart';
 import '../pages/home_body.dart';
 import 'main_event.dart';
@@ -14,12 +20,14 @@ import 'main_state.dart';
 class MainBloc extends Bloc<MainEvent, MainState> {
   final PageController pageController = PageController();
   final ScrollController controller = ScrollController();
+
   final List<Widget> pages = const [
     HomeBody(),
     // ActivitiesPage(),
     // AccountPage(),
   ];
   final MainRepository _mainRepository;
+  final Location _location;
 
   void setPageIndex(int pageIndex) =>
       add(SetPageIndex((b) => b..pageIndex = pageIndex));
@@ -28,12 +36,38 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   void getAvailableTrips() => add(GetAvailableTrips());
 
+  void getCurrentLocation() => add(GetCurrentLocation());
+
+  void acceptTrip(int tripId) => add(AcceptTrip((b) => b..tripId = tripId));
+
   MainBloc(
     this._mainRepository,
+    this._location,
   ) : super(MainState.initial()) {
     on<SetPageIndex>((event, emit) {
       emit(state.rebuild((b) => b..pageIndex = event.pageIndex));
     });
+    on<GetCurrentLocation>(
+      (event, emit) async {
+        final bool isLocationServiceEnabled =
+            await _ensureLocationServiceEnabled();
+        if (!isLocationServiceEnabled) return;
+
+        final LocationData locationData = await _location.getLocation();
+        if (locationData.latitude == null || locationData.longitude == null) {
+          return;
+        }
+
+        final Address currentAddress = Address(
+          markerState: MarkerState.currentLocation,
+          latitude: locationData.latitude!,
+          longitude: locationData.longitude!,
+        );
+
+        emit(state.rebuild((b) => b..currentAddress = currentAddress));
+      },
+      transformer: droppable(),
+    );
     on<GetCurrentTrip>((event, emit) async {
       emit(state.rebuild(
         (b) => b
@@ -103,5 +137,40 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         }
       });
     }, transformer: droppable());
+
+    on<AcceptTrip>((event, emit) async {
+      if (state.currentAddress == null) return;
+      final result = await _mainRepository.acceptTrip(
+        tripId: event.tripId,
+        locationRequest: state.currentAddress!.toLocationRequest(),
+      );
+      result.fold((failure) {
+        dPrint('Error: $failure');
+      }, (_) {
+        dPrint('OK');
+      });
+    }, transformer: droppable());
+  }
+
+  Future<bool> _ensureLocationServiceEnabled() async {
+    bool serviceEnabled = await _location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await _location.requestService();
+      if (!serviceEnabled) {
+        showToastMessage(S.current.pleaseTurnOnLocationServiceAndTryAgain);
+        return false;
+      }
+    }
+
+    PermissionStatus permissionGranted = await _location.hasPermission();
+    if (permissionGranted != PermissionStatus.granted) {
+      permissionGranted = await _location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        showToastMessage(
+            S.current.pleaseAllowAppToAccessYourCurrentLocationAndTryAgain);
+        return false;
+      }
+    }
+    return true;
   }
 }

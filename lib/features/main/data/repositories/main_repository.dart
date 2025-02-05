@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/entities/current_trip.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../core/models/location_request.dart';
 import '../../../../core/repositories/base_repository.dart';
+import '../../domain/entities/current_trip.dart';
 import '../data_sources/remote/main_remote_data_source.dart';
 import '../models/trip_model.dart';
 
@@ -13,7 +14,8 @@ class MainRepository extends BaseRepository {
 
   MainRepository(this._mainRemoteDataSource);
 
-  Future<Either<Failure, CurrentTrip?>> getCurrentTrip() async => await requestApi(
+  Future<Either<Failure, CurrentTrip?>> getCurrentTrip() async =>
+      await requestApi(
         () async => await _mainRemoteDataSource.getCurrentTrip(),
         (currentTripModel) async {
           if (currentTripModel == null) return null;
@@ -26,6 +28,20 @@ class MainRepository extends BaseRepository {
         () async => await _mainRemoteDataSource.getAvailableTrips(page),
         (availableTripsModel) async {
           return availableTripsModel.trips;
+        },
+      );
+
+  Future<Either<Failure, void>> acceptTrip({
+    required int tripId,
+    required LocationRequest locationRequest,
+  }) async =>
+      await requestApi(
+        () async => await _mainRemoteDataSource.acceptTrip(
+          tripId: tripId,
+          locationRequest: locationRequest,
+        ),
+        (_) async {
+          return;
         },
       );
 }

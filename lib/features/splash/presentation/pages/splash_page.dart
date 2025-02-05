@@ -30,9 +30,9 @@ class SplashPage extends StatelessWidget {
                 );
               },
             );
-          } else if (state.isAuth == true && state.isTokenUpToDate) {
+          } else if (state.isAuth == true) {
             context.pushReplacementNamed(Routes.mainPage);
-          } else if (state.isAuth == false && state.isTokenUpToDate) {
+          } else if (state.isAuth == false) {
             context.pushReplacementNamed(Routes.signInPage);
           }
         },

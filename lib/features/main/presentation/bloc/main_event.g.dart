@@ -208,4 +208,146 @@ class GetAvailableTripsBuilder
   }
 }
 
+class _$GetCurrentLocation extends GetCurrentLocation {
+  factory _$GetCurrentLocation(
+          [void Function(GetCurrentLocationBuilder)? updates]) =>
+      (new GetCurrentLocationBuilder()..update(updates))._build();
+
+  _$GetCurrentLocation._() : super._();
+
+  @override
+  GetCurrentLocation rebuild(
+          void Function(GetCurrentLocationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GetCurrentLocationBuilder toBuilder() =>
+      new GetCurrentLocationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetCurrentLocation;
+  }
+
+  @override
+  int get hashCode {
+    return 214810858;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GetCurrentLocation').toString();
+  }
+}
+
+class GetCurrentLocationBuilder
+    implements Builder<GetCurrentLocation, GetCurrentLocationBuilder> {
+  _$GetCurrentLocation? _$v;
+
+  GetCurrentLocationBuilder();
+
+  @override
+  void replace(GetCurrentLocation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GetCurrentLocation;
+  }
+
+  @override
+  void update(void Function(GetCurrentLocationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetCurrentLocation build() => _build();
+
+  _$GetCurrentLocation _build() {
+    final _$result = _$v ?? new _$GetCurrentLocation._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$AcceptTrip extends AcceptTrip {
+  @override
+  final int tripId;
+
+  factory _$AcceptTrip([void Function(AcceptTripBuilder)? updates]) =>
+      (new AcceptTripBuilder()..update(updates))._build();
+
+  _$AcceptTrip._({required this.tripId}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(tripId, r'AcceptTrip', 'tripId');
+  }
+
+  @override
+  AcceptTrip rebuild(void Function(AcceptTripBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  AcceptTripBuilder toBuilder() => new AcceptTripBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is AcceptTrip && tripId == other.tripId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, tripId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'AcceptTrip')..add('tripId', tripId))
+        .toString();
+  }
+}
+
+class AcceptTripBuilder implements Builder<AcceptTrip, AcceptTripBuilder> {
+  _$AcceptTrip? _$v;
+
+  int? _tripId;
+  int? get tripId => _$this._tripId;
+  set tripId(int? tripId) => _$this._tripId = tripId;
+
+  AcceptTripBuilder();
+
+  AcceptTripBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _tripId = $v.tripId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(AcceptTrip other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$AcceptTrip;
+  }
+
+  @override
+  void update(void Function(AcceptTripBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  AcceptTrip build() => _build();
+
+  _$AcceptTrip _build() {
+    final _$result = _$v ??
+        new _$AcceptTrip._(
+          tripId: BuiltValueNullFieldError.checkNotNull(
+              tripId, r'AcceptTrip', 'tripId'),
+        );
+    replace(_$result);
+    return _$result;
+  }
+}
+
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

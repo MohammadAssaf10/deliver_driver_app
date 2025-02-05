@@ -19,6 +19,8 @@ class _$MainState extends MainState {
   final PaginationStateData<TripModel> trips;
   @override
   final bool isListenerAdded;
+  @override
+  final Address? currentAddress;
 
   factory _$MainState([void Function(MainStateBuilder)? updates]) =>
       (new MainStateBuilder()..update(updates))._build();
@@ -29,7 +31,8 @@ class _$MainState extends MainState {
       required this.pageIndex,
       this.currentTrip,
       required this.trips,
-      required this.isListenerAdded})
+      required this.isListenerAdded,
+      this.currentAddress})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(isLoading, r'MainState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(isError, r'MainState', 'isError');
@@ -55,7 +58,8 @@ class _$MainState extends MainState {
         pageIndex == other.pageIndex &&
         currentTrip == other.currentTrip &&
         trips == other.trips &&
-        isListenerAdded == other.isListenerAdded;
+        isListenerAdded == other.isListenerAdded &&
+        currentAddress == other.currentAddress;
   }
 
   @override
@@ -67,6 +71,7 @@ class _$MainState extends MainState {
     _$hash = $jc(_$hash, currentTrip.hashCode);
     _$hash = $jc(_$hash, trips.hashCode);
     _$hash = $jc(_$hash, isListenerAdded.hashCode);
+    _$hash = $jc(_$hash, currentAddress.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -79,7 +84,8 @@ class _$MainState extends MainState {
           ..add('pageIndex', pageIndex)
           ..add('currentTrip', currentTrip)
           ..add('trips', trips)
-          ..add('isListenerAdded', isListenerAdded))
+          ..add('isListenerAdded', isListenerAdded)
+          ..add('currentAddress', currentAddress))
         .toString();
   }
 }
@@ -115,6 +121,11 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   set isListenerAdded(bool? isListenerAdded) =>
       _$this._isListenerAdded = isListenerAdded;
 
+  Address? _currentAddress;
+  Address? get currentAddress => _$this._currentAddress;
+  set currentAddress(Address? currentAddress) =>
+      _$this._currentAddress = currentAddress;
+
   MainStateBuilder();
 
   MainStateBuilder get _$this {
@@ -126,6 +137,7 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
       _currentTrip = $v.currentTrip;
       _trips = $v.trips.toBuilder();
       _isListenerAdded = $v.isListenerAdded;
+      _currentAddress = $v.currentAddress;
       _$v = null;
     }
     return this;
@@ -160,6 +172,7 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
             trips: trips.build(),
             isListenerAdded: BuiltValueNullFieldError.checkNotNull(
                 isListenerAdded, r'MainState', 'isListenerAdded'),
+            currentAddress: currentAddress,
           );
     } catch (_) {
       late String _$failedField;

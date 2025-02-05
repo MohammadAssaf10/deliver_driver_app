@@ -1,5 +1,6 @@
 import 'package:deliver_driver_app/core/widget/app_text_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/utils/app_enums.dart';
@@ -8,9 +9,10 @@ import '../../../../core/widget/custom_auto_size_text.dart';
 import '../../../../core/widget/trip_tile.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
+import '../bloc/main_bloc.dart';
 
 class TripCard extends StatelessWidget {
-  final int tripNumber;
+  final int tripId;
   final double estimatedTime;
   final double distance;
   final String date;
@@ -20,7 +22,7 @@ class TripCard extends StatelessWidget {
 
   const TripCard({
     super.key,
-    required this.tripNumber,
+    required this.tripId,
     required this.estimatedTime,
     required this.distance,
     required this.date,
@@ -62,7 +64,7 @@ class TripCard extends StatelessWidget {
                     children: [
                       TripTile(
                         title: S.of(context).tripNumber,
-                        subtitle: tripNumber.toString(),
+                        subtitle: tripId.toString(),
                         icon: Icons.confirmation_number_outlined,
                       ),
                       if (status != null)
@@ -98,7 +100,9 @@ class TripCard extends StatelessWidget {
                         icon: Icons.calendar_today,
                       ),
                       AppTextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<MainBloc>().acceptTrip(tripId);
+                        },
                         borderRadius: 15,
                         buttonHeight: 40,
                         backgroundColor: ColorsManager.darkGrey,
@@ -115,7 +119,6 @@ class TripCard extends StatelessWidget {
                   ),
                 ),
               ),
-              // Image on the right side
               ClipRRect(
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(20),

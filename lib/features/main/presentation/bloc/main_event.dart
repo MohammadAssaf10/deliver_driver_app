@@ -29,3 +29,21 @@ abstract class GetAvailableTrips extends MainEvent
   factory GetAvailableTrips([void Function(GetAvailableTripsBuilder) updates]) =
       _$GetAvailableTrips;
 }
+
+abstract class GetCurrentLocation extends MainEvent
+    implements Built<GetCurrentLocation, GetCurrentLocationBuilder> {
+  GetCurrentLocation._();
+
+  factory GetCurrentLocation(
+          [void Function(GetCurrentLocationBuilder) updates]) =
+      _$GetCurrentLocation;
+}
+
+abstract class AcceptTrip extends MainEvent
+    implements Built<AcceptTrip, AcceptTripBuilder> {
+  int get tripId;
+
+  AcceptTrip._();
+
+  factory AcceptTrip([void Function(AcceptTripBuilder) updates]) = _$AcceptTrip;
+}

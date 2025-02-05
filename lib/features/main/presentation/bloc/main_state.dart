@@ -1,6 +1,8 @@
 import 'package:built_value/built_value.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../core/entities/pagination_state_data.dart';
+import '../../../../core/models/address.dart';
 import '../../data/models/trip_model.dart';
 import '../../domain/entities/current_trip.dart';
 
@@ -19,6 +21,8 @@ abstract class MainState implements Built<MainState, MainStateBuilder> {
 
   bool get isListenerAdded;
 
+  Address? get currentAddress;
+
   MainState._();
 
   factory MainState([void Function(MainStateBuilder) updates]) = _$MainState;
@@ -31,7 +35,8 @@ abstract class MainState implements Built<MainState, MainStateBuilder> {
         ..pageIndex = 0
         ..currentTrip = null
         ..trips.replace(PaginationStateData<TripModel>.initial())
-        ..isListenerAdded = false,
+        ..isListenerAdded = false
+        ..currentAddress = null,
     );
   }
 }

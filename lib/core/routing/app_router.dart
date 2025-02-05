@@ -30,7 +30,7 @@ class AppRouter {
       case Routes.mainPage:
         return MaterialPageRoute(
           builder: (_) => BlocProvider<MainBloc>(
-            create: (_) => getIt<MainBloc>()..getAvailableTrips(),
+            create: (_) => getIt<MainBloc>()..getAvailableTrips()..getCurrentLocation(),
             child: const MainPage(),
           ),
         );

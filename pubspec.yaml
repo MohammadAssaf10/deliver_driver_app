@@ -42,7 +42,7 @@ dependencies:
   bloc_concurrency: ^0.3.0
   equatable: ^2.0.7
   dartz: ^0.10.1
-  dio: ^5.7.0
+  dio: ^5.8.0+1
   connectivity_plus: ^6.1.2
   get_it: ^8.0.3
   injectable: ^2.5.0
@@ -59,10 +59,9 @@ dependencies:
   location: ^8.0.0
   google_maps_flutter: ^2.10.0
   pinput: ^5.0.1
-  ntp: ^2.0.0
   sliding_up_panel: ^2.0.0+1
   geocoding: ^3.0.0
-  sentry_flutter: ^8.12.0
+  sentry_flutter: ^8.13.0
   flutter_dotenv: ^5.2.1
   auto_size_text: ^3.0.0
 
@@ -96,6 +95,7 @@ flutter:
   assets:
     - .env
     - assets/images/
+    - assets/icons/
 
 flutter_intl:
   enabled: true
