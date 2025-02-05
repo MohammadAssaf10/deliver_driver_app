@@ -12,8 +12,8 @@ CurrentTripModel _$CurrentTripModelFromJson(Map<String, dynamic> json) =>
       status: (json['status'] as num).toInt(),
       pickUpAddress:
           Address.fromJson(json['pickUpAddress'] as Map<String, dynamic>),
-      dropOfAddress:
-          Address.fromJson(json['dropOfAddress'] as Map<String, dynamic>),
+      dropOffAddress:
+          Address.fromJson(json['dropOffAddress'] as Map<String, dynamic>),
       createdDate: (json['createdDate'] as num).toInt(),
       calculatedDistance: (json['calculatedDistance'] as num).toDouble(),
       calculatedDuration: (json['calculatedDuration'] as num).toDouble(),
