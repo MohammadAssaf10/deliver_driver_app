@@ -107,7 +107,7 @@ class TripCard extends StatelessWidget {
                         buttonHeight: 40,
                         backgroundColor: ColorsManager.darkGrey,
                         child: CustomAutoSizeText(
-                          text: 'Accept Trip',
+                          text: S.of(context).acceptTrip,
                           minFontSize: 12,
                           initialFontSize: 14,
                           maxFontSize: 16,

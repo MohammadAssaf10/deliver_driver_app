@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/colors_manager.dart';
+import '../../../../core/utils/app_functions.dart';
 import '../../../../core/widget/custom_error_widget.dart';
 import '../../../../core/widget/loader.dart';
+import '../../../../generated/l10n.dart';
 import '../bloc/main_bloc.dart';
 import '../bloc/main_state.dart';
 import '../widgets/user_do_not_have_trip_widget.dart';
@@ -14,25 +16,34 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MainBloc, MainState>(
+    return BlocConsumer<MainBloc, MainState>(
+      listener: (context, state) {
+        if (state.acceptTripIsLoading == true) {
+          showLoadingDialog(context);
+        } else if (state.acceptTripIsLoading == false) {
+          closeLoadingDialogIfVisible();
+        }
+      },
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
           child: state.isLoading
               ? Loader(
-                  color: ColorsManager.customWhite,
-                )
+            color: ColorsManager.customWhite,
+          )
               : state.isError
-                  ? CustomErrorWidget(
-                      errorMessage:
-                          'Oops! Something went wrong. Please try again.',
-                      onRetry: () {
-                        context.read<MainBloc>().getCurrentTrip();
-                      },
-                    )
-                  : state.currentTrip == null
-                      ? UserDoNotHaveTripWidget(trips: state.trips)
-                      : UserHaveTripWidget(currentTrip: state.currentTrip!),
+              ? CustomErrorWidget(
+            errorMessage:
+            S
+                .of(context)
+                .oopsSomethingWentWrongPleaseTryAgain,
+            onRetry: () {
+              context.read<MainBloc>().getCurrentTrip();
+            },
+          )
+              : state.currentTrip == null
+              ? UserDoNotHaveTripWidget(trips: state.trips)
+              : UserHaveTripWidget(currentTrip: state.currentTrip!),
         );
       },
     );

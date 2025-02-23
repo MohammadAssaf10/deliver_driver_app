@@ -1,16 +1,19 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
 
+import '../../../../core/di/di.dart';
 import '../../../../core/entities/pagination_state_data.dart';
 import '../../../../core/models/address.dart';
 import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_functions.dart';
 import '../../../../generated/l10n.dart';
+import '../../../profile/presentation/bloc/profile_bloc.dart';
+import '../../../profile/presentation/pages/profile_page.dart';
 import '../../data/repositories/main_repository.dart';
 import '../pages/home_body.dart';
 import 'main_event.dart';
@@ -21,10 +24,15 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   final PageController pageController = PageController();
   final ScrollController controller = ScrollController();
 
-  final List<Widget> pages = const [
-    HomeBody(),
-    // ActivitiesPage(),
-    // AccountPage(),
+  final List<Widget> pages = [
+    const HomeBody(),
+    Container(),
+    BlocProvider(
+      create: (context) =>
+      getIt<ProfileBloc>()
+        ..getProfile(),
+      child: const ProfilePage(),
+    ),
   ];
   final MainRepository _mainRepository;
   final Location _location;
@@ -40,17 +48,15 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   void acceptTrip(int tripId) => add(AcceptTrip((b) => b..tripId = tripId));
 
-  MainBloc(
-    this._mainRepository,
-    this._location,
-  ) : super(MainState.initial()) {
+  MainBloc(this._mainRepository,
+      this._location,) : super(MainState.initial()) {
     on<SetPageIndex>((event, emit) {
       emit(state.rebuild((b) => b..pageIndex = event.pageIndex));
     });
     on<GetCurrentLocation>(
-      (event, emit) async {
+          (event, emit) async {
         final bool isLocationServiceEnabled =
-            await _ensureLocationServiceEnabled();
+        await _ensureLocationServiceEnabled();
         if (!isLocationServiceEnabled) return;
 
         final LocationData locationData = await _location.getLocation();
@@ -70,21 +76,25 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     );
     on<GetCurrentTrip>((event, emit) async {
       emit(state.rebuild(
-        (b) => b
+            (b) =>
+        b
           ..isLoading = true
           ..isError = false
+          ..acceptTripIsLoading = null
           ..trips.replace(PaginationStateData.initial()),
       ));
       final result = await _mainRepository.getCurrentTrip();
       result.fold((failure) {
         emit(state.rebuild(
-          (b) => b
+              (b) =>
+          b
             ..isLoading = false
             ..isError = true,
         ));
       }, (data) {
         emit(state.rebuild(
-          (b) => b
+              (b) =>
+          b
             ..isLoading = false
             ..currentTrip = data,
         ));
@@ -96,7 +106,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     on<GetAvailableTrips>((event, emit) async {
       if (state.trips.currentPage == 1) {
         emit(state.rebuild(
-          (b) => b
+              (b) =>
+          b
             ..isLoading = true
             ..isError = false,
         ));
@@ -104,7 +115,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         emit(state.rebuild((b) => b..trips.isLoading = true));
       }
       final result =
-          await _mainRepository.getAvailableTrips(state.trips.currentPage);
+      await _mainRepository.getAvailableTrips(state.trips.currentPage);
       result.fold((failure) {
         if (state.trips.currentPage > 1) {
           showToastMessage(
@@ -113,14 +124,16 @@ class MainBloc extends Bloc<MainEvent, MainState> {
           );
         }
         emit(state.rebuild(
-          (b) => b
+              (b) =>
+          b
             ..isLoading = false
             ..trips.isLoading = false
             ..isError = state.trips.currentPage > 1 ? state.isError : true,
         ));
       }, (data) {
         emit(state.rebuild(
-          (b) => b
+              (b) =>
+          b
             ..isLoading = false
             ..trips.isLoading = false
             ..trips.items.addAll(data)
@@ -140,14 +153,17 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
     on<AcceptTrip>((event, emit) async {
       if (state.currentAddress == null) return;
+      emit(state.rebuild((b) => b..acceptTripIsLoading = true));
       final result = await _mainRepository.acceptTrip(
         tripId: event.tripId,
         locationRequest: state.currentAddress!.toLocationRequest(),
       );
       result.fold((failure) {
-        dPrint('Error: $failure');
+        showToastMessage(failure.errorMessage, isError: true);
+        emit(state.rebuild((b) => b..acceptTripIsLoading = false));
       }, (_) {
-        dPrint('OK');
+        emit(state.rebuild((b) => b..acceptTripIsLoading = false));
+        getCurrentTrip();
       });
     }, transformer: droppable());
   }

@@ -20,4 +20,5 @@ class LocalStorageKeys {
   static String userToken = 'userToken';
   static String phoneNumber = 'phoneNumber';
   static String password = 'password';
+  static String isPhoneNumberVerified = 'isPhoneNumberVerified';
 }

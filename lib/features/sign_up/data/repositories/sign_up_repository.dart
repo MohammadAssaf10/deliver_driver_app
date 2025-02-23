@@ -22,6 +22,10 @@ class SignUpRepository extends BaseRepository {
         <SignUpModel>() async =>
             await _signUpRemoteDataSource.signUp(signUpRequest),
         (signUpModel) async {
+          await SharedPreferencesHelper.setData(
+              LocalStorageKeys.isPhoneNumberVerified, false);
+          await SharedPreferencesHelper.setSecuredString(
+              LocalStorageKeys.userToken, signUpModel.token);
           await SharedPreferencesHelper.setSecuredString(
             LocalStorageKeys.phoneNumber,
             signUpRequest.phoneNumber,

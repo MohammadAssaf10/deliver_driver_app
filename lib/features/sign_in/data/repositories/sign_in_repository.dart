@@ -20,12 +20,12 @@ class SignInRepository extends BaseRepository {
       <SignInModel>() async =>
           await _signInRemoteDataSource.signIn(signInRequest),
       (signInModel) async {
-        if (signInModel.isPhoneNumberVerified) {
-          await SharedPreferencesHelper.setSecuredString(
-            LocalStorageKeys.userToken,
-            signInModel.token,
-          );
-        }
+        SharedPreferencesHelper.setData(LocalStorageKeys.isPhoneNumberVerified,
+            signInModel.isPhoneNumberVerified);
+        await SharedPreferencesHelper.setSecuredString(
+          LocalStorageKeys.userToken,
+          signInModel.token,
+        );
         await SharedPreferencesHelper.setSecuredString(
           LocalStorageKeys.phoneNumber,
           signInRequest.phoneNumber,

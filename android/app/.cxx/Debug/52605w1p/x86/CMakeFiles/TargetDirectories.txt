@@ -1,0 +1,2 @@
+C:/Users/Dell/StudioProjects/deliver_driver_app/android/app/.cxx/Debug/52605w1p/x86/CMakeFiles/edit_cache.dir
+C:/Users/Dell/StudioProjects/deliver_driver_app/android/app/.cxx/Debug/52605w1p/x86/CMakeFiles/rebuild_cache.dir

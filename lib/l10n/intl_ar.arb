@@ -75,5 +75,7 @@
   "retry": "إعادة المحاولة",
   "availableTrips": "الرحلات المتاحة",
   "profitForCaptain": "الربح للكابتن",
-  "yourProfits": "أرباحك"
+  "yourProfits": "أرباحك",
+  "oopsSomethingWentWrongPleaseTryAgain": "عفواً! حدث خطأ ما. يُرجى المحاولة مرة أخرى",
+  "acceptTrip": "قبول الرحلة"
 }

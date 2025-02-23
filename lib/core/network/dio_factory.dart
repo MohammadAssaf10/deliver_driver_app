@@ -34,14 +34,13 @@ class DioFactory {
           final String timeZoneName = currentDateTime.timeZoneName;
           final Duration timeZoneOffset = currentDateTime.timeZoneOffset;
           final String userToken =
-          await SharedPreferencesHelper.getSecuredString(
-              LocalStorageKeys.userToken);
+              await SharedPreferencesHelper.getSecuredString(
+                  LocalStorageKeys.userToken);
           final String language =
-          SharedPreferencesHelper.getString(LocalStorageKeys.appLanguage);
+              SharedPreferencesHelper.getString(LocalStorageKeys.appLanguage);
           if (!userToken.nullOrEmpty()) {
             options.headers['Authorization'] =
-            'Bearer ${await SharedPreferencesHelper.getSecuredString(
-                LocalStorageKeys.userToken)}';
+                'Bearer ${await SharedPreferencesHelper.getSecuredString(LocalStorageKeys.userToken)}';
           }
           if (!language.nullOrEmpty()) {
             options.headers['Accept-Language'] = language;
@@ -73,23 +72,26 @@ class DioFactory {
             dPrint("statusMessage: ${dioException.response!.statusMessage}");
             dPrint("response: ${dioException.response!.data}");
           }
-
-          if (dioException.response?.statusCode == 401) {
+          final String userToken =
+              await SharedPreferencesHelper.getSecuredString(
+                  LocalStorageKeys.userToken);
+          if (dioException.response?.statusCode == 401 &&
+              !userToken.nullOrEmpty()) {
             dPrint('Token is Expired', stringColor: StringColor.yellow);
             try {
               final String phoneNumber =
-              await SharedPreferencesHelper.getSecuredString(
-                  LocalStorageKeys.phoneNumber);
+                  await SharedPreferencesHelper.getSecuredString(
+                      LocalStorageKeys.phoneNumber);
               final String password =
-              await SharedPreferencesHelper.getSecuredString(
-                  LocalStorageKeys.password);
+                  await SharedPreferencesHelper.getSecuredString(
+                      LocalStorageKeys.password);
               final SignInRepository signInRepository =
-              getIt<SignInRepository>();
+                  getIt<SignInRepository>();
               final SignInRequest signInRequest =
-              SignInRequest(phoneNumber: phoneNumber, password: password);
+                  SignInRequest(phoneNumber: phoneNumber, password: password);
               await signInRepository.signIn(signInRequest);
               final retryResponse =
-              await _dio?.fetch(dioException.requestOptions);
+                  await _dio?.fetch(dioException.requestOptions);
               return handler.resolve(retryResponse!);
             } catch (e) {
               // TODO: Handle force user logout and return it to sign in page

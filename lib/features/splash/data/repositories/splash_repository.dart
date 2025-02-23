@@ -12,7 +12,12 @@ class SplashRepository extends BaseRepository {
     try {
       final String userToken = await SharedPreferencesHelper.getSecuredString(
           LocalStorageKeys.userToken);
-      return Right(userToken.isNotEmpty);
+      final bool isPhoneNumberVerified = SharedPreferencesHelper.getBool(
+          LocalStorageKeys.isPhoneNumberVerified);
+      if (!isPhoneNumberVerified) {
+        SharedPreferencesHelper.clearAllSecuredData();
+      }
+      return Right(userToken.isNotEmpty && isPhoneNumberVerified);
     } catch (e) {
       return const Left(
         CacheFailure(errorMessage: "Can't get user token"),

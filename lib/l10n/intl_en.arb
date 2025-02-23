@@ -75,5 +75,7 @@
   "retry": "Retry",
   "availableTrips": "Available trips",
   "profitForCaptain": "Profit for captain",
-  "yourProfits": "Your profits"
+  "yourProfits": "Your profits",
+  "oopsSomethingWentWrongPleaseTryAgain": "Oops! Something went wrong. Please try again",
+  "acceptTrip": "Accept Trip"
 }

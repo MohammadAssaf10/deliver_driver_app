@@ -23,20 +23,24 @@ abstract class MainState implements Built<MainState, MainStateBuilder> {
 
   Address? get currentAddress;
 
+  bool? get acceptTripIsLoading;
+
   MainState._();
 
   factory MainState([void Function(MainStateBuilder) updates]) = _$MainState;
 
   factory MainState.initial() {
     return MainState(
-      (b) => b
+          (b) =>
+      b
         ..isLoading = false
         ..isError = false
         ..pageIndex = 0
         ..currentTrip = null
         ..trips.replace(PaginationStateData<TripModel>.initial())
         ..isListenerAdded = false
-        ..currentAddress = null,
+        ..currentAddress = null
+        ..acceptTripIsLoading = null,
     );
   }
 }
