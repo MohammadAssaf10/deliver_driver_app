@@ -37,7 +37,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "availableTrips":
             MessageLookupByLibrary.simpleMessage("الرحلات المتاحة"),
+        "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "changeLanguage": MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "continue1": MessageLookupByLibrary.simpleMessage("متابعة"),
         "currentTrip": MessageLookupByLibrary.simpleMessage("الرحلة الحالية"),
@@ -47,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "doNotHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("لا تملك حساب؟"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
+        "driverId": MessageLookupByLibrary.simpleMessage("رقم السائق: "),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailFormatNotCorrect": MessageLookupByLibrary.simpleMessage(
             "تنسيق البريد الإلكتروني غير صحيح"),
@@ -57,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل تفاصيل حسابك هنا."),
         "estimatedTime": MessageLookupByLibrary.simpleMessage("الوقت المتوقع"),
         "from": MessageLookupByLibrary.simpleMessage("من"),
+        "gallery": MessageLookupByLibrary.simpleMessage("المعرض"),
         "getStartWithDeliver":
             MessageLookupByLibrary.simpleMessage("ابدأ مع Deliver"),
         "haveAnAccount": MessageLookupByLibrary.simpleMessage("لديك حساب؟"),
@@ -64,13 +68,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "kindlySignUpBelow":
             MessageLookupByLibrary.simpleMessage("يرجى التسجيل أدناه."),
         "km": m0,
+        "licenseImage": MessageLookupByLibrary.simpleMessage("صورة الرخصة"),
         "loginHere": MessageLookupByLibrary.simpleMessage("تسجيل الدخول هنا"),
+        "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "minute": m1,
         "mobileNumber":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف المحمول"),
         "mobileNumberFormatNotCorrect":
             MessageLookupByLibrary.simpleMessage("تنسيق رقم الهاتف غير صحيح"),
         "myTrip": MessageLookupByLibrary.simpleMessage("رحلاتي"),
+        "name": MessageLookupByLibrary.simpleMessage("الاسم: "),
         "networkError": MessageLookupByLibrary.simpleMessage(
             "هناك مشكلة بالاتصال بالشبكة الرجاء إعادة المحاولة لاحقاً"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
@@ -85,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordShouldAtLeast8Character": MessageLookupByLibrary.simpleMessage(
             "يجب أن لا تقل كلمة المرور عن 8 أحرف"),
+        "phone": MessageLookupByLibrary.simpleMessage("الهاتف: "),
         "pickupLocation": MessageLookupByLibrary.simpleMessage("مكان الانطلاق"),
         "pleaseAllowAppToAccessYourCurrentLocationAndTryAgain":
             MessageLookupByLibrary.simpleMessage(
@@ -107,9 +115,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "الرجاء تحديد موقع نهاية الرحلة"),
         "pleaseSelectStartTripLocation": MessageLookupByLibrary.simpleMessage(
             "الرجاء تحديد موقع بدء الرحلة"),
+        "pleaseSelectVehicleImages":
+            MessageLookupByLibrary.simpleMessage("الرجاء اختيار صور السيارة"),
         "pleaseTurnOnLocationServiceAndTryAgain":
             MessageLookupByLibrary.simpleMessage(
                 "الرجاء تشغيل خدمة الموقع ثم المحاولة مرة أخرى"),
+        "profileDetails":
+            MessageLookupByLibrary.simpleMessage("تفاصيل الملف الشخصي"),
         "profitForCaptain":
             MessageLookupByLibrary.simpleMessage("الربح للكابتن"),
         "readyThenLetsRoll":
@@ -119,6 +131,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
         "rideWithDeliver":
             MessageLookupByLibrary.simpleMessage("اركب مع Deliver"),
+        "selectImageSource":
+            MessageLookupByLibrary.simpleMessage("اختيار مصدر الصورة"),
+        "selectVehicleImages":
+            MessageLookupByLibrary.simpleMessage("اختر صور المركبة"),
         "services": MessageLookupByLibrary.simpleMessage("الخدمات"),
         "showTripDetails":
             MessageLookupByLibrary.simpleMessage("عرض تفاصيل الرحلة"),
@@ -138,6 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "usernameShort":
             MessageLookupByLibrary.simpleMessage("اسم المستخدم قصير"),
+        "vehicleImage": MessageLookupByLibrary.simpleMessage("صورة المركبة"),
         "weSentOTPCodeToVerifyYourNumber": MessageLookupByLibrary.simpleMessage(
             "لقد أرسلنا لك رمز OTP للتحقق من رقمك"),
         "welcome": MessageLookupByLibrary.simpleMessage("مرحباً بك "),

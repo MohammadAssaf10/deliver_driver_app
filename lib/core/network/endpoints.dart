@@ -12,4 +12,5 @@ class Endpoints {
   static String availableTrips = '/driver/trip/available';
   static String acceptTrip = '/driver/trip/accept';
   static String profile = '/driver/profile';
+  static String registerVehicle = '/driver/profile/registerVehicle';
 }

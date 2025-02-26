@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../../features/sign_in/data/models/sign_in_request.dart';
-import '../../features/sign_in/data/repositories/sign_in_repository.dart';
+import '../../features/sign_in/domain/repositories/sign_in_repository.dart';
 import '../di/di.dart';
 import '../utils/app_enums.dart';
 import '../utils/app_extensions.dart';
@@ -75,7 +75,8 @@ class DioFactory {
           final String userToken =
               await SharedPreferencesHelper.getSecuredString(
                   LocalStorageKeys.userToken);
-          if (dioException.response?.statusCode == 401 &&
+          if ((dioException.response?.statusCode == 401 ||
+                  dioException.response?.data['statusCode'] == 401) &&
               !userToken.nullOrEmpty()) {
             dPrint('Token is Expired', stringColor: StringColor.yellow);
             try {

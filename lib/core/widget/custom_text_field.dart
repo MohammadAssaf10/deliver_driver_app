@@ -59,13 +59,13 @@ class CustomTextField extends StatelessWidget {
             },
             decoration: InputDecoration(
               labelStyle: formFieldState.hasError
-                  ? TextStyle(
+                  ? const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeightHelper.regular,
                       color: ColorsManager.error,
                     )
                   : (labelStyle ??
-                      TextStyle(
+                      const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeightHelper.regular,
                         color: ColorsManager.darkGrey,
@@ -111,9 +111,10 @@ class CustomTextField extends StatelessWidget {
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                    color: formFieldState.hasError
-                        ? ColorsManager.error
-                        : ColorsManager.darkGrey),
+                  color: formFieldState.hasError
+                      ? ColorsManager.error
+                      : ColorsManager.darkGrey,
+                ),
                 borderRadius: const BorderRadius.all(
                   Radius.circular(10),
                 ),
@@ -141,7 +142,7 @@ class CustomTextField extends StatelessWidget {
             onFieldSubmitted: onFieldSubmitted,
             textInputAction: textInputAction ?? TextInputAction.go,
             style: labelStyle ??
-                TextStyle(
+                const TextStyle(
                   fontSize: 15,
                   color: ColorsManager.darkGrey,
                   fontWeight: FontWeightHelper.regular,

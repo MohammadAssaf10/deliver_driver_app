@@ -18,6 +18,11 @@ class VerificationCodePage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: ColorsManager.customWhite,
+      appBar: AppBar(
+        toolbarHeight: 0,
+        backgroundColor: ColorsManager.customWhite,
+        surfaceTintColor: ColorsManager.customWhite,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
@@ -25,7 +30,7 @@ class VerificationCodePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const VerificationCodeListener(),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.25),
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.2),
               const Icon(
                 Icons.verified,
                 size: 100,

@@ -37,6 +37,11 @@ class SignUpPage extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: ColorsManager.customWhite,
+        appBar: AppBar(
+          toolbarHeight: 0,
+          backgroundColor: ColorsManager.customWhite,
+          surfaceTintColor: ColorsManager.customWhite,
+        ),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(
@@ -50,7 +55,7 @@ class SignUpPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.24),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.2),
                     CustomAutoSizeText(
                       text: S.of(context).registration,
                       textAlign: TextAlign.center,
@@ -144,7 +149,7 @@ class SignUpPage extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
-                    SelectLanguage(),
+                    const SelectLanguage(),
                   ],
                 ),
               ),

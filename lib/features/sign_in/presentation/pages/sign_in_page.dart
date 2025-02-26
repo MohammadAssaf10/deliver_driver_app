@@ -25,14 +25,20 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<SignInBloc, SignInState>(
       listener: (context, state) {
-        if (state.isSuccess && state.isPhoneNumberVerified) {
-          context.pushNamedAndRemoveUntil(
-            Routes.mainPage,
-            predicate: (_) => false,
-          );
-        } else if (state.isSuccess && !state.isPhoneNumberVerified) {
-          closeLoadingDialogIfVisible();
-          context.pushNamed(Routes.verificationCodePage);
+        if (state.isSuccess) {
+          if (state.signInEntity.isVehicleRegistered &&
+              state.signInEntity.isPhoneNumberVerified) {
+            context.pushNamedAndRemoveUntil(
+              Routes.mainPage,
+              predicate: (_) => false,
+            );
+          } else if (!state.signInEntity.isPhoneNumberVerified) {
+            closeLoadingDialogIfVisible();
+            context.pushNamed(Routes.verificationCodePage);
+          } else if (!state.signInEntity.isVehicleRegistered) {
+            closeLoadingDialogIfVisible();
+            context.pushNamed(Routes.registerVehiclePage);
+          }
         } else if (state.isError) {
           closeLoadingDialogIfVisible();
         } else if (state.isLoading) {
@@ -42,6 +48,11 @@ class SignInPage extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: ColorsManager.customWhite,
+        appBar: AppBar(
+          toolbarHeight: 0,
+          backgroundColor: ColorsManager.customWhite,
+          surfaceTintColor: ColorsManager.customWhite,
+        ),
         body: Padding(
           padding: const EdgeInsets.only(
             top: 20,
@@ -54,7 +65,7 @@ class SignInPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.3),
+                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.25),
                   CustomAutoSizeText(
                     text: S.of(context).welcomeBack,
                     textAlign: TextAlign.center,
@@ -143,7 +154,7 @@ class SignInPage extends StatelessWidget {
                     },
                   ),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.17),
-                  SelectLanguage(),
+                  const SelectLanguage(),
                 ],
               ),
             ),

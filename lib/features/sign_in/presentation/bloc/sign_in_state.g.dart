@@ -16,7 +16,7 @@ class _$SignInState extends SignInState {
   @override
   final bool isError;
   @override
-  final bool isPhoneNumberVerified;
+  final SignInEntity signInEntity;
 
   factory _$SignInState([void Function(SignInStateBuilder)? updates]) =>
       (new SignInStateBuilder()..update(updates))._build();
@@ -26,7 +26,7 @@ class _$SignInState extends SignInState {
       required this.isLoading,
       required this.isSuccess,
       required this.isError,
-      required this.isPhoneNumberVerified})
+      required this.signInEntity})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         passwordVisible, r'SignInState', 'passwordVisible');
@@ -36,7 +36,7 @@ class _$SignInState extends SignInState {
         isSuccess, r'SignInState', 'isSuccess');
     BuiltValueNullFieldError.checkNotNull(isError, r'SignInState', 'isError');
     BuiltValueNullFieldError.checkNotNull(
-        isPhoneNumberVerified, r'SignInState', 'isPhoneNumberVerified');
+        signInEntity, r'SignInState', 'signInEntity');
   }
 
   @override
@@ -54,7 +54,7 @@ class _$SignInState extends SignInState {
         isLoading == other.isLoading &&
         isSuccess == other.isSuccess &&
         isError == other.isError &&
-        isPhoneNumberVerified == other.isPhoneNumberVerified;
+        signInEntity == other.signInEntity;
   }
 
   @override
@@ -64,7 +64,7 @@ class _$SignInState extends SignInState {
     _$hash = $jc(_$hash, isLoading.hashCode);
     _$hash = $jc(_$hash, isSuccess.hashCode);
     _$hash = $jc(_$hash, isError.hashCode);
-    _$hash = $jc(_$hash, isPhoneNumberVerified.hashCode);
+    _$hash = $jc(_$hash, signInEntity.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -76,7 +76,7 @@ class _$SignInState extends SignInState {
           ..add('isLoading', isLoading)
           ..add('isSuccess', isSuccess)
           ..add('isError', isError)
-          ..add('isPhoneNumberVerified', isPhoneNumberVerified))
+          ..add('signInEntity', signInEntity))
         .toString();
   }
 }
@@ -101,10 +101,10 @@ class SignInStateBuilder implements Builder<SignInState, SignInStateBuilder> {
   bool? get isError => _$this._isError;
   set isError(bool? isError) => _$this._isError = isError;
 
-  bool? _isPhoneNumberVerified;
-  bool? get isPhoneNumberVerified => _$this._isPhoneNumberVerified;
-  set isPhoneNumberVerified(bool? isPhoneNumberVerified) =>
-      _$this._isPhoneNumberVerified = isPhoneNumberVerified;
+  SignInEntity? _signInEntity;
+  SignInEntity? get signInEntity => _$this._signInEntity;
+  set signInEntity(SignInEntity? signInEntity) =>
+      _$this._signInEntity = signInEntity;
 
   SignInStateBuilder();
 
@@ -115,7 +115,7 @@ class SignInStateBuilder implements Builder<SignInState, SignInStateBuilder> {
       _isLoading = $v.isLoading;
       _isSuccess = $v.isSuccess;
       _isError = $v.isError;
-      _isPhoneNumberVerified = $v.isPhoneNumberVerified;
+      _signInEntity = $v.signInEntity;
       _$v = null;
     }
     return this;
@@ -146,8 +146,8 @@ class SignInStateBuilder implements Builder<SignInState, SignInStateBuilder> {
               isSuccess, r'SignInState', 'isSuccess'),
           isError: BuiltValueNullFieldError.checkNotNull(
               isError, r'SignInState', 'isError'),
-          isPhoneNumberVerified: BuiltValueNullFieldError.checkNotNull(
-              isPhoneNumberVerified, r'SignInState', 'isPhoneNumberVerified'),
+          signInEntity: BuiltValueNullFieldError.checkNotNull(
+              signInEntity, r'SignInState', 'signInEntity'),
         );
     replace(_$result);
     return _$result;

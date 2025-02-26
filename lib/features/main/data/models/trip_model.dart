@@ -12,6 +12,8 @@ class TripModel {
   final double calculatedDuration;
   final double? captainProfit;
 
+  final int createdAt;
+
   TripModel({
     required this.id,
     required this.pickUpAddress,
@@ -19,6 +21,7 @@ class TripModel {
     required this.calculatedDistance,
     required this.calculatedDuration,
     required this.captainProfit,
+    required this.createdAt,
   });
 
   factory TripModel.fromJson(Map<String, dynamic> json) =>

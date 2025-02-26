@@ -77,5 +77,19 @@
   "profitForCaptain": "الربح للكابتن",
   "yourProfits": "أرباحك",
   "oopsSomethingWentWrongPleaseTryAgain": "عفواً! حدث خطأ ما. يُرجى المحاولة مرة أخرى",
-  "acceptTrip": "قبول الرحلة"
+  "acceptTrip": "قبول الرحلة",
+  "driverId": "رقم السائق: ",
+  "name": "الاسم: ",
+  "phone": "الهاتف: ",
+  "profileDetails": "تفاصيل الملف الشخصي",
+  "changeLanguage": "تغيير اللغة",
+  "logout": "تسجيل الخروج",
+  "licenseImage": "صورة الرخصة",
+  "vehicleImage": "صورة المركبة",
+  "camera": "الكاميرا",
+  "gallery": "المعرض",
+  "selectImageSource": "اختيار مصدر الصورة",
+  "selectVehicleImages": "اختر صور المركبة",
+  "pleaseSelectVehicleImages": "الرجاء اختيار صور السيارة"
+
 }

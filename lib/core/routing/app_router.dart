@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/main/presentation/bloc/main_bloc.dart';
 import '../../features/main/presentation/pages/main_page.dart';
+import '../../features/register_vehicle/presentation/bloc/register_vehicle_bloc.dart';
+import '../../features/register_vehicle/presentation/pages/register_vehicle_page.dart';
 import '../../features/sign_in/presentation/bloc/sign_in_bloc.dart';
 import '../../features/sign_in/presentation/pages/sign_in_page.dart';
 import '../../features/sign_up/presentation/bloc/sign_up_bloc.dart';
@@ -56,6 +58,13 @@ class AppRouter {
             create: (context) =>
                 getIt<VerificationCodeBloc>()..generateVerificationCode(),
             child: const VerificationCodePage(),
+          ),
+        );
+      case Routes.registerVehiclePage:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<RegisterVehicleBloc>(
+            create: (context) => getIt<RegisterVehicleBloc>(),
+            child: const RegisterVehiclePage(),
           ),
         );
       // case Routes.mapPage:

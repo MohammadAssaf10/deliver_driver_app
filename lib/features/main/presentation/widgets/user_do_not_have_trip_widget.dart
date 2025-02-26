@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/utils/app_extensions.dart';
 import '../../../../core/entities/pagination_state_data.dart';
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/widget/loader.dart';
@@ -25,7 +26,7 @@ class UserDoNotHaveTripWidget extends StatelessWidget {
           : trips.items.length + 1,
       itemBuilder: (context, index) {
         return index >= trips.items.length
-            ? Loader(
+            ? const Loader(
                 padding: EdgeInsets.symmetric(vertical: 4),
                 color: ColorsManager.customWhite,
               )
@@ -34,7 +35,7 @@ class UserDoNotHaveTripWidget extends StatelessWidget {
                 estimatedTime: trips.items[index].calculatedDuration,
                 distance: trips.items[index].calculatedDistance,
                 profitForCaptain: trips.items[index].captainProfit,
-                date: '',
+                date: trips.items[index].createdAt.convertToStringDateTime(),
                 margin: EdgeInsets.only(
                   top: index == 0 ? 0 : 5,
                   bottom: index == trips.items.length ? 0 : 5,

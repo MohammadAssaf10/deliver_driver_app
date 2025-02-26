@@ -1,5 +1,4 @@
 import 'package:built_value/built_value.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../core/entities/pagination_state_data.dart';
 import '../../../../core/models/address.dart';

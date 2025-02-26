@@ -19,7 +19,7 @@ class ErrorHandler {
 
   static GenericExceptions handleExceptionError(dynamic error) {
     if (error is DioException) {
-      if (error.response != null) {
+      if (error.response != null && error.response!.data != null) {
         final BaseModel baseModel = BaseModel.fromJson(error.response!.data);
         return ServerException(error: baseModel.message);
       } else {

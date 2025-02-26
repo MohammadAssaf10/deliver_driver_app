@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../generated/assets.dart';
+import '../../../../generated/l10n.dart';
 import '../../domain/entities/profile.dart';
 import 'profile_tile.dart';
 
@@ -18,7 +19,7 @@ class ProfileCard extends StatelessWidget {
           height: 85,
           clipBehavior: Clip.antiAlias,
           alignment: Alignment.center,
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
@@ -29,22 +30,22 @@ class ProfileCard extends StatelessWidget {
             Assets.iconsDriverIcon,
           ),
         ),
-        SizedBox(width: 5),
+        const SizedBox(width: 5),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 2,
             children: [
               ProfileTile(
-                title: "Driver ID: ",
+                title: S.of(context).driverId,
                 subTitle: profile.userId.toString(),
               ),
               ProfileTile(
-                title: "Name: ",
+                title: S.of(context).name,
                 subTitle: profile.name,
               ),
               ProfileTile(
-                title: "Phone: ",
+                title: S.of(context).phone,
                 subTitle: profile.phone,
               ),
             ],

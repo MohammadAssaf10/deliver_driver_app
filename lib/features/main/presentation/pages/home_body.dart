@@ -8,8 +8,8 @@ import '../../../../core/widget/loader.dart';
 import '../../../../generated/l10n.dart';
 import '../bloc/main_bloc.dart';
 import '../bloc/main_state.dart';
+import '../widgets/trip_card.dart';
 import '../widgets/user_do_not_have_trip_widget.dart';
-import '../widgets/user_have_trip_widget.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -28,22 +28,30 @@ class HomeBody extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
           child: state.isLoading
-              ? Loader(
-            color: ColorsManager.customWhite,
-          )
+              ? const Loader(
+                  color: ColorsManager.customWhite,
+                )
               : state.isError
-              ? CustomErrorWidget(
-            errorMessage:
-            S
-                .of(context)
-                .oopsSomethingWentWrongPleaseTryAgain,
-            onRetry: () {
-              context.read<MainBloc>().getCurrentTrip();
-            },
-          )
-              : state.currentTrip == null
-              ? UserDoNotHaveTripWidget(trips: state.trips)
-              : UserHaveTripWidget(currentTrip: state.currentTrip!),
+                  ? CustomErrorWidget(
+                      errorMessage:
+                          S.of(context).oopsSomethingWentWrongPleaseTryAgain,
+                      onRetry: () {
+                        context.read<MainBloc>().getCurrentTrip();
+                      },
+                    )
+                  : state.currentTrip == null
+                      ? UserDoNotHaveTripWidget(trips: state.trips)
+                      : Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: TripCard(
+                            tripId: state.currentTrip!.id,
+                            estimatedTime:
+                                state.currentTrip!.calculatedDuration,
+                            date: state.currentTrip!.createdDate,
+                            distance: state.currentTrip!.calculatedDistance,
+                            margin: EdgeInsets.zero,
+                          ),
+                        ),
         );
       },
     );

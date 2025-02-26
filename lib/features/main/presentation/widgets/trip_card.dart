@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/colors_manager.dart';
+import '../../../../core/theming/text_styles.dart';
 import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_extensions.dart';
-import '../../../../core/widget/custom_auto_size_text.dart';
 import '../../../../core/widget/trip_tile.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
@@ -99,6 +99,7 @@ class TripCard extends StatelessWidget {
                         subtitle: date,
                         icon: Icons.calendar_today,
                       ),
+                      const Spacer(),
                       AppTextButton(
                         onPressed: () {
                           context.read<MainBloc>().acceptTrip(tripId);
@@ -106,13 +107,10 @@ class TripCard extends StatelessWidget {
                         borderRadius: 15,
                         buttonHeight: 40,
                         backgroundColor: ColorsManager.darkGrey,
-                        child: CustomAutoSizeText(
-                          text: S.of(context).acceptTrip,
-                          minFontSize: 12,
-                          initialFontSize: 14,
-                          maxFontSize: 16,
-                          color: ColorsManager.darkWhite,
-                          fontWeight: FontWeight.bold,
+                        outerPadding: const EdgeInsets.only(bottom: 10),
+                        child: Text(
+                           S.of(context).acceptTrip,
+                          style: TextStyles.font14DarkWhiteSemiBold,
                         ),
                       ),
                     ],

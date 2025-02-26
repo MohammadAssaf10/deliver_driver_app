@@ -77,5 +77,18 @@
   "profitForCaptain": "Profit for captain",
   "yourProfits": "Your profits",
   "oopsSomethingWentWrongPleaseTryAgain": "Oops! Something went wrong. Please try again",
-  "acceptTrip": "Accept Trip"
+  "acceptTrip": "Accept Trip",
+  "driverId": "Driver Id: ",
+  "name": "Name: ",
+  "phone": "Phone: ",
+  "profileDetails": "Profile Details",
+  "changeLanguage": "Change Language",
+  "logout": "Logout",
+  "licenseImage": "License image",
+  "camera": "Camera",
+  "gallery": "Gallery",
+  "selectImageSource": "Select Image Source",
+  "vehicleImage": "Vehicle image",
+  "selectVehicleImages": "Select Vehicle Images",
+  "pleaseSelectVehicleImages": "Please select vehicle images"
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theming/colors_manager.dart';
-import '../theming/font_manager.dart';
+import '../theming/text_styles.dart';
 
 class TripTile extends StatelessWidget {
   final String title;
@@ -24,25 +24,18 @@ class TripTile extends StatelessWidget {
         children: [
           Icon(
             icon,
-            size: 20,
+            size: 18,
             color: ColorsManager.darkGrey.withValues(alpha: 0.8),
           ),
           const SizedBox(width: 6),
           Text(
-            "$title: ",
-            style: TextStyle(
-              fontSize: 16,
-              color: ColorsManager.darkGrey,
-              fontWeight: FontWeightHelper.bold,
-            ),
+              "$title: ",
+              style: TextStyles.font15DarkGreySemiBold
           ),
           Expanded(
             child: Text(
               subtitle,
-              style: TextStyle(
-                fontSize: 16,
-                color: ColorsManager.darkGrey,
-              ),
+              style: TextStyles.font15DarkGreyRegular,
               maxLines: 1,
             ),
           ),

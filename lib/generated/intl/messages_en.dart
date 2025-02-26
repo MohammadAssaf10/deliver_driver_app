@@ -37,7 +37,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "availableTrips":
             MessageLookupByLibrary.simpleMessage("Available trips"),
+        "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "changeLanguage":
+            MessageLookupByLibrary.simpleMessage("Change Language"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "continue1": MessageLookupByLibrary.simpleMessage("Continue"),
         "currentTrip": MessageLookupByLibrary.simpleMessage("Current Trip"),
@@ -47,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "doNotHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
+        "driverId": MessageLookupByLibrary.simpleMessage("Driver Id: "),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailFormatNotCorrect":
             MessageLookupByLibrary.simpleMessage("Email format not correct"),
@@ -57,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your account details here."),
         "estimatedTime": MessageLookupByLibrary.simpleMessage("Estimated time"),
         "from": MessageLookupByLibrary.simpleMessage("From"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "getStartWithDeliver":
             MessageLookupByLibrary.simpleMessage("Get Start With Deliver"),
         "haveAnAccount":
@@ -65,12 +70,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "kindlySignUpBelow":
             MessageLookupByLibrary.simpleMessage("Kindly sign up below."),
         "km": m0,
+        "licenseImage": MessageLookupByLibrary.simpleMessage("License image"),
         "loginHere": MessageLookupByLibrary.simpleMessage("Login Here"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "minute": m1,
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile number"),
         "mobileNumberFormatNotCorrect": MessageLookupByLibrary.simpleMessage(
             "Mobile number format not correct"),
         "myTrip": MessageLookupByLibrary.simpleMessage("My Trip"),
+        "name": MessageLookupByLibrary.simpleMessage("Name: "),
         "networkError": MessageLookupByLibrary.simpleMessage(
             "There is problem with your connection, please try again"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -85,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordShouldAtLeast8Character": MessageLookupByLibrary.simpleMessage(
             "Password should at least 8 character"),
+        "phone": MessageLookupByLibrary.simpleMessage("Phone: "),
         "pickupLocation":
             MessageLookupByLibrary.simpleMessage("Pickup location"),
         "pleaseAllowAppToAccessYourCurrentLocationAndTryAgain":
@@ -108,9 +117,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please select end trip location"),
         "pleaseSelectStartTripLocation": MessageLookupByLibrary.simpleMessage(
             "Please select start trip location"),
+        "pleaseSelectVehicleImages": MessageLookupByLibrary.simpleMessage(
+            "Please select vehicle images"),
         "pleaseTurnOnLocationServiceAndTryAgain":
             MessageLookupByLibrary.simpleMessage(
                 "Please turn on location service and try again"),
+        "profileDetails":
+            MessageLookupByLibrary.simpleMessage("Profile Details"),
         "profitForCaptain":
             MessageLookupByLibrary.simpleMessage("Profit for captain"),
         "readyThenLetsRoll":
@@ -120,6 +133,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "rideWithDeliver":
             MessageLookupByLibrary.simpleMessage("Ride with Deliver"),
+        "selectImageSource":
+            MessageLookupByLibrary.simpleMessage("Select Image Source"),
+        "selectVehicleImages":
+            MessageLookupByLibrary.simpleMessage("Select Vehicle Images"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "showTripDetails":
             MessageLookupByLibrary.simpleMessage("Show trip details"),
@@ -140,6 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "userName": MessageLookupByLibrary.simpleMessage("Username"),
         "usernameShort":
             MessageLookupByLibrary.simpleMessage("Username is short"),
+        "vehicleImage": MessageLookupByLibrary.simpleMessage("Vehicle image"),
         "weSentOTPCodeToVerifyYourNumber": MessageLookupByLibrary.simpleMessage(
             "We sent OTP code to verify your number"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome "),

@@ -839,6 +839,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Driver Id: `
+  String get driverId {
+    return Intl.message(
+      'Driver Id: ',
+      name: 'driverId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name: `
+  String get name {
+    return Intl.message(
+      'Name: ',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone: `
+  String get phone {
+    return Intl.message(
+      'Phone: ',
+      name: 'phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Details`
+  String get profileDetails {
+    return Intl.message(
+      'Profile Details',
+      name: 'profileDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Language`
+  String get changeLanguage {
+    return Intl.message(
+      'Change Language',
+      name: 'changeLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License image`
+  String get licenseImage {
+    return Intl.message(
+      'License image',
+      name: 'licenseImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallery`
+  String get gallery {
+    return Intl.message(
+      'Gallery',
+      name: 'gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Image Source`
+  String get selectImageSource {
+    return Intl.message(
+      'Select Image Source',
+      name: 'selectImageSource',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle image`
+  String get vehicleImage {
+    return Intl.message(
+      'Vehicle image',
+      name: 'vehicleImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Vehicle Images`
+  String get selectVehicleImages {
+    return Intl.message(
+      'Select Vehicle Images',
+      name: 'selectVehicleImages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select vehicle images`
+  String get pleaseSelectVehicleImages {
+    return Intl.message(
+      'Please select vehicle images',
+      name: 'pleaseSelectVehicleImages',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

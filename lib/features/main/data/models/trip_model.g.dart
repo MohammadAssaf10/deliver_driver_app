@@ -15,4 +15,5 @@ TripModel _$TripModelFromJson(Map<String, dynamic> json) => TripModel(
       calculatedDistance: (json['calculatedDistance'] as num).toDouble(),
       calculatedDuration: (json['calculatedDuration'] as num).toDouble(),
       captainProfit: (json['captainProfit'] as num?)?.toDouble(),
+      createdAt: (json['createdAt'] as num).toInt(),
     );

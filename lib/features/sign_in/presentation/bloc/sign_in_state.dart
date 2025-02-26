@@ -1,5 +1,7 @@
 import 'package:built_value/built_value.dart';
 
+import '../../domain/entities/sign_in_entity.dart';
+
 part 'sign_in_state.g.dart';
 
 abstract class SignInState implements Built<SignInState, SignInStateBuilder> {
@@ -11,7 +13,7 @@ abstract class SignInState implements Built<SignInState, SignInStateBuilder> {
 
   bool get isError;
 
-  bool get isPhoneNumberVerified;
+  SignInEntity get signInEntity;
 
   SignInState._();
 
@@ -24,6 +26,6 @@ abstract class SignInState implements Built<SignInState, SignInStateBuilder> {
           ..isError = false
           ..isSuccess = false
           ..passwordVisible = true
-          ..isPhoneNumberVerified = false,
+          ..signInEntity = SignInEntity.initial(),
       );
 }
