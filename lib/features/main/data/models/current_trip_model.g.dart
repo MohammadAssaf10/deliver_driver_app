@@ -18,4 +18,5 @@ CurrentTripModel _$CurrentTripModelFromJson(Map<String, dynamic> json) =>
       calculatedDistance: (json['calculatedDistance'] as num).toDouble(),
       calculatedDuration: (json['calculatedDuration'] as num).toDouble(),
       driverName: json['driverName'] as String?,
+      captainProfit: (json['captainProfit'] as num?)?.toDouble(),
     );

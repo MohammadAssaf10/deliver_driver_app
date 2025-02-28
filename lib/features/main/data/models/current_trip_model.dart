@@ -17,6 +17,8 @@ class CurrentTripModel {
   final double calculatedDistance;
   final double calculatedDuration;
   final String? driverName;
+  final double? captainProfit;
+
   CurrentTripModel({
     required this.id,
     required this.status,
@@ -26,6 +28,7 @@ class CurrentTripModel {
     required this.calculatedDistance,
     required this.calculatedDuration,
     required this.driverName,
+    required this.captainProfit,
   });
 
   factory CurrentTripModel.fromJson(Map<String, dynamic> json) =>
@@ -40,7 +43,9 @@ class CurrentTripModel {
       calculatedDistance: calculatedDistance,
       calculatedDuration: calculatedDuration,
       driverName: driverName,
-      createdDate: createdDate.convertToStringDateTime(),
+      createdDateAsInt: createdDate,
+      createdDateAsString: createdDate.convertToStringDateTime(),
+      captainProfit: captainProfit,
     );
   }
 }

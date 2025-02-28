@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/app_extensions.dart';
 import '../../../../core/entities/pagination_state_data.dart';
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/widget/loader.dart';
@@ -31,11 +30,7 @@ class UserDoNotHaveTripWidget extends StatelessWidget {
                 color: ColorsManager.customWhite,
               )
             : TripCard(
-                tripId: trips.items[index].id,
-                estimatedTime: trips.items[index].calculatedDuration,
-                distance: trips.items[index].calculatedDistance,
-                profitForCaptain: trips.items[index].captainProfit,
-                date: trips.items[index].createdAt.convertToStringDateTime(),
+                trip: trips.items[index],
                 margin: EdgeInsets.only(
                   top: index == 0 ? 0 : 5,
                   bottom: index == trips.items.length ? 0 : 5,

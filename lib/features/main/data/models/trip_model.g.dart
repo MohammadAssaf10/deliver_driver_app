@@ -16,4 +16,14 @@ TripModel _$TripModelFromJson(Map<String, dynamic> json) => TripModel(
       calculatedDuration: (json['calculatedDuration'] as num).toDouble(),
       captainProfit: (json['captainProfit'] as num?)?.toDouble(),
       createdAt: (json['createdAt'] as num).toInt(),
+      tripStatus: $enumDecodeNullable(_$TripStatusEnumMap, json['tripStatus']),
     );
+
+const _$TripStatusEnumMap = {
+  TripStatus.waiting: 'waiting',
+  TripStatus.onWayToPickupRider: 'onWayToPickupRider',
+  TripStatus.driverArrivedToPickupRider: 'driverArrivedToPickupRider',
+  TripStatus.delivering: 'delivering',
+  TripStatus.delivered: 'delivered',
+  TripStatus.cancelled: 'cancelled',
+};

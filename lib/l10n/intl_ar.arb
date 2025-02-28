@@ -90,6 +90,7 @@
   "gallery": "المعرض",
   "selectImageSource": "اختيار مصدر الصورة",
   "selectVehicleImages": "اختر صور المركبة",
-  "pleaseSelectVehicleImages": "الرجاء اختيار صور السيارة"
+  "pleaseSelectVehicleImages": "الرجاء اختيار صور السيارة",
+  "tripDetails": "تفاصيل الرحلة"
 
 }

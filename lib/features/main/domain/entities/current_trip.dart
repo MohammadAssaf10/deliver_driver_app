@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/models/address.dart';
 import '../../../../core/utils/app_enums.dart';
+import '../../data/models/trip_model.dart';
 
 class CurrentTrip extends Equatable {
   final int id;
@@ -11,7 +12,10 @@ class CurrentTrip extends Equatable {
   final double calculatedDistance;
   final double calculatedDuration;
   final String? driverName;
-  final String createdDate;
+  final String createdDateAsString;
+  final int createdDateAsInt;
+  final double? captainProfit;
+
   const CurrentTrip({
     required this.id,
     required this.tripStatus,
@@ -20,7 +24,9 @@ class CurrentTrip extends Equatable {
     required this.calculatedDistance,
     required this.calculatedDuration,
     this.driverName,
-    required this.createdDate,
+    required this.createdDateAsString,
+    required this.createdDateAsInt,
+    required this.captainProfit,
   });
 
   @override
@@ -32,6 +38,18 @@ class CurrentTrip extends Equatable {
         calculatedDistance,
         calculatedDuration,
         driverName,
-        createdDate,
+        createdDateAsString,
+        createdDateAsInt,
       ];
+
+  TripModel toTripModel() => TripModel(
+        id: id,
+        pickUpAddress: pickUpAddress,
+        dropOffAddress: dropOffAddress,
+        calculatedDistance: calculatedDistance,
+        calculatedDuration: calculatedDuration,
+        createdAt: createdDateAsInt,
+        captainProfit: captainProfit,
+        tripStatus: tripStatus,
+      );
 }

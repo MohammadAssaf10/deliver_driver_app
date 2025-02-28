@@ -44,11 +44,8 @@ class HomeBody extends StatelessWidget {
                       : Align(
                           alignment: AlignmentDirectional.topStart,
                           child: TripCard(
-                            tripId: state.currentTrip!.id,
-                            estimatedTime:
-                                state.currentTrip!.calculatedDuration,
-                            date: state.currentTrip!.createdDate,
-                            distance: state.currentTrip!.calculatedDistance,
+                            trip: state.currentTrip!.toTripModel(),
+                            status: state.currentTrip!.tripStatus,
                             margin: EdgeInsets.zero,
                           ),
                         ),

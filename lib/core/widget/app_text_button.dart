@@ -14,7 +14,7 @@ class AppTextButton extends StatelessWidget {
   final EdgeInsetsGeometry outerPadding;
   final AlignmentGeometry? alignment;
 
-  const AppTextButton({
+  const   AppTextButton({
     super.key,
     this.borderRadius,
     this.backgroundColor = ColorsManager.darkGrey,
@@ -44,7 +44,7 @@ class AppTextButton extends StatelessWidget {
             backgroundColor,
           ),
           fixedSize: WidgetStateProperty.all(
-            Size(buttonWidth ?? double.maxFinite, buttonHeight ?? 50),
+            Size(buttonWidth ?? double.maxFinite, buttonHeight ?? 45),
           ),
           overlayColor: WidgetStateProperty.all(
             overlayColor ?? ColorsManager.grey.withValues(alpha: 0.03),

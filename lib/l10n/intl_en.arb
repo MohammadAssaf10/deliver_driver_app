@@ -90,5 +90,6 @@
   "selectImageSource": "Select Image Source",
   "vehicleImage": "Vehicle image",
   "selectVehicleImages": "Select Vehicle Images",
-  "pleaseSelectVehicleImages": "Please select vehicle images"
+  "pleaseSelectVehicleImages": "Please select vehicle images",
+  "tripDetails": "Trip Details"
 }

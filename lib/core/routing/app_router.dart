@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/main/data/models/trip_model.dart';
 import '../../features/main/presentation/bloc/main_bloc.dart';
 import '../../features/main/presentation/pages/main_page.dart';
+import '../../features/map/presentation/bloc/map_bloc.dart';
+import '../../features/map/presentation/pages/map_page.dart';
 import '../../features/register_vehicle/presentation/bloc/register_vehicle_bloc.dart';
 import '../../features/register_vehicle/presentation/pages/register_vehicle_page.dart';
 import '../../features/sign_in/presentation/bloc/sign_in_bloc.dart';
@@ -67,25 +70,16 @@ class AppRouter {
             child: const RegisterVehiclePage(),
           ),
         );
-      // case Routes.mapPage:
-      //   final Trip? trip = arguments as Trip?;
-      //   return MaterialPageRoute(
-      //     builder: (_) => BlocProvider<MapBloc>(
-      //       create: (context) {
-      //         final MapBloc mapBloc = getIt<MapBloc>();
-      //         mapBloc.getCurrentLocation();
-      //         if (trip != null) {
-      //           mapBloc.setCurrentTrip(trip);
-      //         }
-      //         return mapBloc;
-      //       },
-      //       child: const MapPage(),
-      //     ),
-      //   );
-      // case Routes.onBoardingPage:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const OnBoardingPage(),
-      //   );
+      case Routes.mapPage:
+        final TripModel trip = arguments as TripModel;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<MapBloc>(
+            create: (context) => getIt<MapBloc>()
+              ..getAddressDetails(trip)
+              ..getCurrentLocation(),
+            child: const MapPage(),
+          ),
+        );
       default:
         return null;
     }

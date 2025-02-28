@@ -8,6 +8,13 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+def env = new Properties()
+def envFile = rootProject.file('../.env')
+if (envFile.exists()) {
+    envFile.withReader('UTF-8') { reader ->
+        env.load(reader)
+    }
+}
 android {
     namespace = "com.example.deliver_driver_app"
     compileSdk = flutter.compileSdkVersion
@@ -31,6 +38,11 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        def googleMapsKey = env['GOOGLE_MAPS_KEY']
+        if (!env.containsKey('GOOGLE_MAPS_KEY') || googleMapsKey == null || googleMapsKey.isEmpty()) {
+            println "Warning: GOOGLE_MAPS_KEY is not defined in .env"
+        }
+        resValue "string", "google_maps_key", googleMapsKey
     }
 
     buildTypes {

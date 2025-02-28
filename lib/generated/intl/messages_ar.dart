@@ -150,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "to": MessageLookupByLibrary.simpleMessage("إلى"),
         "tripCreatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم إنشاء الرحلة بنجاح"),
+        "tripDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الرحلة"),
         "tripNumber": MessageLookupByLibrary.simpleMessage("رقم الرحلة"),
         "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "usernameShort":

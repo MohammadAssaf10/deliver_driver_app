@@ -30,7 +30,10 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: BlocBuilder<MainBloc, MainState>(
             builder: (context, state) {
               return state.isLoading
-                  ? const SizedBox.shrink()
+                  ? Text(
+                      S.of(context).deliver,
+                      style: TextStyles.font33DarkWhiteBold,
+                    )
                   : Text(
                       state.pageIndex == 0
                           ? state.currentTrip == null

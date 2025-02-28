@@ -2,6 +2,7 @@ import 'package:deliver_driver_app/core/widget/app_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/utils/app_enums.dart';
@@ -9,34 +10,29 @@ import '../../../../core/utils/app_extensions.dart';
 import '../../../../core/widget/trip_tile.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
+import '../../data/models/trip_model.dart';
 import '../bloc/main_bloc.dart';
 
 class TripCard extends StatelessWidget {
-  final int tripId;
-  final double estimatedTime;
-  final double distance;
-  final String date;
+  final TripModel trip;
   final TripStatus? status;
-  final double? profitForCaptain;
   final EdgeInsetsGeometry? margin;
 
   const TripCard({
     super.key,
-    required this.tripId,
-    required this.estimatedTime,
-    required this.distance,
-    required this.date,
+    required this.trip,
     this.status,
     this.margin,
-    this.profitForCaptain,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        context.pushNamed(Routes.mapPage, arguments: trip);
+      },
       child: Container(
-        height: 215,
+        height: status != null ? 200 : 245,
         width: double.infinity,
         margin:
             margin ?? const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -64,7 +60,7 @@ class TripCard extends StatelessWidget {
                     children: [
                       TripTile(
                         title: S.of(context).tripNumber,
-                        subtitle: tripId.toString(),
+                        subtitle: trip.id.toString(),
                         icon: Icons.confirmation_number_outlined,
                       ),
                       if (status != null)
@@ -75,44 +71,46 @@ class TripCard extends StatelessWidget {
                         ),
                       TripTile(
                         title: S.of(context).estimatedTime,
-                        subtitle: S
-                            .of(context)
-                            .minute(estimatedTime.removeDecimalZero()),
+                        subtitle: S.of(context).minute(
+                            trip.calculatedDuration.removeDecimalZero()),
                         icon: Icons.access_time,
                       ),
                       TripTile(
                         title: S.of(context).distance,
-                        subtitle:
-                            S.of(context).km(distance.removeDecimalZero()),
+                        subtitle: S
+                            .of(context)
+                            .km(trip.calculatedDistance.removeDecimalZero()),
                         icon: Icons.directions_car,
                       ),
-                      if (profitForCaptain != null)
+                      if (trip.captainProfit != null)
                         TripTile(
                           title: S.of(context).yourProfits,
                           subtitle: S
                               .of(context)
-                              .syr(profitForCaptain!.removeDecimalZero()),
+                              .syr(trip.captainProfit!.removeDecimalZero()),
                           icon: Icons.attach_money,
                         ),
                       TripTile(
                         title: S.of(context).date,
-                        subtitle: date,
+                        subtitle: trip.createdAt.convertToStringDateTime(),
                         icon: Icons.calendar_today,
                       ),
-                      const Spacer(),
-                      AppTextButton(
-                        onPressed: () {
-                          context.read<MainBloc>().acceptTrip(tripId);
-                        },
-                        borderRadius: 15,
-                        buttonHeight: 40,
-                        backgroundColor: ColorsManager.darkGrey,
-                        outerPadding: const EdgeInsets.only(bottom: 10),
-                        child: Text(
-                           S.of(context).acceptTrip,
-                          style: TextStyles.font14DarkWhiteSemiBold,
+                      if (status == null) ...[
+                        const Spacer(),
+                        AppTextButton(
+                          onPressed: () {
+                            context.read<MainBloc>().acceptTrip(trip.id);
+                          },
+                          borderRadius: 15,
+                          buttonHeight: 40,
+                          backgroundColor: ColorsManager.darkGrey,
+                          outerPadding: const EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            S.of(context).acceptTrip,
+                            style: TextStyles.font14DarkWhiteSemiBold,
+                          ),
                         ),
-                      ),
+                      ],
                     ],
                   ),
                 ),

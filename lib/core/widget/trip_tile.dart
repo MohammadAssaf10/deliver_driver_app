@@ -6,6 +6,7 @@ import '../theming/text_styles.dart';
 class TripTile extends StatelessWidget {
   final String title;
   final String subtitle;
+  final int subtitleMaxLine;
   final IconData icon;
 
   const TripTile({
@@ -13,6 +14,7 @@ class TripTile extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.icon,
+     this.subtitleMaxLine=1,
   });
 
   @override
@@ -36,7 +38,7 @@ class TripTile extends StatelessWidget {
             child: Text(
               subtitle,
               style: TextStyles.font15DarkGreyRegular,
-              maxLines: 1,
+              maxLines: subtitleMaxLine,
             ),
           ),
         ],
