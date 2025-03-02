@@ -1,54 +1,65 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:equatable/equatable.dart';
 
-import '../../../../core/models/address.dart';
-import '../../../../core/utils/app_enums.dart';
+import '../models/address.dart';
+import '../utils/app_enums.dart';
 
-part 'trip_model.g.dart';
-
-@JsonSerializable(createToJson: false)
-class TripModel {
+class Trip extends Equatable {
   final int id;
+  final TripStatus? status;
   final Address pickUpAddress;
   final Address dropOffAddress;
+  final int createdDate;
   final double calculatedDistance;
   final double calculatedDuration;
+  final String? driverName;
   final double? captainProfit;
-  final int createdAt;
-  final TripStatus? tripStatus;
 
-  TripModel({
+  const Trip({
     required this.id,
+    required this.status,
     required this.pickUpAddress,
     required this.dropOffAddress,
+    required this.createdDate,
     required this.calculatedDistance,
     required this.calculatedDuration,
+    required this.driverName,
     required this.captainProfit,
-    required this.createdAt,
-    this.tripStatus,
   });
 
-  factory TripModel.fromJson(Map<String, dynamic> json) =>
-      _$TripModelFromJson(json);
+  @override
+  List<Object?> get props => [
+        id,
+        status,
+        pickUpAddress,
+        dropOffAddress,
+        createdDate,
+        calculatedDistance,
+        calculatedDuration,
+        driverName,
+        captainProfit,
+      ];
 
-  TripModel copyWith({
+  Trip copyWith({
     int? id,
+    TripStatus? status,
     Address? pickUpAddress,
     Address? dropOffAddress,
+    int? createdDate,
     double? calculatedDistance,
     double? calculatedDuration,
+    String? driverName,
     double? captainProfit,
-    int? createdAt,
-    TripStatus? tripStatus,
   }) {
-    return TripModel(
+    return Trip(
       id: id ?? this.id,
+      status: status ?? this.status,
       pickUpAddress: pickUpAddress ?? this.pickUpAddress,
       dropOffAddress: dropOffAddress ?? this.dropOffAddress,
+      createdDate: createdDate ?? this.createdDate,
       calculatedDistance: calculatedDistance ?? this.calculatedDistance,
       calculatedDuration: calculatedDuration ?? this.calculatedDuration,
+      driverName: driverName ?? this.driverName,
       captainProfit: captainProfit ?? this.captainProfit,
-      createdAt: createdAt ?? this.createdAt,
-      tripStatus: tripStatus ?? this.tripStatus,
     );
   }
 }

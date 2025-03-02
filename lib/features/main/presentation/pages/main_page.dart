@@ -29,9 +29,7 @@ class _MainPageState extends State<MainPage> with RouteAware {
 
   @override
   void didPopNext() {
-    if (context.read<MainBloc>().state.currentTrip == null) {
-      context.read<MainBloc>().getCurrentTrip();
-    }
+    context.read<MainBloc>().getCurrentTrip();
   }
 
   @override

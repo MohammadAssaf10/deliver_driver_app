@@ -1,6 +1,6 @@
 import 'package:built_value/built_value.dart';
 
-import '../../../main/data/models/trip_model.dart';
+import '../../../../core/entities/trip.dart';
 
 part 'map_event.g.dart';
 
@@ -8,6 +8,7 @@ abstract class MapEvent {}
 
 abstract class GetCurrentLocation extends MapEvent
     implements Built<GetCurrentLocation, GetCurrentLocationBuilder> {
+  void Function()? get onComplete;
   GetCurrentLocation._();
 
   factory GetCurrentLocation(
@@ -37,10 +38,20 @@ abstract class AcceptTrip extends MapEvent
 
 abstract class GetAddressDetails extends MapEvent
     implements Built<GetAddressDetails, GetAddressDetailsBuilder> {
-  TripModel get trip;
+  Trip get trip;
 
   GetAddressDetails._();
 
   factory GetAddressDetails([void Function(GetAddressDetailsBuilder) updates]) =
       _$GetAddressDetails;
+}
+
+abstract class ChangeTripStatusToNext extends MapEvent
+    implements Built<ChangeTripStatusToNext, ChangeTripStatusToNextBuilder> {
+      
+  ChangeTripStatusToNext._();
+
+  factory ChangeTripStatusToNext(
+          [void Function(ChangeTripStatusToNextBuilder) updates]) =
+      _$ChangeTripStatusToNext;
 }

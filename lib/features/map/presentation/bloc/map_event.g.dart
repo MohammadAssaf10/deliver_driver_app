@@ -7,11 +7,14 @@ part of 'map_event.dart';
 // **************************************************************************
 
 class _$GetCurrentLocation extends GetCurrentLocation {
+  @override
+  final void Function()? onComplete;
+
   factory _$GetCurrentLocation(
           [void Function(GetCurrentLocationBuilder)? updates]) =>
       (new GetCurrentLocationBuilder()..update(updates))._build();
 
-  _$GetCurrentLocation._() : super._();
+  _$GetCurrentLocation._({this.onComplete}) : super._();
 
   @override
   GetCurrentLocation rebuild(
@@ -25,17 +28,24 @@ class _$GetCurrentLocation extends GetCurrentLocation {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GetCurrentLocation;
+    final dynamic _$dynamicOther = other;
+    return other is GetCurrentLocation &&
+        onComplete == _$dynamicOther.onComplete;
   }
 
   @override
   int get hashCode {
-    return 214810858;
+    var _$hash = 0;
+    _$hash = $jc(_$hash, onComplete.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper(r'GetCurrentLocation').toString();
+    return (newBuiltValueToStringHelper(r'GetCurrentLocation')
+          ..add('onComplete', onComplete))
+        .toString();
   }
 }
 
@@ -43,7 +53,21 @@ class GetCurrentLocationBuilder
     implements Builder<GetCurrentLocation, GetCurrentLocationBuilder> {
   _$GetCurrentLocation? _$v;
 
+  void Function()? _onComplete;
+  void Function()? get onComplete => _$this._onComplete;
+  set onComplete(void Function()? onComplete) =>
+      _$this._onComplete = onComplete;
+
   GetCurrentLocationBuilder();
+
+  GetCurrentLocationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _onComplete = $v.onComplete;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(GetCurrentLocation other) {
@@ -60,7 +84,10 @@ class GetCurrentLocationBuilder
   GetCurrentLocation build() => _build();
 
   _$GetCurrentLocation _build() {
-    final _$result = _$v ?? new _$GetCurrentLocation._();
+    final _$result = _$v ??
+        new _$GetCurrentLocation._(
+          onComplete: onComplete,
+        );
     replace(_$result);
     return _$result;
   }
@@ -238,7 +265,7 @@ class AcceptTripBuilder implements Builder<AcceptTrip, AcceptTripBuilder> {
 
 class _$GetAddressDetails extends GetAddressDetails {
   @override
-  final TripModel trip;
+  final Trip trip;
 
   factory _$GetAddressDetails(
           [void Function(GetAddressDetailsBuilder)? updates]) =>
@@ -282,9 +309,9 @@ class GetAddressDetailsBuilder
     implements Builder<GetAddressDetails, GetAddressDetailsBuilder> {
   _$GetAddressDetails? _$v;
 
-  TripModel? _trip;
-  TripModel? get trip => _$this._trip;
-  set trip(TripModel? trip) => _$this._trip = trip;
+  Trip? _trip;
+  Trip? get trip => _$this._trip;
+  set trip(Trip? trip) => _$this._trip = trip;
 
   GetAddressDetailsBuilder();
 
@@ -317,6 +344,66 @@ class GetAddressDetailsBuilder
           trip: BuiltValueNullFieldError.checkNotNull(
               trip, r'GetAddressDetails', 'trip'),
         );
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$ChangeTripStatusToNext extends ChangeTripStatusToNext {
+  factory _$ChangeTripStatusToNext(
+          [void Function(ChangeTripStatusToNextBuilder)? updates]) =>
+      (new ChangeTripStatusToNextBuilder()..update(updates))._build();
+
+  _$ChangeTripStatusToNext._() : super._();
+
+  @override
+  ChangeTripStatusToNext rebuild(
+          void Function(ChangeTripStatusToNextBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  ChangeTripStatusToNextBuilder toBuilder() =>
+      new ChangeTripStatusToNextBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ChangeTripStatusToNext;
+  }
+
+  @override
+  int get hashCode {
+    return 969894417;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'ChangeTripStatusToNext').toString();
+  }
+}
+
+class ChangeTripStatusToNextBuilder
+    implements Builder<ChangeTripStatusToNext, ChangeTripStatusToNextBuilder> {
+  _$ChangeTripStatusToNext? _$v;
+
+  ChangeTripStatusToNextBuilder();
+
+  @override
+  void replace(ChangeTripStatusToNext other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$ChangeTripStatusToNext;
+  }
+
+  @override
+  void update(void Function(ChangeTripStatusToNextBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ChangeTripStatusToNext build() => _build();
+
+  _$ChangeTripStatusToNext _build() {
+    final _$result = _$v ?? new _$ChangeTripStatusToNext._();
     replace(_$result);
     return _$result;
   }

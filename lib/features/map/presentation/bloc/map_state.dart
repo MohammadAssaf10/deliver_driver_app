@@ -2,8 +2,8 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../../core/entities/trip.dart';
 import '../../../../core/models/address.dart';
-import '../../../main/data/models/trip_model.dart';
 
 part 'map_state.g.dart';
 
@@ -12,7 +12,7 @@ abstract class MapState implements Built<MapState, MapStateBuilder> {
 
   Address? get currentAddress;
 
-  TripModel? get trip;
+  Trip? get trip;
 
   BuiltSet<Marker> get markers;
 

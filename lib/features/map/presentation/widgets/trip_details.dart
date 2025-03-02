@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/entities/trip.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/utils/app_extensions.dart';
 import '../../../../core/widget/app_text_button.dart';
 import '../../../../core/widget/loader.dart';
 import '../../../../generated/l10n.dart';
-import '../../../main/data/models/trip_model.dart';
 import '../bloc/map_bloc.dart';
 import 'map_trip_tile.dart';
 
 class TripDetails extends StatelessWidget {
-  final TripModel? trip;
+  final Trip? trip;
 
   const TripDetails({super.key, required this.trip});
 
@@ -70,14 +70,22 @@ class TripDetails extends StatelessWidget {
                   ),
                 MapTripTile(
                   title: S.of(context).date,
-                  subtitle: trip!.createdAt.convertToStringDateTime(),
+                  subtitle: trip!.createdDate.convertToStringDateTime(),
                   icon: Icons.calendar_today,
                 ),
                 const Spacer(),
                 AppTextButton(
                   onPressed: () {
-                    if (trip!.tripStatus == null) {
-                      context.read<MapBloc>().acceptTrip(trip!.id);
+                    if (trip!.status == null) {
+                      if (context.read<MapBloc>().state.currentAddress ==
+                          null) {
+                        context.read<MapBloc>().getCurrentLocation(
+                            onComplete: () {
+                          context.read<MapBloc>().acceptTrip(trip!.id);
+                        });
+                      } else {
+                        context.read<MapBloc>().acceptTrip(trip!.id);
+                      }
                     } else {
                       context.read<MapBloc>().changeIsPanelOpenState(false);
                       context.read<MapBloc>().panelController.close();
@@ -86,7 +94,7 @@ class TripDetails extends StatelessWidget {
                   borderRadius: 15,
                   outerPadding: const EdgeInsets.only(bottom: 33),
                   child: Text(
-                    trip!.tripStatus == null
+                    trip!.status == null
                         ? S.of(context).acceptTrip
                         : S.of(context).cancel,
                     style: TextStyles.font16WhiteRegular,

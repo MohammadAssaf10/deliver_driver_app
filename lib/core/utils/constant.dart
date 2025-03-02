@@ -1,3 +1,4 @@
+import '../../generated/l10n.dart';
 import 'app_enums.dart';
 
 class Constant {
@@ -10,6 +11,12 @@ class Constant {
     3: TripStatus.delivering,
     4: TripStatus.delivered,
     5: TripStatus.cancelled,
+  };
+
+  static final Map<TripStatus, String> tripStatusStringMap = {
+    TripStatus.onWayToPickupRider: S.current.driverArrivedToPickUpRider,
+    TripStatus.driverArrivedToPickupRider: "${S.current.tripInProgress} 🚕",
+    TripStatus.delivering: "${S.current.tripCompletedSuccessfully} ✅",
   };
 }
 

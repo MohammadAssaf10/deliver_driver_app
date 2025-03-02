@@ -42,7 +42,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   void getAvailableTrips() => add(GetAvailableTrips());
 
-  void getCurrentLocation() => add(GetCurrentLocation());
+  void getCurrentLocation({void Function()? onComplete}) =>
+      add(GetCurrentLocation((b) => b..onComplete = onComplete));
 
   void acceptTrip(int tripId) => add(AcceptTrip((b) => b..tripId = tripId));
 
@@ -55,12 +56,27 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     });
     on<GetCurrentLocation>(
       (event, emit) async {
+        if (event.onComplete != null) {
+          emit(state.rebuild((b) => b..acceptTripIsLoading = true));
+        }
         final bool isLocationServiceEnabled =
             await _ensureLocationServiceEnabled();
-        if (!isLocationServiceEnabled) return;
+        if (!isLocationServiceEnabled) {
+          if (event.onComplete != null) {
+            await Future.delayed(const Duration(seconds: 1));
+            emit(state.rebuild((b) => b..acceptTripIsLoading = false));
+            emit(state.rebuild((b) => b..acceptTripIsLoading = null));
+          }
+          return;
+        }
 
         final LocationData locationData = await _location.getLocation();
         if (locationData.latitude == null || locationData.longitude == null) {
+          if (event.onComplete != null) {
+            await Future.delayed(const Duration(seconds: 1));
+            emit(state.rebuild((b) => b..acceptTripIsLoading = false));
+            emit(state.rebuild((b) => b..acceptTripIsLoading = null));
+          }
           return;
         }
 
@@ -70,7 +86,14 @@ class MainBloc extends Bloc<MainEvent, MainState> {
           longitude: locationData.longitude!,
         );
 
-        emit(state.rebuild((b) => b..currentAddress = currentAddress));
+        emit(state.rebuild(
+          (b) => b
+            ..currentAddress = currentAddress
+            ..acceptTripIsLoading = null,
+        ));
+        if (event.onComplete != null) {
+          event.onComplete!();
+        }
       },
       transformer: droppable(),
     );
@@ -130,9 +153,9 @@ class MainBloc extends Bloc<MainEvent, MainState> {
           (b) => b
             ..isLoading = false
             ..trips.isLoading = false
-            ..trips.items.addAll(data)
+            ..trips.items.addAll(data.trips)
             ..trips.currentPage = b.trips.currentPage! + 1
-            ..trips.isFinished = data.isEmpty,
+            ..trips.isFinished = data.trips.isEmpty,
         ));
         if (!state.isListenerAdded) {
           controller.addListener(() {
@@ -146,7 +169,6 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     }, transformer: droppable());
 
     on<AcceptTrip>((event, emit) async {
-      if (state.currentAddress == null) return;
       emit(state.rebuild((b) => b..acceptTripIsLoading = true));
       final result = await _mainRepository.acceptTrip(
         tripId: event.tripId,
@@ -159,6 +181,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         emit(state.rebuild((b) => b..acceptTripIsLoading = false));
         getCurrentTrip();
       });
+      emit(state.rebuild((b) => b..acceptTripIsLoading = null));
     }, transformer: droppable());
   }
 

@@ -20,11 +20,13 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(value) => "${value} كم";
+  static String m0(value) => "تغيير الحالة إلى: ${value}";
 
-  static String m1(value) => "${value} دقيقة";
+  static String m1(value) => "${value} كم";
 
-  static String m2(value) => "${value} ل.س";
+  static String m2(value) => "${value} دقيقة";
+
+  static String m3(value) => "${value} ل.س";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -40,7 +42,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "changeLanguage": MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
+        "changeStatusTo": m0,
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
+        "confirmChanged": MessageLookupByLibrary.simpleMessage("تأكيد التغيير"),
         "continue1": MessageLookupByLibrary.simpleMessage("متابعة"),
         "currentTrip": MessageLookupByLibrary.simpleMessage("الرحلة الحالية"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
@@ -49,6 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "doNotHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("لا تملك حساب؟"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
+        "driverArrivedToPickUpRider":
+            MessageLookupByLibrary.simpleMessage("وصل السائق الى عنوان الراكب"),
         "driverId": MessageLookupByLibrary.simpleMessage("رقم السائق: "),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailFormatNotCorrect": MessageLookupByLibrary.simpleMessage(
@@ -67,11 +73,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "kindlySignUpBelow":
             MessageLookupByLibrary.simpleMessage("يرجى التسجيل أدناه."),
-        "km": m0,
+        "km": m1,
         "licenseImage": MessageLookupByLibrary.simpleMessage("صورة الرخصة"),
         "loginHere": MessageLookupByLibrary.simpleMessage("تسجيل الدخول هنا"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
-        "minute": m1,
+        "minute": m2,
         "mobileNumber":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف المحمول"),
         "mobileNumberFormatNotCorrect":
@@ -146,11 +152,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWentWrong":
             MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
         "status": MessageLookupByLibrary.simpleMessage("الحالة"),
-        "syr": m2,
+        "syr": m3,
         "to": MessageLookupByLibrary.simpleMessage("إلى"),
+        "tripCompletedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تمت الرحلة بنجاح"),
         "tripCreatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم إنشاء الرحلة بنجاح"),
         "tripDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الرحلة"),
+        "tripInProgress":
+            MessageLookupByLibrary.simpleMessage("الرحلة قيد التقدم"),
         "tripNumber": MessageLookupByLibrary.simpleMessage("رقم الرحلة"),
         "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "usernameShort":

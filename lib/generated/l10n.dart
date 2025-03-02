@@ -979,6 +979,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Driver arrived to pick up rider`
+  String get driverArrivedToPickUpRider {
+    return Intl.message(
+      'Driver arrived to pick up rider',
+      name: 'driverArrivedToPickUpRider',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trip in progress`
+  String get tripInProgress {
+    return Intl.message(
+      'Trip in progress',
+      name: 'tripInProgress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trip completed successfully`
+  String get tripCompletedSuccessfully {
+    return Intl.message(
+      'Trip completed successfully',
+      name: 'tripCompletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Changed`
+  String get confirmChanged {
+    return Intl.message(
+      'Confirm Changed',
+      name: 'confirmChanged',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change status to: {value}`
+  String changeStatusTo(Object value) {
+    return Intl.message(
+      'Change status to: $value',
+      name: 'changeStatusTo',
+      desc: '',
+      args: [value],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

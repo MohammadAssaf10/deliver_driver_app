@@ -9,13 +9,14 @@ import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+import '../../../../core/entities/trip.dart';
 import '../../../../core/models/address.dart';
 import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_functions.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
-import '../../../main/data/models/trip_model.dart';
 import '../../../main/domain/accept_trip_use_case.dart';
+import '../../data/repositories/map_repository.dart';
 import 'map_event.dart';
 import 'map_state.dart';
 
@@ -23,23 +24,37 @@ import 'map_state.dart';
 class MapBloc extends Bloc<MapEvent, MapState> {
   final Location _location;
   final AcceptTripUseCase _acceptTripUseCase;
+  final MapRepository _mapRepository;
   final Completer<GoogleMapController> mapCompleter =
       Completer<GoogleMapController>();
   final PanelController panelController = PanelController();
+  StreamSubscription<LocationData>? onLocationChanged;
 
-  void getCurrentLocation() => add(GetCurrentLocation());
+  void getCurrentLocation({void Function()? onComplete}) =>
+      add(GetCurrentLocation((b) => b..onComplete = onComplete));
 
   void changeIsPanelOpenState(bool isPanelOpen) =>
       add(ChangeIsPanelOpenState((b) => b..isPanelOpen = isPanelOpen));
 
   void acceptTrip(int tripId) => add(AcceptTrip((b) => b..tripId = tripId));
 
-  void getAddressDetails(TripModel trip) =>
+  void getAddressDetails(Trip trip) =>
       add(GetAddressDetails((b) => b..trip = trip));
+
+  void changeTripStatusToNext() => add(ChangeTripStatusToNext());
+
+  @override
+  Future<void> close() {
+    if (onLocationChanged != null) {
+      onLocationChanged!.cancel();
+    }
+    return super.close();
+  }
 
   MapBloc(
     this._location,
     this._acceptTripUseCase,
+    this._mapRepository,
   ) : super(MapState.initial()) {
     on<GetCurrentLocation>(
       (event, emit) async {
@@ -76,6 +91,18 @@ class MapBloc extends Bloc<MapEvent, MapState> {
               ..markers.replace(updatedMarkers),
           ),
         );
+        if (event.onComplete != null) {
+          event.onComplete!();
+        }
+        onLocationChanged ??=
+            _location.onLocationChanged.listen((locationData) async {
+          final Address currentAddress = await _getAddressPlacemark(Address(
+            markerState: MarkerState.currentLocation,
+            latitude: locationData.latitude!,
+            longitude: locationData.longitude!,
+          ));
+          emit(state.rebuild((b) => b..currentAddress = currentAddress));
+        });
       },
       transformer: droppable(),
     );
@@ -85,7 +112,6 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     });
 
     on<AcceptTrip>((event, emit) async {
-      if (state.currentAddress == null) return;
       emit(state.rebuild((b) => b..acceptTripIsLoading = true));
       final result = await _acceptTripUseCase(
         tripId: event.tripId,
@@ -95,7 +121,13 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         showToastMessage(failure.errorMessage, isError: true);
         emit(state.rebuild((b) => b..acceptTripIsLoading = false));
       }, (_) {
-        emit(state.rebuild((b) => b..acceptTripIsLoading = false));
+        final Trip trip =
+            state.trip!.copyWith(status: TripStatus.onWayToPickupRider);
+        emit(state.rebuild(
+          (b) => b
+            ..acceptTripIsLoading = false
+            ..trip = trip,
+        ));
       });
     }, transformer: droppable());
 
@@ -105,11 +137,28 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           await _getAddressPlacemark(event.trip.pickUpAddress);
       final Address updatedDropOffAddress =
           await _getAddressPlacemark(event.trip.dropOffAddress);
-      final TripModel trip = event.trip.copyWith(
+      final Trip trip = event.trip.copyWith(
         pickUpAddress: updatedPickUpAddress,
         dropOffAddress: updatedDropOffAddress,
       );
       emit(state.rebuild((b) => b..trip = trip));
+    });
+    on<ChangeTripStatusToNext>((event, emit) async {
+      emit(state.rebuild((b) => b..isLoading = true));
+      final result = await _mapRepository
+          .changeTripStatusToNext(state.currentAddress!.toLocationRequest());
+      result.fold((failure) {
+        emit(state.rebuild((b) => b..isLoading = false));
+      }, (_) {
+        final Trip trip = state.trip!.copyWith(
+          status: TripStatus.values[state.trip!.status!.index + 1],
+        );
+        emit(state.rebuild(
+          (b) => b
+            ..isLoading = false
+            ..trip = trip,
+        ));
+      });
     });
   }
 

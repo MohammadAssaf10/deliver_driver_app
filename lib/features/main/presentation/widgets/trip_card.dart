@@ -2,26 +2,23 @@ import 'package:deliver_driver_app/core/widget/app_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/entities/trip.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/theming/text_styles.dart';
-import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_extensions.dart';
 import '../../../../core/widget/trip_tile.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
-import '../../data/models/trip_model.dart';
 import '../bloc/main_bloc.dart';
 
 class TripCard extends StatelessWidget {
-  final TripModel trip;
-  final TripStatus? status;
+  final Trip trip;
   final EdgeInsetsGeometry? margin;
 
   const TripCard({
     super.key,
     required this.trip,
-    this.status,
     this.margin,
   });
 
@@ -32,7 +29,7 @@ class TripCard extends StatelessWidget {
         context.pushNamed(Routes.mapPage, arguments: trip);
       },
       child: Container(
-        height: status != null ? 200 : 245,
+        height: 215,
         width: double.infinity,
         margin:
             margin ?? const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -53,20 +50,22 @@ class TripCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 14, left: 14, top: 14),
+                  padding: const EdgeInsets.symmetric(horizontal: 11),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     spacing: 3,
                     children: [
+                      if (trip.status == null)
+                        const Spacer(),
                       TripTile(
                         title: S.of(context).tripNumber,
                         subtitle: trip.id.toString(),
                         icon: Icons.confirmation_number_outlined,
                       ),
-                      if (status != null)
+                      if (trip.status != null)
                         TripTile(
                           title: S.of(context).status,
-                          subtitle: status!.name,
+                          subtitle: trip.status!.name,
                           icon: Icons.info_outline,
                         ),
                       TripTile(
@@ -92,14 +91,22 @@ class TripCard extends StatelessWidget {
                         ),
                       TripTile(
                         title: S.of(context).date,
-                        subtitle: trip.createdAt.convertToStringDateTime(),
+                        subtitle: trip.createdDate.convertToStringDateTime(),
                         icon: Icons.calendar_today,
                       ),
-                      if (status == null) ...[
+                      if (trip.status == null) ...[
                         const Spacer(),
                         AppTextButton(
                           onPressed: () {
-                            context.read<MainBloc>().acceptTrip(trip.id);
+                            if (context.read<MainBloc>().state.currentAddress ==
+                                null) {
+                              context.read<MainBloc>().getCurrentLocation(
+                                  onComplete: () {
+                                context.read<MainBloc>().acceptTrip(trip.id);
+                              });
+                            } else {
+                              context.read<MainBloc>().acceptTrip(trip.id);
+                            }
                           },
                           borderRadius: 15,
                           buttonHeight: 40,

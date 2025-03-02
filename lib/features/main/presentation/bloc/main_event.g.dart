@@ -209,11 +209,14 @@ class GetAvailableTripsBuilder
 }
 
 class _$GetCurrentLocation extends GetCurrentLocation {
+  @override
+  final void Function()? onComplete;
+
   factory _$GetCurrentLocation(
           [void Function(GetCurrentLocationBuilder)? updates]) =>
       (new GetCurrentLocationBuilder()..update(updates))._build();
 
-  _$GetCurrentLocation._() : super._();
+  _$GetCurrentLocation._({this.onComplete}) : super._();
 
   @override
   GetCurrentLocation rebuild(
@@ -227,17 +230,24 @@ class _$GetCurrentLocation extends GetCurrentLocation {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GetCurrentLocation;
+    final dynamic _$dynamicOther = other;
+    return other is GetCurrentLocation &&
+        onComplete == _$dynamicOther.onComplete;
   }
 
   @override
   int get hashCode {
-    return 214810858;
+    var _$hash = 0;
+    _$hash = $jc(_$hash, onComplete.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper(r'GetCurrentLocation').toString();
+    return (newBuiltValueToStringHelper(r'GetCurrentLocation')
+          ..add('onComplete', onComplete))
+        .toString();
   }
 }
 
@@ -245,7 +255,21 @@ class GetCurrentLocationBuilder
     implements Builder<GetCurrentLocation, GetCurrentLocationBuilder> {
   _$GetCurrentLocation? _$v;
 
+  void Function()? _onComplete;
+  void Function()? get onComplete => _$this._onComplete;
+  set onComplete(void Function()? onComplete) =>
+      _$this._onComplete = onComplete;
+
   GetCurrentLocationBuilder();
+
+  GetCurrentLocationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _onComplete = $v.onComplete;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(GetCurrentLocation other) {
@@ -262,7 +286,10 @@ class GetCurrentLocationBuilder
   GetCurrentLocation build() => _build();
 
   _$GetCurrentLocation _build() {
-    final _$result = _$v ?? new _$GetCurrentLocation._();
+    final _$result = _$v ??
+        new _$GetCurrentLocation._(
+          onComplete: onComplete,
+        );
     replace(_$result);
     return _$result;
   }

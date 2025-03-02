@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+import '../../../../core/utils/app_enums.dart';
+import '../../../../core/utils/app_functions.dart';
 import '../bloc/map_bloc.dart';
 import '../bloc/map_state.dart';
 import '../widgets/deliver_map.dart';
@@ -13,7 +15,14 @@ class MapPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<MapBloc, MapState>(
+      body: BlocConsumer<MapBloc, MapState>(
+        listener: (context, state) {
+          if (state.acceptTripIsLoading || state.isLoading) {
+            showLoadingDialog(context);
+          } else if (!state.acceptTripIsLoading || !state.isLoading) {
+            closeLoadingDialogIfVisible();
+          }
+        },
         builder: (context, state) {
           return PopScope(
             // Allow popping only when panel is closed
@@ -27,7 +36,7 @@ class MapPage extends StatelessWidget {
             },
             child: SlidingUpPanel(
               controller: context.read<MapBloc>().panelController,
-              minHeight: 80,
+              minHeight: state.trip?.status == TripStatus.delivered ? 80 : 135,
               maxHeight: 330,
               backdropEnabled: true,
               borderRadius: BorderRadius.circular(15),

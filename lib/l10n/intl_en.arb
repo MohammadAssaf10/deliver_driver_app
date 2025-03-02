@@ -91,5 +91,10 @@
   "vehicleImage": "Vehicle image",
   "selectVehicleImages": "Select Vehicle Images",
   "pleaseSelectVehicleImages": "Please select vehicle images",
-  "tripDetails": "Trip Details"
+  "tripDetails": "Trip Details",
+  "driverArrivedToPickUpRider": "Driver arrived to pick up rider",
+  "tripInProgress": "Trip in progress",
+  "tripCompletedSuccessfully": "Trip completed successfully",
+  "confirmChanged": "Confirm Changed",
+  "changeStatusTo": "Change status to: {value}"
 }

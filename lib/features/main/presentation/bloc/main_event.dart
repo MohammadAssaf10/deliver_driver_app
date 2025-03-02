@@ -32,6 +32,8 @@ abstract class GetAvailableTrips extends MainEvent
 
 abstract class GetCurrentLocation extends MainEvent
     implements Built<GetCurrentLocation, GetCurrentLocationBuilder> {
+  void Function()? get onComplete;
+
   GetCurrentLocation._();
 
   factory GetCurrentLocation(

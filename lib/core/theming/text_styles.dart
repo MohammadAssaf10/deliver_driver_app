@@ -41,6 +41,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.darkGrey,
   );
+  static TextStyle font16DarkWhiteRegular = const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.darkWhite,
+  );
   static TextStyle font25DarkWhiteBold = const TextStyle(
     fontSize: 25,
     fontWeight: FontWeightHelper.bold,
@@ -59,6 +64,11 @@ class TextStyles {
   static TextStyle font15DarkGreyRegular = const TextStyle(
     fontSize: 15,
     fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.darkGrey,
+  );
+  static TextStyle font18DarkGreyBold = const TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeightHelper.bold,
     color: ColorsManager.darkGrey,
   );
   static TextStyle font14DarkWhiteSemiBold = const TextStyle(

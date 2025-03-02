@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../main/data/models/trip_model.dart';
+import '../../../../core/entities/trip.dart';
 import 'map_collapsed_sliding_panel.dart';
 import 'trip_details.dart';
 
 class MapPanel extends StatelessWidget {
-  final TripModel? trip;
+  final Trip? trip;
   final bool isPanelOpen;
 
   const MapPanel({
@@ -20,7 +20,7 @@ class MapPanel extends StatelessWidget {
         ? TripDetails(trip: trip)
         : MapCollapsedSlidingPanel(
             tripId: trip?.id,
-            showAcceptTripButton: trip?.tripStatus == null,
+            tripStatus: trip?.status,
           );
   }
 }

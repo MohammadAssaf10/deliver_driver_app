@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/entities/pagination_state_data.dart';
+import '../../../../core/entities/trip.dart';
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/widget/loader.dart';
-import '../../data/models/trip_model.dart';
 import '../bloc/main_bloc.dart';
 import 'trip_card.dart';
 
 class UserDoNotHaveTripWidget extends StatelessWidget {
-  final PaginationStateData<TripModel> trips;
+  final PaginationStateData<Trip> trips;
 
   const UserDoNotHaveTripWidget({
     super.key,

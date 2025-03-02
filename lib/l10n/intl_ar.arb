@@ -91,6 +91,11 @@
   "selectImageSource": "اختيار مصدر الصورة",
   "selectVehicleImages": "اختر صور المركبة",
   "pleaseSelectVehicleImages": "الرجاء اختيار صور السيارة",
-  "tripDetails": "تفاصيل الرحلة"
+  "tripDetails": "تفاصيل الرحلة",
+  "driverArrivedToPickUpRider": "وصل السائق الى عنوان الراكب",
+  "tripInProgress": "الرحلة قيد التقدم",
+  "tripCompletedSuccessfully": "تمت الرحلة بنجاح",
+  "confirmChanged": "تأكيد التغيير",
+  "changeStatusTo": "تغيير الحالة إلى: {value}"
 
 }

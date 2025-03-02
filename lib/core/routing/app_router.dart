@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../features/main/data/models/trip_model.dart';
 import '../../features/main/presentation/bloc/main_bloc.dart';
 import '../../features/main/presentation/pages/main_page.dart';
 import '../../features/map/presentation/bloc/map_bloc.dart';
@@ -17,6 +16,7 @@ import '../../features/splash/presentation/pages/splash_page.dart';
 import '../../features/verification_code/presentation/bloc/verification_code_bloc.dart';
 import '../../features/verification_code/presentation/pages/verification_code_page.dart';
 import '../di/di.dart';
+import '../entities/trip.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -71,7 +71,7 @@ class AppRouter {
           ),
         );
       case Routes.mapPage:
-        final TripModel trip = arguments as TripModel;
+        final Trip trip = arguments as Trip;
         return MaterialPageRoute(
           builder: (_) => BlocProvider<MapBloc>(
             create: (context) => getIt<MapBloc>()

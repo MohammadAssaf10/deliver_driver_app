@@ -14,9 +14,9 @@ class _$MainState extends MainState {
   @override
   final int pageIndex;
   @override
-  final CurrentTrip? currentTrip;
+  final Trip? currentTrip;
   @override
-  final PaginationStateData<TripModel> trips;
+  final PaginationStateData<Trip> trips;
   @override
   final bool isListenerAdded;
   @override
@@ -111,16 +111,14 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   int? get pageIndex => _$this._pageIndex;
   set pageIndex(int? pageIndex) => _$this._pageIndex = pageIndex;
 
-  CurrentTrip? _currentTrip;
-  CurrentTrip? get currentTrip => _$this._currentTrip;
-  set currentTrip(CurrentTrip? currentTrip) =>
-      _$this._currentTrip = currentTrip;
+  Trip? _currentTrip;
+  Trip? get currentTrip => _$this._currentTrip;
+  set currentTrip(Trip? currentTrip) => _$this._currentTrip = currentTrip;
 
-  PaginationStateDataBuilder<TripModel>? _trips;
-  PaginationStateDataBuilder<TripModel> get trips =>
-      _$this._trips ??= new PaginationStateDataBuilder<TripModel>();
-  set trips(PaginationStateDataBuilder<TripModel>? trips) =>
-      _$this._trips = trips;
+  PaginationStateDataBuilder<Trip>? _trips;
+  PaginationStateDataBuilder<Trip> get trips =>
+      _$this._trips ??= new PaginationStateDataBuilder<Trip>();
+  set trips(PaginationStateDataBuilder<Trip>? trips) => _$this._trips = trips;
 
   bool? _isListenerAdded;
   bool? get isListenerAdded => _$this._isListenerAdded;

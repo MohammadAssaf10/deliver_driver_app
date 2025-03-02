@@ -5,12 +5,14 @@ class Endpoints {
 
   static String signIn = '/driver/signin';
   static String signUp = '/driver/signup';
-  static String generateVerificationCode = '/Account/generateVerificationCode';
-  static String getVerificationCode = '/Account/getVerificationCode';
+
   static String verifyPhoneNumber = '/Account/verifyPhone';
   static String currentTrip = '/driver/trip/current';
   static String availableTrips = '/driver/trip/available';
   static String acceptTrip = '/driver/trip/accept';
   static String profile = '/driver/profile';
   static String registerVehicle = '/driver/profile/registerVehicle';
+  static String nextTripStatus = '/driver/trip/next';
+  static String generateVerificationCode = '/Account/generateVerificationCode';
+  static String getVerificationCode = '/Account/getVerificationCode';
 }

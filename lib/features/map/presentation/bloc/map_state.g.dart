@@ -12,7 +12,7 @@ class _$MapState extends MapState {
   @override
   final Address? currentAddress;
   @override
-  final TripModel? trip;
+  final Trip? trip;
   @override
   final BuiltSet<Marker> markers;
   @override
@@ -102,9 +102,9 @@ class MapStateBuilder implements Builder<MapState, MapStateBuilder> {
   set currentAddress(Address? currentAddress) =>
       _$this._currentAddress = currentAddress;
 
-  TripModel? _trip;
-  TripModel? get trip => _$this._trip;
-  set trip(TripModel? trip) => _$this._trip = trip;
+  Trip? _trip;
+  Trip? get trip => _$this._trip;
+  set trip(Trip? trip) => _$this._trip = trip;
 
   SetBuilder<Marker>? _markers;
   SetBuilder<Marker> get markers =>

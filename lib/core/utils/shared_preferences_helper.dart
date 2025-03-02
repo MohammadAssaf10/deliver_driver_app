@@ -75,4 +75,8 @@ class SharedPreferencesHelper {
   static Future<void> clearAllSecuredData() async {
     await _flutterSecureStorage.deleteAll();
   }
+
+  static Future<void> removeSecureData(String key) async {
+    await _flutterSecureStorage.delete(key: key);
+  }
 }

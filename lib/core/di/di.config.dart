@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -173,15 +174,16 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i1012.ProfileRemoteDataSource>(),
         gh<_i932.NetworkInfo>(),
       ));
-  gh.factory<_i437.MapBloc>(() => _i437.MapBloc(
-        gh<_i645.Location>(),
-        gh<_i641.AcceptTripUseCase>(),
-      ));
   gh.factory<_i469.ProfileBloc>(
       () => _i469.ProfileBloc(gh<_i361.ProfileRepository>()));
   gh.factory<_i118.RegisterVehicleBloc>(() => _i118.RegisterVehicleBloc(
         gh<_i183.ImagePicker>(),
         gh<_i987.RegisterVehicleRepository>(),
+      ));
+  gh.factory<_i437.MapBloc>(() => _i437.MapBloc(
+        gh<_i645.Location>(),
+        gh<_i641.AcceptTripUseCase>(),
+        gh<_i126.MapRepository>(),
       ));
   gh.factory<_i148.SignUpBloc>(
       () => _i148.SignUpBloc(gh<_i83.SignUpRepository>()));

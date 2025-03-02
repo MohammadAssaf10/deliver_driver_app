@@ -20,11 +20,13 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(value) => "${value} KM";
+  static String m0(value) => "Change status to: ${value}";
 
-  static String m1(value) => "${value} min";
+  static String m1(value) => "${value} KM";
 
-  static String m2(value) => "${value} SYR";
+  static String m2(value) => "${value} min";
+
+  static String m3(value) => "${value} SYR";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -41,7 +43,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeLanguage":
             MessageLookupByLibrary.simpleMessage("Change Language"),
+        "changeStatusTo": m0,
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "confirmChanged":
+            MessageLookupByLibrary.simpleMessage("Confirm Changed"),
         "continue1": MessageLookupByLibrary.simpleMessage("Continue"),
         "currentTrip": MessageLookupByLibrary.simpleMessage("Current Trip"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
@@ -50,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "doNotHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
+        "driverArrivedToPickUpRider": MessageLookupByLibrary.simpleMessage(
+            "Driver arrived to pick up rider"),
         "driverId": MessageLookupByLibrary.simpleMessage("Driver Id: "),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailFormatNotCorrect":
@@ -69,11 +76,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "kindlySignUpBelow":
             MessageLookupByLibrary.simpleMessage("Kindly sign up below."),
-        "km": m0,
+        "km": m1,
         "licenseImage": MessageLookupByLibrary.simpleMessage("License image"),
         "loginHere": MessageLookupByLibrary.simpleMessage("Login Here"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
-        "minute": m1,
+        "minute": m2,
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile number"),
         "mobileNumberFormatNotCorrect": MessageLookupByLibrary.simpleMessage(
             "Mobile number format not correct"),
@@ -149,11 +156,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWentWrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
-        "syr": m2,
+        "syr": m3,
         "to": MessageLookupByLibrary.simpleMessage("To"),
+        "tripCompletedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Trip completed successfully"),
         "tripCreatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("Trip created successfully"),
         "tripDetails": MessageLookupByLibrary.simpleMessage("Trip Details"),
+        "tripInProgress":
+            MessageLookupByLibrary.simpleMessage("Trip in progress"),
         "tripNumber": MessageLookupByLibrary.simpleMessage("Trip Number"),
         "userName": MessageLookupByLibrary.simpleMessage("Username"),
         "usernameShort":
