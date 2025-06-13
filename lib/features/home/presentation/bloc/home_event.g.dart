@@ -1,93 +1,10 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'main_event.dart';
+part of 'home_event.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
-
-class _$SetPageIndex extends SetPageIndex {
-  @override
-  final int pageIndex;
-
-  factory _$SetPageIndex([void Function(SetPageIndexBuilder)? updates]) =>
-      (SetPageIndexBuilder()..update(updates))._build();
-
-  _$SetPageIndex._({required this.pageIndex}) : super._();
-  @override
-  SetPageIndex rebuild(void Function(SetPageIndexBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  SetPageIndexBuilder toBuilder() => SetPageIndexBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is SetPageIndex && pageIndex == other.pageIndex;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, pageIndex.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'SetPageIndex')
-      ..add('pageIndex', pageIndex)).toString();
-  }
-}
-
-class SetPageIndexBuilder
-    implements Builder<SetPageIndex, SetPageIndexBuilder> {
-  _$SetPageIndex? _$v;
-
-  int? _pageIndex;
-  int? get pageIndex => _$this._pageIndex;
-  set pageIndex(int? pageIndex) => _$this._pageIndex = pageIndex;
-
-  SetPageIndexBuilder();
-
-  SetPageIndexBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _pageIndex = $v.pageIndex;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(SetPageIndex other) {
-    _$v = other as _$SetPageIndex;
-  }
-
-  @override
-  void update(void Function(SetPageIndexBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  SetPageIndex build() => _build();
-
-  _$SetPageIndex _build() {
-    final _$result =
-        _$v ??
-        _$SetPageIndex._(
-          pageIndex: BuiltValueNullFieldError.checkNotNull(
-            pageIndex,
-            r'SetPageIndex',
-            'pageIndex',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
-}
 
 class _$GetCurrentTrip extends GetCurrentTrip {
   factory _$GetCurrentTrip([void Function(GetCurrentTripBuilder)? updates]) =>
@@ -202,14 +119,11 @@ class GetAvailableTripsBuilder
 }
 
 class _$GetCurrentLocation extends GetCurrentLocation {
-  @override
-  final void Function()? onComplete;
-
   factory _$GetCurrentLocation([
     void Function(GetCurrentLocationBuilder)? updates,
   ]) => (GetCurrentLocationBuilder()..update(updates))._build();
 
-  _$GetCurrentLocation._({this.onComplete}) : super._();
+  _$GetCurrentLocation._() : super._();
   @override
   GetCurrentLocation rebuild(
     void Function(GetCurrentLocationBuilder) updates,
@@ -222,23 +136,17 @@ class _$GetCurrentLocation extends GetCurrentLocation {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    final dynamic _$dynamicOther = other;
-    return other is GetCurrentLocation &&
-        onComplete == _$dynamicOther.onComplete;
+    return other is GetCurrentLocation;
   }
 
   @override
   int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, onComplete.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
+    return 214810858;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GetCurrentLocation')
-      ..add('onComplete', onComplete)).toString();
+    return newBuiltValueToStringHelper(r'GetCurrentLocation').toString();
   }
 }
 
@@ -246,21 +154,7 @@ class GetCurrentLocationBuilder
     implements Builder<GetCurrentLocation, GetCurrentLocationBuilder> {
   _$GetCurrentLocation? _$v;
 
-  void Function()? _onComplete;
-  void Function()? get onComplete => _$this._onComplete;
-  set onComplete(void Function()? onComplete) =>
-      _$this._onComplete = onComplete;
-
   GetCurrentLocationBuilder();
-
-  GetCurrentLocationBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _onComplete = $v.onComplete;
-      _$v = null;
-    }
-    return this;
-  }
 
   @override
   void replace(GetCurrentLocation other) {
@@ -276,7 +170,7 @@ class GetCurrentLocationBuilder
   GetCurrentLocation build() => _build();
 
   _$GetCurrentLocation _build() {
-    final _$result = _$v ?? _$GetCurrentLocation._(onComplete: onComplete);
+    final _$result = _$v ?? _$GetCurrentLocation._();
     replace(_$result);
     return _$result;
   }
@@ -313,8 +207,9 @@ class _$AcceptTrip extends AcceptTrip {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'AcceptTrip')
-      ..add('tripId', tripId)).toString();
+    return (newBuiltValueToStringHelper(
+      r'AcceptTrip',
+    )..add('tripId', tripId)).toString();
   }
 }
 

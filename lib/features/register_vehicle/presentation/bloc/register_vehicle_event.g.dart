@@ -95,8 +95,9 @@ class _$SelectLicenseImage extends SelectLicenseImage {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'SelectLicenseImage')
-      ..add('imageSource', imageSource)).toString();
+    return (newBuiltValueToStringHelper(
+      r'SelectLicenseImage',
+    )..add('imageSource', imageSource)).toString();
   }
 }
 
@@ -182,8 +183,9 @@ class _$SelectVehicleImage extends SelectVehicleImage {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'SelectVehicleImage')
-      ..add('imageSource', imageSource)).toString();
+    return (newBuiltValueToStringHelper(
+      r'SelectVehicleImage',
+    )..add('imageSource', imageSource)).toString();
   }
 }
 

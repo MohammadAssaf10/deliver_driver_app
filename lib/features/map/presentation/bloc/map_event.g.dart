@@ -42,8 +42,9 @@ class _$GetCurrentLocation extends GetCurrentLocation {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GetCurrentLocation')
-      ..add('onComplete', onComplete)).toString();
+    return (newBuiltValueToStringHelper(
+      r'GetCurrentLocation',
+    )..add('onComplete', onComplete)).toString();
   }
 }
 
@@ -121,8 +122,9 @@ class _$ChangeIsPanelOpenState extends ChangeIsPanelOpenState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'ChangeIsPanelOpenState')
-      ..add('isPanelOpen', isPanelOpen)).toString();
+    return (newBuiltValueToStringHelper(
+      r'ChangeIsPanelOpenState',
+    )..add('isPanelOpen', isPanelOpen)).toString();
   }
 }
 
@@ -204,8 +206,9 @@ class _$AcceptTrip extends AcceptTrip {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'AcceptTrip')
-      ..add('tripId', tripId)).toString();
+    return (newBuiltValueToStringHelper(
+      r'AcceptTrip',
+    )..add('tripId', tripId)).toString();
   }
 }
 
@@ -288,8 +291,9 @@ class _$GetAddressDetails extends GetAddressDetails {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GetAddressDetails')
-      ..add('trip', trip)).toString();
+    return (newBuiltValueToStringHelper(
+      r'GetAddressDetails',
+    )..add('trip', trip)).toString();
   }
 }
 

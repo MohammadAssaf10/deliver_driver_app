@@ -33,15 +33,15 @@ import '../../features/activities/domain/repositories/activities_repository.dart
     as _i415;
 import '../../features/activities/presentation/bloc/activities_bloc.dart'
     as _i880;
-import '../../features/main/data/data_sources/remote/main_remote_data_source.dart'
-    as _i1003;
-import '../../features/main/data/data_sources/remote/main_remote_data_source_impl.dart'
-    as _i724;
-import '../../features/main/data/repositories/main_repository_impl.dart'
-    as _i411;
-import '../../features/main/domain/accept_trip_use_case.dart' as _i641;
-import '../../features/main/domain/repositories/main_repository.dart' as _i298;
-import '../../features/main/presentation/bloc/main_bloc.dart' as _i1014;
+import '../../features/home/data/datasources/home_remote_data_source.dart'
+    as _i362;
+import '../../features/home/data/datasources/home_remote_data_source_impl.dart'
+    as _i819;
+import '../../features/home/data/repositories/home_repository_impl.dart'
+    as _i76;
+import '../../features/home/domain/repositories/home_repository.dart' as _i0;
+import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
+import '../../features/main/presentation/cubit/main_cubit.dart' as _i552;
 import '../../features/map/data/data_sources/remote/map_remote_data_source.dart'
     as _i590;
 import '../../features/map/data/data_sources/remote/map_remote_data_source_impl.dart'
@@ -107,6 +107,7 @@ Future<_i174.GetIt> $initGetIt(
     () => registerModule.getSharedPreferences(),
     preResolve: true,
   );
+  gh.factory<_i552.MainCubit>(() => _i552.MainCubit());
   gh.lazySingleton<_i895.Connectivity>(() => registerModule.connectivity);
   gh.lazySingleton<_i645.Location>(() => registerModule.location);
   gh.lazySingleton<_i409.GlobalKey<_i409.State<_i409.StatefulWidget>>>(
@@ -123,14 +124,14 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i1009.RegisterVehicleRemoteDataSource>(
     () => _i492.RegisterVehicleRemoteDataSourceImpl(),
   );
-  gh.lazySingleton<_i1003.MainRemoteDataSource>(
-    () => _i724.MainRemoteDataSourceImpl(),
-  );
   gh.lazySingleton<_i533.SignInRemoteDataSource>(
     () => _i1024.SignInRemoteDataSourceImpl(),
   );
   gh.lazySingleton<_i1012.ProfileRemoteDataSource>(
     () => _i491.ProfileRemoteDataSourceImpl(),
+  );
+  gh.lazySingleton<_i362.HomeRemoteDataSource>(
+    () => _i819.HomeRemoteDataSourceImpl(),
   );
   gh.lazySingleton<_i964.SignUpRemoteDataSource>(
     () => _i42.SignUpRemoteDataSourceImpl(),
@@ -156,14 +157,11 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i932.NetworkInfo>(),
     ),
   );
-  gh.lazySingleton<_i298.MainRepository>(
-    () => _i411.MainRepositoryImpl(
-      gh<_i1003.MainRemoteDataSource>(),
+  gh.lazySingleton<_i0.HomeRepository>(
+    () => _i76.HomeRepositoryImpl(
       gh<_i932.NetworkInfo>(),
+      gh<_i362.HomeRemoteDataSource>(),
     ),
-  );
-  gh.factory<_i1014.MainBloc>(
-    () => _i1014.MainBloc(gh<_i298.MainRepository>(), gh<_i645.Location>()),
   );
   gh.factory<_i640.SignInBloc>(
     () => _i640.SignInBloc(gh<_i862.SignInRepository>()),
@@ -186,6 +184,9 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i932.NetworkInfo>(),
     ),
   );
+  gh.factory<_i202.HomeBloc>(
+    () => _i202.HomeBloc(gh<_i0.HomeRepository>(), gh<_i645.Location>()),
+  );
   gh.lazySingleton<_i61.VerificationCodeRepository>(
     () => _i61.VerificationCodeRepository(
       gh<_i89.VerificationCodeRemoteDataSource>(),
@@ -200,9 +201,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i571.AppCubit>(
     () => _i571.AppCubit(gh<_i245.AppRepository>()),
-  );
-  gh.lazySingleton<_i641.AcceptTripUseCase>(
-    () => _i641.AcceptTripUseCase(gh<_i298.MainRepository>()),
   );
   gh.lazySingleton<_i987.RegisterVehicleRepository>(
     () => _i987.RegisterVehicleRepository(
@@ -220,6 +218,13 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i469.ProfileBloc>(
     () => _i469.ProfileBloc(gh<_i361.ProfileRepository>()),
   );
+  gh.factory<_i437.MapBloc>(
+    () => _i437.MapBloc(
+      gh<_i645.Location>(),
+      gh<_i0.HomeRepository>(),
+      gh<_i126.MapRepository>(),
+    ),
+  );
   gh.factory<_i880.ActivitiesBloc>(
     () => _i880.ActivitiesBloc(gh<_i415.ActivitiesRepository>()),
   );
@@ -227,13 +232,6 @@ Future<_i174.GetIt> $initGetIt(
     () => _i118.RegisterVehicleBloc(
       gh<_i183.ImagePicker>(),
       gh<_i987.RegisterVehicleRepository>(),
-    ),
-  );
-  gh.factory<_i437.MapBloc>(
-    () => _i437.MapBloc(
-      gh<_i645.Location>(),
-      gh<_i641.AcceptTripUseCase>(),
-      gh<_i126.MapRepository>(),
     ),
   );
   gh.factory<_i148.SignUpBloc>(

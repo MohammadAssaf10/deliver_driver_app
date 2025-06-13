@@ -6,7 +6,7 @@ import '../../../../core/models/location_request.dart';
 import '../../../../core/repositories/base_repository.dart';
 import '../entities/available_trips.dart';
 
-abstract class MainRepository extends BaseRepository {
+abstract class HomeRepository extends BaseRepository{
   Future<Either<Failure, Trip?>> getCurrentTrip();
 
   Future<Either<Failure, AvailableTrips>> getAvailableTrips(int page);

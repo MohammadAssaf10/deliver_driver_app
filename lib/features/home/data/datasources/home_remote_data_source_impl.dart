@@ -1,20 +1,18 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/data_source/remote/base_remote_data_source_impl.dart';
-import '../../../../../core/models/location_request.dart';
-import '../../../../../core/models/trip_model.dart';
-import '../../../../../core/network/endpoints.dart';
-import '../../models/available_trips_model.dart';
-import 'main_remote_data_source.dart';
+import '../../../../core/data_source/remote/base_remote_data_source_impl.dart';
+import '../../../../core/models/location_request.dart';
+import '../../../../core/models/trip_model.dart';
+import '../../../../core/network/endpoints.dart';
+import '../models/available_trips_model.dart';
+import 'home_remote_data_source.dart';
 
-@LazySingleton(as: MainRemoteDataSource)
-class MainRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
-    implements MainRemoteDataSource {
+@LazySingleton(as: HomeRemoteDataSource)
+class HomeRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
+    implements HomeRemoteDataSource {
   @override
   Future<TripModel?> getCurrentTrip() async {
-    final result = await performGetRequest(
-      endpoint: Endpoints.currentTrip,
-    );
+    final result = await performGetRequest(endpoint: Endpoints.currentTrip);
     if (result.data == null) return null;
     return TripModel.fromJson(result.data);
   }
@@ -23,9 +21,7 @@ class MainRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
   Future<AvailableTripsModel> getAvailableTrips(int page) async {
     final result = await performGetRequest(
       endpoint: Endpoints.availableTrips,
-      queryParameters: {
-        "Page": page,
-      },
+      queryParameters: {"Page": page},
     );
     return AvailableTripsModel.fromJson(result.data);
   }
@@ -42,7 +38,7 @@ class MainRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
         "driverAddress": {
           "longitude": locationRequest.longitude,
           "latitude": locationRequest.latitude,
-        }
+        },
       },
     );
   }

@@ -1,53 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/routing/route_observer_helper.dart';
-import '../../../../generated/l10n.dart';
-import '../bloc/main_bloc.dart';
-import '../widgets/main_app_bar.dart';
+import '../cubit/main_cubit.dart';
 import '../widgets/main_bottom_navigation_bar.dart';
 
-class MainPage extends StatefulWidget {
+class MainPage extends StatelessWidget {
   const MainPage({super.key});
-
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> with RouteAware {
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    RouteObserverHelper.mainRouteObserver.subscribe(
-      this,
-      ModalRoute.of(context)!,
-    );
-  }
-
-  @override
-  void dispose() {
-    RouteObserverHelper.mainRouteObserver.unsubscribe(this);
-    super.dispose();
-  }
-
-  @override
-  void didPopNext() {
-    context.read<MainBloc>().getCurrentTrip();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: MainAppBar(title: S.of(context).availableTrips),
       body: PageView(
         onPageChanged: (index) {
-          context.read<MainBloc>().setPageIndex(index);
-          if (index == 0) {
-            context.read<MainBloc>().getCurrentTrip();
-          }
+          context.read<MainCubit>().setPageIndex(index);
         },
-        controller: context.read<MainBloc>().pageController,
-        children: context.read<MainBloc>().pages,
+        controller: context.read<MainCubit>().pageController,
+        children: context.read<MainCubit>().pages,
       ),
       bottomNavigationBar: const MainBottomNavigationBar(),
     );

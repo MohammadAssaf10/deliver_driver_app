@@ -16,4 +16,12 @@ class ProfileRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
     );
     return ProfileModel.fromJson(baseModel.data);
   }
+
+  @override
+  Future<String?> logout() async {
+    final BaseModel baseModel = await performPostRequest(
+      endpoint: Endpoints.signOut,
+    );
+    return baseModel.message;
+  }
 }

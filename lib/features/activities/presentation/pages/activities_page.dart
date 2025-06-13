@@ -66,8 +66,8 @@ class _ActivitiesPageState extends State<ActivitiesPage>
                                 child: Row(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.only(
-                                        start: 30,
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 30,
                                       ),
                                       child: Text(
                                         "${S.of(context).tripId}\n${state.financial!.payments[index].tripId}",
@@ -76,31 +76,40 @@ class _ActivitiesPageState extends State<ActivitiesPage>
                                             TextStyles.font16DarkGreySemiBold,
                                       ),
                                     ),
-                                    Container(
-                                      width: 1.5,
-                                      margin: const EdgeInsets.symmetric(
-                                        horizontal: 20,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: ColorsManager.darkGrey,
-                                        ),
-                                      ),
-                                    ),
                                     Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            '${S.of(context).date}: ${state.financial!.payments[index].createdDate.toInt().convertToStringDateTime()}',
+                                      child: Container(
+                                        padding:
+                                            const EdgeInsetsDirectional.only(
+                                              start: 15,
+                                            ),
+                                        decoration: const BoxDecoration(
+                                          border: BorderDirectional(
+                                            start: BorderSide(
+                                              color: ColorsManager.darkGrey,
+                                              width: 1.5,
+                                            ),
                                           ),
-                                          Text(
-                                            '${S.of(context).value}: ${state.financial!.payments[index].value.toInt()}',
-                                          ),
-                                        ],
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              '${S.of(context).date}: ${state.financial!.payments[index].createdDate.toInt().convertToStringDateTime()}',
+                                              style: TextStyles
+                                                  .font15DarkWhiteMedium,
+                                              maxLines: 1,
+                                            ),
+                                            Text(
+                                              '${S.of(context).value}: ${S.of(context).syr(state.financial!.payments[index].value.toInt().toString())}',
+                                              style: TextStyles
+                                                  .font15DarkWhiteMedium,
+                                              maxLines: 1,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],

@@ -41,6 +41,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.darkGrey,
   );
+  static TextStyle font15DarkWhiteMedium = const TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeightHelper.medium,
+    color: ColorsManager.darkGrey,
+  );
   static TextStyle font16DarkWhiteRegular = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeightHelper.regular,

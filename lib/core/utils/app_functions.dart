@@ -23,17 +23,22 @@ dismissDialog(BuildContext context) {
   }
 }
 
-void showToastMessage(String toastMessage, {bool isError = false}) {
+void showToastMessage(String? toastMessage, {bool isError = false}) {
+  if (toastMessage.nullOrEmpty()) return;
   Fluttertoast.showToast(
     gravity: ToastGravity.BOTTOM,
-    msg: toastMessage,
+    msg: toastMessage!,
     backgroundColor: isError ? ColorsManager.error : ColorsManager.darkWhite,
     fontSize: 16,
     textColor: isError ? ColorsManager.darkWhite : ColorsManager.darkGrey,
   );
 }
 
-void showLoadingDialog(BuildContext context, {Color? backgroundColor}) {
+void showLoadingDialog(
+  BuildContext context, {
+  Color? backgroundColor,
+  Color? loaderColor,
+}) {
   if (getIt<GlobalKey<State>>().currentContext == null) {
     showDialog(
       context: context,
@@ -42,7 +47,7 @@ void showLoadingDialog(BuildContext context, {Color? backgroundColor}) {
       builder: (_) => Dialog(
         key: getIt<GlobalKey<State>>(),
         backgroundColor: backgroundColor ?? Colors.transparent,
-        child: const Loader(size: 50),
+        child: Loader(size: 50, color: loaderColor),
       ),
     );
   }

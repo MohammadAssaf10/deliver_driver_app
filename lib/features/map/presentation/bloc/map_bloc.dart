@@ -15,7 +15,7 @@ import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_functions.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
-import '../../../main/domain/accept_trip_use_case.dart';
+import '../../../home/domain/repositories/home_repository.dart';
 import '../../data/repositories/map_repository.dart';
 import 'map_event.dart';
 import 'map_state.dart';
@@ -23,7 +23,7 @@ import 'map_state.dart';
 @injectable
 class MapBloc extends Bloc<MapEvent, MapState> {
   final Location _location;
-  final AcceptTripUseCase _acceptTripUseCase;
+  final HomeRepository _homeRepository;
   final MapRepository _mapRepository;
   final Completer<GoogleMapController> mapCompleter =
       Completer<GoogleMapController>();
@@ -51,61 +51,56 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     return super.close();
   }
 
-  MapBloc(
-    this._location,
-    this._acceptTripUseCase,
-    this._mapRepository,
-  ) : super(MapState.initial()) {
-    on<GetCurrentLocation>(
-      (event, emit) async {
-        final bool isLocationServiceEnabled =
-            await _ensureLocationServiceEnabled();
-        if (!isLocationServiceEnabled) return;
+  MapBloc(this._location, this._homeRepository, this._mapRepository)
+    : super(MapState.initial()) {
+    on<GetCurrentLocation>((event, emit) async {
+      final bool isLocationServiceEnabled =
+          await _ensureLocationServiceEnabled();
+      if (!isLocationServiceEnabled) return;
 
-        final LocationData locationData = await _location.getLocation();
-        if (locationData.latitude == null || locationData.longitude == null) {
-          return;
-        }
-        final GoogleMapController googleMapController =
-            await mapCompleter.future;
+      final LocationData locationData = await _location.getLocation();
+      if (locationData.latitude == null || locationData.longitude == null) {
+        return;
+      }
+      final GoogleMapController googleMapController = await mapCompleter.future;
 
-        final Address currentAddress = await _getAddressPlacemark(Address(
+      final Address currentAddress = await _getAddressPlacemark(
+        Address(
           markerState: MarkerState.currentLocation,
           latitude: locationData.latitude!,
           longitude: locationData.longitude!,
-        ));
-        final Set<Marker> updatedMarkers = await _updateMarkerSet(
-          markers: state.markers.toSet(),
-          markerState: MarkerState.currentLocation,
-          latitude: locationData.latitude!,
-          longitude: locationData.longitude!,
-          googleMapController: googleMapController,
-          markerIcon: Assets.iconsCurrentLocation,
-        );
+        ),
+      );
+      final Set<Marker> updatedMarkers = await _updateMarkerSet(
+        markers: state.markers.toSet(),
+        markerState: MarkerState.currentLocation,
+        latitude: locationData.latitude!,
+        longitude: locationData.longitude!,
+        googleMapController: googleMapController,
+        markerIcon: Assets.iconsCurrentLocation,
+      );
 
-        emit(
-          state.rebuild(
-            (b) => b
-              ..currentAddress = currentAddress
-              ..googleMapController = googleMapController
-              ..markers.replace(updatedMarkers),
-          ),
-        );
-        if (event.onComplete != null) {
-          event.onComplete!();
-        }
-        // onLocationChanged ??=
-        //     _location.onLocationChanged.listen((locationData) async {
-        //   final Address currentAddress = await _getAddressPlacemark(Address(
-        //     markerState: MarkerState.currentLocation,
-        //     latitude: locationData.latitude!,
-        //     longitude: locationData.longitude!,
-        //   ));
-        //   emit(state.rebuild((b) => b..currentAddress = currentAddress));
-        // });
-      },
-      transformer: droppable(),
-    );
+      emit(
+        state.rebuild(
+          (b) => b
+            ..currentAddress = currentAddress
+            ..googleMapController = googleMapController
+            ..markers.replace(updatedMarkers),
+        ),
+      );
+      if (event.onComplete != null) {
+        event.onComplete!();
+      }
+      // onLocationChanged ??=
+      //     _location.onLocationChanged.listen((locationData) async {
+      //   final Address currentAddress = await _getAddressPlacemark(Address(
+      //     markerState: MarkerState.currentLocation,
+      //     latitude: locationData.latitude!,
+      //     longitude: locationData.longitude!,
+      //   ));
+      //   emit(state.rebuild((b) => b..currentAddress = currentAddress));
+      // });
+    }, transformer: droppable());
 
     on<ChangeIsPanelOpenState>((event, emit) {
       emit(state.rebuild((b) => b..isPanelOpen = event.isPanelOpen));
@@ -113,28 +108,35 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
     on<AcceptTrip>((event, emit) async {
       emit(state.rebuild((b) => b..acceptTripIsLoading = true));
-      final result = await _acceptTripUseCase(
+      final result = await _homeRepository.acceptTrip(
         tripId: event.tripId,
         locationRequest: state.currentAddress!.toLocationRequest(),
       );
-      result.fold((failure) {
-        showToastMessage(failure.errorMessage, isError: true);
-        emit(state.rebuild((b) => b..acceptTripIsLoading = false));
-      }, (_) {
-        final Trip trip =
-            state.trip!.copyWith(status: TripStatus.onWayToPickupRider);
-        emit(state.rebuild(
-          (b) => b
-            ..acceptTripIsLoading = false
-            ..trip = trip,
-        ));
-      });
+      result.fold(
+        (failure) {
+          showToastMessage(failure.errorMessage, isError: true);
+          emit(state.rebuild((b) => b..acceptTripIsLoading = false));
+        },
+        (_) {
+          final Trip trip = state.trip!.copyWith(
+            status: TripStatus.onWayToPickupRider,
+          );
+          emit(
+            state.rebuild(
+              (b) => b
+                ..acceptTripIsLoading = false
+                ..trip = trip,
+            ),
+          );
+        },
+      );
     }, transformer: droppable());
 
     on<GetAddressDetails>((event, emit) async {
       emit(state.rebuild((b) => b..trip = event.trip));
-      final Address updatedPickUpAddress =
-          await _getAddressPlacemark(event.trip.pickUpAddress);
+      final Address updatedPickUpAddress = await _getAddressPlacemark(
+        event.trip.pickUpAddress,
+      );
       final Set<Marker> updatedMarkers = await _updateMarkerSet(
         markers: state.markers.toSet(),
         markerState: MarkerState.tripStartLocation,
@@ -142,8 +144,9 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         longitude: updatedPickUpAddress.longitude,
         markerIcon: Assets.iconsStartLocation,
       );
-      final Address updatedDropOffAddress =
-          await _getAddressPlacemark(event.trip.dropOffAddress);
+      final Address updatedDropOffAddress = await _getAddressPlacemark(
+        event.trip.dropOffAddress,
+      );
       final Set<Marker> updatedMarkersWith = await _updateMarkerSet(
         markers: updatedMarkers,
         markerState: MarkerState.tripEndLocation,
@@ -155,28 +158,36 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         pickUpAddress: updatedPickUpAddress,
         dropOffAddress: updatedDropOffAddress,
       );
-      emit(state.rebuild(
-        (b) => b
-          ..trip = trip
-          ..markers.replace(updatedMarkersWith),
-      ));
+      emit(
+        state.rebuild(
+          (b) => b
+            ..trip = trip
+            ..markers.replace(updatedMarkersWith),
+        ),
+      );
     });
     on<ChangeTripStatusToNext>((event, emit) async {
       emit(state.rebuild((b) => b..isLoading = true));
-      final result = await _mapRepository
-          .changeTripStatusToNext(state.currentAddress!.toLocationRequest());
-      result.fold((failure) {
-        emit(state.rebuild((b) => b..isLoading = false));
-      }, (_) {
-        final Trip trip = state.trip!.copyWith(
-          status: TripStatus.values[state.trip!.status!.index + 1],
-        );
-        emit(state.rebuild(
-          (b) => b
-            ..isLoading = false
-            ..trip = trip,
-        ));
-      });
+      final result = await _mapRepository.changeTripStatusToNext(
+        state.currentAddress!.toLocationRequest(),
+      );
+      result.fold(
+        (failure) {
+          emit(state.rebuild((b) => b..isLoading = false));
+        },
+        (_) {
+          final Trip trip = state.trip!.copyWith(
+            status: TripStatus.values[state.trip!.status!.index + 1],
+          );
+          emit(
+            state.rebuild(
+              (b) => b
+                ..isLoading = false
+                ..trip = trip,
+            ),
+          );
+        },
+      );
     });
   }
 
@@ -195,7 +206,8 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       permissionGranted = await _location.requestPermission();
       if (permissionGranted != PermissionStatus.granted) {
         showToastMessage(
-            S.current.pleaseAllowAppToAccessYourCurrentLocationAndTryAgain);
+          S.current.pleaseAllowAppToAccessYourCurrentLocationAndTryAgain,
+        );
         return false;
       }
     }
@@ -215,9 +227,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       (marker) => marker.markerId.value == markerState.index.toString(),
     );
     final BitmapDescriptor mapMarkerIcon = await BitmapDescriptor.asset(
-      const ImageConfiguration(
-        size: Size(34, 34),
-      ),
+      const ImageConfiguration(size: Size(34, 34)),
       markerIcon,
     );
     updatedMarkers.add(
@@ -231,13 +241,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     if (googleMapController != null) {
       googleMapController.animateCamera(
         CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: LatLng(
-              latitude,
-              longitude,
-            ),
-            zoom: 15,
-          ),
+          CameraPosition(target: LatLng(latitude, longitude), zoom: 15),
         ),
       );
     }
@@ -248,17 +252,21 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   Future<Address> _getAddressPlacemark(Address address) async {
     Address updatedAddress = address;
     try {
-      final geocoding.Placemark placemark = (await geocoding
-              .placemarkFromCoordinates(address.latitude, address.longitude))
-          .first;
+      final geocoding.Placemark placemark =
+          (await geocoding.placemarkFromCoordinates(
+            address.latitude,
+            address.longitude,
+          )).first;
       updatedAddress = address.copyWith(
         administrativeArea: placemark.administrativeArea,
         locality: placemark.locality,
         street: placemark.street,
       );
     } catch (e) {
-      dPrint("Error from get location placemark: $e",
-          stringColor: StringColor.red);
+      dPrint(
+        "Error from get location placemark: $e",
+        stringColor: StringColor.red,
+      );
     }
     return updatedAddress;
   }

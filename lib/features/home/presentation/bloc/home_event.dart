@@ -1,20 +1,10 @@
 import 'package:built_value/built_value.dart';
 
-part 'main_event.g.dart';
+part 'home_event.g.dart';
 
-abstract class MainEvent {}
+abstract class HomeEvent {}
 
-abstract class SetPageIndex extends MainEvent
-    implements Built<SetPageIndex, SetPageIndexBuilder> {
-  int get pageIndex;
-
-  SetPageIndex._();
-
-  factory SetPageIndex([void Function(SetPageIndexBuilder) updates]) =
-      _$SetPageIndex;
-}
-
-abstract class GetCurrentTrip extends MainEvent
+abstract class GetCurrentTrip extends HomeEvent
     implements Built<GetCurrentTrip, GetCurrentTripBuilder> {
   GetCurrentTrip._();
 
@@ -22,7 +12,7 @@ abstract class GetCurrentTrip extends MainEvent
       _$GetCurrentTrip;
 }
 
-abstract class GetAvailableTrips extends MainEvent
+abstract class GetAvailableTrips extends HomeEvent
     implements Built<GetAvailableTrips, GetAvailableTripsBuilder> {
   GetAvailableTrips._();
 
@@ -30,18 +20,17 @@ abstract class GetAvailableTrips extends MainEvent
       _$GetAvailableTrips;
 }
 
-abstract class GetCurrentLocation extends MainEvent
+abstract class GetCurrentLocation extends HomeEvent
     implements Built<GetCurrentLocation, GetCurrentLocationBuilder> {
-  void Function()? get onComplete;
 
   GetCurrentLocation._();
 
-  factory GetCurrentLocation(
-          [void Function(GetCurrentLocationBuilder) updates]) =
-      _$GetCurrentLocation;
+  factory GetCurrentLocation([
+    void Function(GetCurrentLocationBuilder) updates,
+  ]) = _$GetCurrentLocation;
 }
 
-abstract class AcceptTrip extends MainEvent
+abstract class AcceptTrip extends HomeEvent
     implements Built<AcceptTrip, AcceptTripBuilder> {
   int get tripId;
 

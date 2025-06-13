@@ -1,18 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'main_state.dart';
+part of 'home_state.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$MainState extends MainState {
+class _$HomeState extends HomeState {
   @override
-  final bool isLoading;
-  @override
-  final bool isError;
-  @override
-  final int pageIndex;
+  final BlocStatus tripStatus;
   @override
   final Trip? currentTrip;
   @override
@@ -20,88 +16,72 @@ class _$MainState extends MainState {
   @override
   final bool isListenerAdded;
   @override
-  final Address? currentAddress;
+  final BlocStatus acceptTripStatus;
   @override
-  final bool? acceptTripIsLoading;
+  final Address? currentAddress;
 
-  factory _$MainState([void Function(MainStateBuilder)? updates]) =>
-      (MainStateBuilder()..update(updates))._build();
+  factory _$HomeState([void Function(HomeStateBuilder)? updates]) =>
+      (HomeStateBuilder()..update(updates))._build();
 
-  _$MainState._({
-    required this.isLoading,
-    required this.isError,
-    required this.pageIndex,
+  _$HomeState._({
+    required this.tripStatus,
     this.currentTrip,
     required this.trips,
     required this.isListenerAdded,
+    required this.acceptTripStatus,
     this.currentAddress,
-    this.acceptTripIsLoading,
   }) : super._();
   @override
-  MainState rebuild(void Function(MainStateBuilder) updates) =>
+  HomeState rebuild(void Function(HomeStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  MainStateBuilder toBuilder() => MainStateBuilder()..replace(this);
+  HomeStateBuilder toBuilder() => HomeStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is MainState &&
-        isLoading == other.isLoading &&
-        isError == other.isError &&
-        pageIndex == other.pageIndex &&
+    return other is HomeState &&
+        tripStatus == other.tripStatus &&
         currentTrip == other.currentTrip &&
         trips == other.trips &&
         isListenerAdded == other.isListenerAdded &&
-        currentAddress == other.currentAddress &&
-        acceptTripIsLoading == other.acceptTripIsLoading;
+        acceptTripStatus == other.acceptTripStatus &&
+        currentAddress == other.currentAddress;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, isLoading.hashCode);
-    _$hash = $jc(_$hash, isError.hashCode);
-    _$hash = $jc(_$hash, pageIndex.hashCode);
+    _$hash = $jc(_$hash, tripStatus.hashCode);
     _$hash = $jc(_$hash, currentTrip.hashCode);
     _$hash = $jc(_$hash, trips.hashCode);
     _$hash = $jc(_$hash, isListenerAdded.hashCode);
+    _$hash = $jc(_$hash, acceptTripStatus.hashCode);
     _$hash = $jc(_$hash, currentAddress.hashCode);
-    _$hash = $jc(_$hash, acceptTripIsLoading.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'MainState')
-          ..add('isLoading', isLoading)
-          ..add('isError', isError)
-          ..add('pageIndex', pageIndex)
+    return (newBuiltValueToStringHelper(r'HomeState')
+          ..add('tripStatus', tripStatus)
           ..add('currentTrip', currentTrip)
           ..add('trips', trips)
           ..add('isListenerAdded', isListenerAdded)
-          ..add('currentAddress', currentAddress)
-          ..add('acceptTripIsLoading', acceptTripIsLoading))
+          ..add('acceptTripStatus', acceptTripStatus)
+          ..add('currentAddress', currentAddress))
         .toString();
   }
 }
 
-class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
-  _$MainState? _$v;
+class HomeStateBuilder implements Builder<HomeState, HomeStateBuilder> {
+  _$HomeState? _$v;
 
-  bool? _isLoading;
-  bool? get isLoading => _$this._isLoading;
-  set isLoading(bool? isLoading) => _$this._isLoading = isLoading;
-
-  bool? _isError;
-  bool? get isError => _$this._isError;
-  set isError(bool? isError) => _$this._isError = isError;
-
-  int? _pageIndex;
-  int? get pageIndex => _$this._pageIndex;
-  set pageIndex(int? pageIndex) => _$this._pageIndex = pageIndex;
+  BlocStatus? _tripStatus;
+  BlocStatus? get tripStatus => _$this._tripStatus;
+  set tripStatus(BlocStatus? tripStatus) => _$this._tripStatus = tripStatus;
 
   Trip? _currentTrip;
   Trip? get currentTrip => _$this._currentTrip;
@@ -117,77 +97,69 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   set isListenerAdded(bool? isListenerAdded) =>
       _$this._isListenerAdded = isListenerAdded;
 
+  BlocStatus? _acceptTripStatus;
+  BlocStatus? get acceptTripStatus => _$this._acceptTripStatus;
+  set acceptTripStatus(BlocStatus? acceptTripStatus) =>
+      _$this._acceptTripStatus = acceptTripStatus;
+
   Address? _currentAddress;
   Address? get currentAddress => _$this._currentAddress;
   set currentAddress(Address? currentAddress) =>
       _$this._currentAddress = currentAddress;
 
-  bool? _acceptTripIsLoading;
-  bool? get acceptTripIsLoading => _$this._acceptTripIsLoading;
-  set acceptTripIsLoading(bool? acceptTripIsLoading) =>
-      _$this._acceptTripIsLoading = acceptTripIsLoading;
+  HomeStateBuilder();
 
-  MainStateBuilder();
-
-  MainStateBuilder get _$this {
+  HomeStateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _isLoading = $v.isLoading;
-      _isError = $v.isError;
-      _pageIndex = $v.pageIndex;
+      _tripStatus = $v.tripStatus;
       _currentTrip = $v.currentTrip;
       _trips = $v.trips.toBuilder();
       _isListenerAdded = $v.isListenerAdded;
+      _acceptTripStatus = $v.acceptTripStatus;
       _currentAddress = $v.currentAddress;
-      _acceptTripIsLoading = $v.acceptTripIsLoading;
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(MainState other) {
-    _$v = other as _$MainState;
+  void replace(HomeState other) {
+    _$v = other as _$HomeState;
   }
 
   @override
-  void update(void Function(MainStateBuilder)? updates) {
+  void update(void Function(HomeStateBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  MainState build() => _build();
+  HomeState build() => _build();
 
-  _$MainState _build() {
-    _$MainState _$result;
+  _$HomeState _build() {
+    _$HomeState _$result;
     try {
       _$result =
           _$v ??
-          _$MainState._(
-            isLoading: BuiltValueNullFieldError.checkNotNull(
-              isLoading,
-              r'MainState',
-              'isLoading',
-            ),
-            isError: BuiltValueNullFieldError.checkNotNull(
-              isError,
-              r'MainState',
-              'isError',
-            ),
-            pageIndex: BuiltValueNullFieldError.checkNotNull(
-              pageIndex,
-              r'MainState',
-              'pageIndex',
+          _$HomeState._(
+            tripStatus: BuiltValueNullFieldError.checkNotNull(
+              tripStatus,
+              r'HomeState',
+              'tripStatus',
             ),
             currentTrip: currentTrip,
             trips: trips.build(),
             isListenerAdded: BuiltValueNullFieldError.checkNotNull(
               isListenerAdded,
-              r'MainState',
+              r'HomeState',
               'isListenerAdded',
             ),
+            acceptTripStatus: BuiltValueNullFieldError.checkNotNull(
+              acceptTripStatus,
+              r'HomeState',
+              'acceptTripStatus',
+            ),
             currentAddress: currentAddress,
-            acceptTripIsLoading: acceptTripIsLoading,
           );
     } catch (_) {
       late String _$failedField;
@@ -196,7 +168,7 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
         trips.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-          r'MainState',
+          r'HomeState',
           _$failedField,
           e.toString(),
         );

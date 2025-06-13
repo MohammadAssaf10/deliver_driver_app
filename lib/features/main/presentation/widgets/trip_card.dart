@@ -1,4 +1,3 @@
-import 'package:deliver_driver_app/core/widget/app_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,20 +6,17 @@ import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/utils/app_extensions.dart';
+import '../../../../core/widget/app_text_button.dart';
 import '../../../../core/widget/trip_tile.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
-import '../bloc/main_bloc.dart';
+import '../../../home/presentation/bloc/home_bloc.dart';
 
 class TripCard extends StatelessWidget {
   final Trip trip;
   final EdgeInsetsGeometry? margin;
 
-  const TripCard({
-    super.key,
-    required this.trip,
-    this.margin,
-  });
+  const TripCard({super.key, required this.trip, this.margin});
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +51,7 @@ class TripCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     spacing: 3,
                     children: [
-                      if (trip.status == null)
-                        const Spacer(),
+                      if (trip.status == null) const Spacer(),
                       TripTile(
                         title: S.of(context).tripNumber,
                         subtitle: trip.id.toString(),
@@ -70,8 +65,11 @@ class TripCard extends StatelessWidget {
                         ),
                       TripTile(
                         title: S.of(context).estimatedTime,
-                        subtitle: S.of(context).minute(
-                            trip.calculatedDuration.removeDecimalZero()),
+                        subtitle: S
+                            .of(context)
+                            .minute(
+                              trip.calculatedDuration.removeDecimalZero(),
+                            ),
                         icon: Icons.access_time,
                       ),
                       TripTile(
@@ -98,15 +96,7 @@ class TripCard extends StatelessWidget {
                         const Spacer(),
                         AppTextButton(
                           onPressed: () {
-                            if (context.read<MainBloc>().state.currentAddress ==
-                                null) {
-                              context.read<MainBloc>().getCurrentLocation(
-                                  onComplete: () {
-                                context.read<MainBloc>().acceptTrip(trip.id);
-                              });
-                            } else {
-                              context.read<MainBloc>().acceptTrip(trip.id);
-                            }
+                            context.read<HomeBloc>().acceptTrip(trip.id);
                           },
                           borderRadius: 15,
                           buttonHeight: 40,

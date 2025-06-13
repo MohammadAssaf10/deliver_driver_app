@@ -60,4 +60,58 @@ class GetProfileBuilder implements Builder<GetProfile, GetProfileBuilder> {
   }
 }
 
+class _$Logout extends Logout {
+  factory _$Logout([void Function(LogoutBuilder)? updates]) =>
+      (LogoutBuilder()..update(updates))._build();
+
+  _$Logout._() : super._();
+  @override
+  Logout rebuild(void Function(LogoutBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  LogoutBuilder toBuilder() => LogoutBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Logout;
+  }
+
+  @override
+  int get hashCode {
+    return 676553867;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'Logout').toString();
+  }
+}
+
+class LogoutBuilder implements Builder<Logout, LogoutBuilder> {
+  _$Logout? _$v;
+
+  LogoutBuilder();
+
+  @override
+  void replace(Logout other) {
+    _$v = other as _$Logout;
+  }
+
+  @override
+  void update(void Function(LogoutBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  Logout build() => _build();
+
+  _$Logout _build() {
+    final _$result = _$v ?? _$Logout._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

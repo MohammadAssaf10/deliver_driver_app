@@ -11,11 +11,17 @@ class _$ProfileState extends ProfileState {
   final bool isLoading;
   @override
   final Profile? profile;
+  @override
+  final BlocStatus logoutStatus;
 
   factory _$ProfileState([void Function(ProfileStateBuilder)? updates]) =>
       (ProfileStateBuilder()..update(updates))._build();
 
-  _$ProfileState._({required this.isLoading, this.profile}) : super._();
+  _$ProfileState._({
+    required this.isLoading,
+    this.profile,
+    required this.logoutStatus,
+  }) : super._();
   @override
   ProfileState rebuild(void Function(ProfileStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -28,7 +34,8 @@ class _$ProfileState extends ProfileState {
     if (identical(other, this)) return true;
     return other is ProfileState &&
         isLoading == other.isLoading &&
-        profile == other.profile;
+        profile == other.profile &&
+        logoutStatus == other.logoutStatus;
   }
 
   @override
@@ -36,6 +43,7 @@ class _$ProfileState extends ProfileState {
     var _$hash = 0;
     _$hash = $jc(_$hash, isLoading.hashCode);
     _$hash = $jc(_$hash, profile.hashCode);
+    _$hash = $jc(_$hash, logoutStatus.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -44,7 +52,8 @@ class _$ProfileState extends ProfileState {
   String toString() {
     return (newBuiltValueToStringHelper(r'ProfileState')
           ..add('isLoading', isLoading)
-          ..add('profile', profile))
+          ..add('profile', profile)
+          ..add('logoutStatus', logoutStatus))
         .toString();
   }
 }
@@ -61,6 +70,11 @@ class ProfileStateBuilder
   Profile? get profile => _$this._profile;
   set profile(Profile? profile) => _$this._profile = profile;
 
+  BlocStatus? _logoutStatus;
+  BlocStatus? get logoutStatus => _$this._logoutStatus;
+  set logoutStatus(BlocStatus? logoutStatus) =>
+      _$this._logoutStatus = logoutStatus;
+
   ProfileStateBuilder();
 
   ProfileStateBuilder get _$this {
@@ -68,6 +82,7 @@ class ProfileStateBuilder
     if ($v != null) {
       _isLoading = $v.isLoading;
       _profile = $v.profile;
+      _logoutStatus = $v.logoutStatus;
       _$v = null;
     }
     return this;
@@ -96,6 +111,11 @@ class ProfileStateBuilder
             'isLoading',
           ),
           profile: profile,
+          logoutStatus: BuiltValueNullFieldError.checkNotNull(
+            logoutStatus,
+            r'ProfileState',
+            'logoutStatus',
+          ),
         );
     replace(_$result);
     return _$result;
