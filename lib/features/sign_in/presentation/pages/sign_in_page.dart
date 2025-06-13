@@ -54,11 +54,7 @@ class SignInPage extends StatelessWidget {
           surfaceTintColor: ColorsManager.customWhite,
         ),
         body: Padding(
-          padding: const EdgeInsets.only(
-            top: 20,
-            right: 20,
-            left: 20,
-          ),
+          padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
           child: Form(
             key: context.read<SignInBloc>().formKey,
             child: SingleChildScrollView(
@@ -85,8 +81,9 @@ class SignInPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   CustomTextField(
-                    controller:
-                        context.read<SignInBloc>().phoneNumberController,
+                    controller: context
+                        .read<SignInBloc>()
+                        .phoneNumberController,
                     labelTitle: S.of(context).mobileNumber,
                     validator: AppValidator.mobileNumberValidator,
                     prefixIcon: Icons.phone,
@@ -100,8 +97,9 @@ class SignInPage extends StatelessWidget {
                     builder: (context, state) {
                       return CustomTextField(
                         obscureText: state.passwordVisible,
-                        controller:
-                            context.read<SignInBloc>().passwordController,
+                        controller: context
+                            .read<SignInBloc>()
+                            .passwordController,
                         labelTitle: S.of(context).password,
                         validator: AppValidator.passwordValidator,
                         prefixIcon: Icons.password,
@@ -148,9 +146,7 @@ class SignInPage extends StatelessWidget {
                     title: S.of(context).doNotHaveAnAccount,
                     subTitle: S.of(context).registerHere,
                     subTitleOnPress: () {
-                      context.pushNamed(Routes.signUpPage);
-                      context.read<SignInBloc>().phoneNumberController.clear();
-                      context.read<SignInBloc>().passwordController.clear();
+                      context.pushReplacementNamed(Routes.signUpPage);
                     },
                   ),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.17),

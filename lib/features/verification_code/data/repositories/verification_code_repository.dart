@@ -37,7 +37,7 @@ class VerificationCodeRepository extends BaseRepositoryImpl {
         () async =>
             await _verificationCodeRemoteDataSource.verifyPhoneNumber(code),
         (_) async {
-          SharedPreferencesHelper.setData(
+          await SharedPreferencesHelper.setData(
               LocalStorageKeys.isPhoneNumberVerified, true);
           return;
         },

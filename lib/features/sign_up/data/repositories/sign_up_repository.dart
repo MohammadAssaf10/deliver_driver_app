@@ -24,11 +24,17 @@ class SignUpRepository extends BaseRepositoryImpl {
             await _signUpRemoteDataSource.signUp(signUpRequest),
         (signUpModel) async {
           await SharedPreferencesHelper.setData(
-              LocalStorageKeys.isPhoneNumberVerified, false);
+            LocalStorageKeys.isPhoneNumberVerified,
+            false,
+          );
           await SharedPreferencesHelper.setData(
-              LocalStorageKeys.isVehicleRegistered, false);
+            LocalStorageKeys.isVehicleRegistered,
+            false,
+          );
           await SharedPreferencesHelper.setSecuredString(
-              LocalStorageKeys.userToken, signUpModel.token);
+            LocalStorageKeys.userToken,
+            signUpModel.token,
+          );
           await SharedPreferencesHelper.setSecuredString(
             LocalStorageKeys.phoneNumber,
             signUpRequest.phoneNumber,

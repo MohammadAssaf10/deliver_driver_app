@@ -32,7 +32,6 @@ class BaseRepositoryImpl extends BaseRepository {
         e,
         stackTrace: stackTrace,
       );
-      dPrint("Error occurred in BaseRepository", stringColor: StringColor.red);
       dPrint("Exception: $e", stringColor: StringColor.red);
       dPrint("Stack trace: $stackTrace", stringColor: StringColor.red);
       final Failure failure = ErrorHandler.handleFailureError(e);

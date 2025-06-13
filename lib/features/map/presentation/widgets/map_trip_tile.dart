@@ -7,13 +7,15 @@ class MapTripTile extends StatelessWidget {
   final String title;
   final String subtitle;
   final int subtitleMaxLine;
-  final IconData icon;
+  final IconData? icon;
+  final String? pngIcon;
 
   const MapTripTile({
     super.key,
     required this.title,
     required this.subtitle,
-    required this.icon,
+    this.icon,
+    this.pngIcon,
     this.subtitleMaxLine = 1,
   });
 
@@ -23,10 +25,16 @@ class MapTripTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
         children: [
+          if(icon != null)
           Icon(
             icon,
             size: 18,
             color: ColorsManager.darkGrey.withValues(alpha: 0.8),
+          ),
+          if(pngIcon != null)
+            Image.asset(
+            pngIcon!,
+            width: 18,
           ),
           const SizedBox(width: 6),
           Text("$title: ", style: TextStyles.font16DarkGreySemiBold),

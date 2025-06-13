@@ -44,11 +44,7 @@ class SignUpPage extends StatelessWidget {
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(
-              top: 20,
-              right: 20,
-              left: 20,
-            ),
+            padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
             child: Form(
               key: context.read<SignUpBloc>().formKey,
               child: SingleChildScrollView(
@@ -82,8 +78,9 @@ class SignUpPage extends StatelessWidget {
                       textInputAction: TextInputAction.next,
                     ),
                     CustomTextField(
-                      controller:
-                          context.read<SignUpBloc>().mobileNumberController,
+                      controller: context
+                          .read<SignUpBloc>()
+                          .mobileNumberController,
                       labelTitle: S.of(context).mobileNumber,
                       validator: AppValidator.mobileNumberValidator,
                       prefixIcon: Icons.phone,
@@ -97,8 +94,9 @@ class SignUpPage extends StatelessWidget {
                       builder: (context, state) {
                         return CustomTextField(
                           obscureText: state.passwordVisible,
-                          controller:
-                              context.read<SignUpBloc>().passwordController,
+                          controller: context
+                              .read<SignUpBloc>()
+                              .passwordController,
                           labelTitle: S.of(context).password,
                           validator: AppValidator.passwordValidator,
                           prefixIcon: Icons.password,
@@ -145,7 +143,7 @@ class SignUpPage extends StatelessWidget {
                       title: S.of(context).alreadyHaveAnAccount,
                       subTitle: S.of(context).loginHere,
                       subTitleOnPress: () {
-                        context.pop();
+                        context.pushReplacementNamed(Routes.signInPage);
                       },
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),

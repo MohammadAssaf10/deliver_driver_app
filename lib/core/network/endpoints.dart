@@ -13,6 +13,7 @@ class Endpoints {
   static String profile = '/driver/profile';
   static String registerVehicle = '/driver/profile/registerVehicle';
   static String nextTripStatus = '/driver/trip/next';
+  static String finance = '/driver/finance';
   static String generateVerificationCode = '/Account/generateVerificationCode';
   static String getVerificationCode = '/Account/getVerificationCode';
 }

@@ -6,6 +6,7 @@ import '../../../../core/theming/text_styles.dart';
 import '../../../../core/utils/app_extensions.dart';
 import '../../../../core/widget/app_text_button.dart';
 import '../../../../core/widget/loader.dart';
+import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
 import '../bloc/map_bloc.dart';
 import 'map_trip_tile.dart';
@@ -35,7 +36,7 @@ class TripDetails extends StatelessWidget {
                     title: S.of(context).from,
                     subtitle:
                         '${trip!.pickUpAddress.administrativeArea}, ${trip!.pickUpAddress.locality}, ${trip!.pickUpAddress.street}',
-                    icon: Icons.abc,
+                    pngIcon: Assets.iconsStartLocation,
                     subtitleMaxLine: 2,
                   ),
                 if (trip!.dropOffAddress.administrativeArea != null)
@@ -43,7 +44,7 @@ class TripDetails extends StatelessWidget {
                     title: S.of(context).to,
                     subtitle:
                         '${trip!.dropOffAddress.administrativeArea}, ${trip!.dropOffAddress.locality}, ${trip!.dropOffAddress.street}',
-                    icon: Icons.abc,
+                    pngIcon: Assets.iconsEndLocation,
                     subtitleMaxLine: 2,
                   ),
                 MapTripTile(

@@ -94,15 +94,15 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         if (event.onComplete != null) {
           event.onComplete!();
         }
-        onLocationChanged ??=
-            _location.onLocationChanged.listen((locationData) async {
-          final Address currentAddress = await _getAddressPlacemark(Address(
-            markerState: MarkerState.currentLocation,
-            latitude: locationData.latitude!,
-            longitude: locationData.longitude!,
-          ));
-          emit(state.rebuild((b) => b..currentAddress = currentAddress));
-        });
+        // onLocationChanged ??=
+        //     _location.onLocationChanged.listen((locationData) async {
+        //   final Address currentAddress = await _getAddressPlacemark(Address(
+        //     markerState: MarkerState.currentLocation,
+        //     latitude: locationData.latitude!,
+        //     longitude: locationData.longitude!,
+        //   ));
+        //   emit(state.rebuild((b) => b..currentAddress = currentAddress));
+        // });
       },
       transformer: droppable(),
     );
@@ -135,13 +135,31 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       emit(state.rebuild((b) => b..trip = event.trip));
       final Address updatedPickUpAddress =
           await _getAddressPlacemark(event.trip.pickUpAddress);
+      final Set<Marker> updatedMarkers = await _updateMarkerSet(
+        markers: state.markers.toSet(),
+        markerState: MarkerState.tripStartLocation,
+        latitude: updatedPickUpAddress.latitude,
+        longitude: updatedPickUpAddress.longitude,
+        markerIcon: Assets.iconsStartLocation,
+      );
       final Address updatedDropOffAddress =
           await _getAddressPlacemark(event.trip.dropOffAddress);
+      final Set<Marker> updatedMarkersWith = await _updateMarkerSet(
+        markers: updatedMarkers,
+        markerState: MarkerState.tripEndLocation,
+        latitude: updatedDropOffAddress.latitude,
+        longitude: updatedDropOffAddress.longitude,
+        markerIcon: Assets.iconsEndLocation,
+      );
       final Trip trip = event.trip.copyWith(
         pickUpAddress: updatedPickUpAddress,
         dropOffAddress: updatedDropOffAddress,
       );
-      emit(state.rebuild((b) => b..trip = trip));
+      emit(state.rebuild(
+        (b) => b
+          ..trip = trip
+          ..markers.replace(updatedMarkersWith),
+      ));
     });
     on<ChangeTripStatusToNext>((event, emit) async {
       emit(state.rebuild((b) => b..isLoading = true));

@@ -12,21 +12,24 @@ import '../models/sign_in_model.dart';
 import '../models/sign_in_request.dart';
 
 @LazySingleton(as: SignInRepository)
-class SignInRepositoryImpl extends BaseRepositoryImpl implements SignInRepository{
+class SignInRepositoryImpl extends BaseRepositoryImpl
+    implements SignInRepository {
   final SignInRemoteDataSource _signInRemoteDataSource;
 
   SignInRepositoryImpl(this._signInRemoteDataSource, super._networkInfo);
 
   @override
-  Future<Either<Failure, SignInEntity>> signIn(SignInRequest signInRequest) async {
+  Future<Either<Failure, SignInEntity>> signIn(
+      SignInRequest signInRequest) async {
     return await requestApi<SignInEntity, SignInModel>(
       <SignInModel>() async =>
           await _signInRemoteDataSource.signIn(signInRequest),
       (signInModel) {
         Future.wait([
           SharedPreferencesHelper.setData(
-              LocalStorageKeys.isPhoneNumberVerified,
-              signInModel.isPhoneNumberVerified),
+            LocalStorageKeys.isPhoneNumberVerified,
+            signInModel.isPhoneNumberVerified,
+          ),
           SharedPreferencesHelper.setData(LocalStorageKeys.isVehicleRegistered,
               signInModel.isVehicleRegistered),
           SharedPreferencesHelper.setSecuredString(
