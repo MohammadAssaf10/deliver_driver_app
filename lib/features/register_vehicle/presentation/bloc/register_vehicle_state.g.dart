@@ -18,33 +18,25 @@ class _$RegisterVehicleState extends RegisterVehicleState {
   @override
   final XFile? vehicleImage;
 
-  factory _$RegisterVehicleState(
-          [void Function(RegisterVehicleStateBuilder)? updates]) =>
-      (new RegisterVehicleStateBuilder()..update(updates))._build();
+  factory _$RegisterVehicleState([
+    void Function(RegisterVehicleStateBuilder)? updates,
+  ]) => (RegisterVehicleStateBuilder()..update(updates))._build();
 
-  _$RegisterVehicleState._(
-      {required this.isLoading,
-      required this.isSuccess,
-      required this.isError,
-      this.licenseImage,
-      this.vehicleImage})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        isLoading, r'RegisterVehicleState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(
-        isSuccess, r'RegisterVehicleState', 'isSuccess');
-    BuiltValueNullFieldError.checkNotNull(
-        isError, r'RegisterVehicleState', 'isError');
-  }
-
+  _$RegisterVehicleState._({
+    required this.isLoading,
+    required this.isSuccess,
+    required this.isError,
+    this.licenseImage,
+    this.vehicleImage,
+  }) : super._();
   @override
   RegisterVehicleState rebuild(
-          void Function(RegisterVehicleStateBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(RegisterVehicleStateBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   RegisterVehicleStateBuilder toBuilder() =>
-      new RegisterVehicleStateBuilder()..replace(this);
+      RegisterVehicleStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -122,7 +114,6 @@ class RegisterVehicleStateBuilder
 
   @override
   void replace(RegisterVehicleState other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RegisterVehicleState;
   }
 
@@ -135,14 +126,24 @@ class RegisterVehicleStateBuilder
   RegisterVehicleState build() => _build();
 
   _$RegisterVehicleState _build() {
-    final _$result = _$v ??
-        new _$RegisterVehicleState._(
+    final _$result =
+        _$v ??
+        _$RegisterVehicleState._(
           isLoading: BuiltValueNullFieldError.checkNotNull(
-              isLoading, r'RegisterVehicleState', 'isLoading'),
+            isLoading,
+            r'RegisterVehicleState',
+            'isLoading',
+          ),
           isSuccess: BuiltValueNullFieldError.checkNotNull(
-              isSuccess, r'RegisterVehicleState', 'isSuccess'),
+            isSuccess,
+            r'RegisterVehicleState',
+            'isSuccess',
+          ),
           isError: BuiltValueNullFieldError.checkNotNull(
-              isError, r'RegisterVehicleState', 'isError'),
+            isError,
+            r'RegisterVehicleState',
+            'isError',
+          ),
           licenseImage: licenseImage,
           vehicleImage: vehicleImage,
         );

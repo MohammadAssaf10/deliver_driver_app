@@ -8,7 +8,8 @@ part of 'available_trips_model.dart';
 
 AvailableTripsModel _$AvailableTripsModelFromJson(Map<String, dynamic> json) =>
     AvailableTripsModel(
-      trips: (json['trips'] as List<dynamic>)
-          .map((e) => TripModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      trips:
+          (json['trips'] as List<dynamic>)
+              .map((e) => TripModel.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );

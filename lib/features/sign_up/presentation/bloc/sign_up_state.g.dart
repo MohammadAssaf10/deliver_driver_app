@@ -17,29 +17,20 @@ class _$SignUpState extends SignUpState {
   final bool isSuccess;
 
   factory _$SignUpState([void Function(SignUpStateBuilder)? updates]) =>
-      (new SignUpStateBuilder()..update(updates))._build();
+      (SignUpStateBuilder()..update(updates))._build();
 
-  _$SignUpState._(
-      {required this.passwordVisible,
-      required this.isLoading,
-      required this.isError,
-      required this.isSuccess})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        passwordVisible, r'SignUpState', 'passwordVisible');
-    BuiltValueNullFieldError.checkNotNull(
-        isLoading, r'SignUpState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(isError, r'SignUpState', 'isError');
-    BuiltValueNullFieldError.checkNotNull(
-        isSuccess, r'SignUpState', 'isSuccess');
-  }
-
+  _$SignUpState._({
+    required this.passwordVisible,
+    required this.isLoading,
+    required this.isError,
+    required this.isSuccess,
+  }) : super._();
   @override
   SignUpState rebuild(void Function(SignUpStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  SignUpStateBuilder toBuilder() => new SignUpStateBuilder()..replace(this);
+  SignUpStateBuilder toBuilder() => SignUpStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -109,7 +100,6 @@ class SignUpStateBuilder implements Builder<SignUpState, SignUpStateBuilder> {
 
   @override
   void replace(SignUpState other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$SignUpState;
   }
 
@@ -122,16 +112,29 @@ class SignUpStateBuilder implements Builder<SignUpState, SignUpStateBuilder> {
   SignUpState build() => _build();
 
   _$SignUpState _build() {
-    final _$result = _$v ??
-        new _$SignUpState._(
+    final _$result =
+        _$v ??
+        _$SignUpState._(
           passwordVisible: BuiltValueNullFieldError.checkNotNull(
-              passwordVisible, r'SignUpState', 'passwordVisible'),
+            passwordVisible,
+            r'SignUpState',
+            'passwordVisible',
+          ),
           isLoading: BuiltValueNullFieldError.checkNotNull(
-              isLoading, r'SignUpState', 'isLoading'),
+            isLoading,
+            r'SignUpState',
+            'isLoading',
+          ),
           isError: BuiltValueNullFieldError.checkNotNull(
-              isError, r'SignUpState', 'isError'),
+            isError,
+            r'SignUpState',
+            'isError',
+          ),
           isSuccess: BuiltValueNullFieldError.checkNotNull(
-              isSuccess, r'SignUpState', 'isSuccess'),
+            isSuccess,
+            r'SignUpState',
+            'isSuccess',
+          ),
         );
     replace(_$result);
     return _$result;

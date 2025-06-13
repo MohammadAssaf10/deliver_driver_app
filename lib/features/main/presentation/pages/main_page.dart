@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/routing/route_observer_helper.dart';
+import '../../../../generated/l10n.dart';
 import '../bloc/main_bloc.dart';
 import '../widgets/main_app_bar.dart';
 import '../widgets/main_bottom_navigation_bar.dart';
@@ -17,8 +18,10 @@ class _MainPageState extends State<MainPage> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    RouteObserverHelper.mainRouteObserver
-        .subscribe(this, ModalRoute.of(context)!);
+    RouteObserverHelper.mainRouteObserver.subscribe(
+      this,
+      ModalRoute.of(context)!,
+    );
   }
 
   @override
@@ -35,7 +38,7 @@ class _MainPageState extends State<MainPage> with RouteAware {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MainAppBar(),
+      // appBar: MainAppBar(title: S.of(context).availableTrips),
       body: PageView(
         onPageChanged: (index) {
           context.read<MainBloc>().setPageIndex(index);

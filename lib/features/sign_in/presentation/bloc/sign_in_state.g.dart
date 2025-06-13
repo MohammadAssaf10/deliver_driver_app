@@ -19,32 +19,21 @@ class _$SignInState extends SignInState {
   final SignInEntity signInEntity;
 
   factory _$SignInState([void Function(SignInStateBuilder)? updates]) =>
-      (new SignInStateBuilder()..update(updates))._build();
+      (SignInStateBuilder()..update(updates))._build();
 
-  _$SignInState._(
-      {required this.passwordVisible,
-      required this.isLoading,
-      required this.isSuccess,
-      required this.isError,
-      required this.signInEntity})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        passwordVisible, r'SignInState', 'passwordVisible');
-    BuiltValueNullFieldError.checkNotNull(
-        isLoading, r'SignInState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(
-        isSuccess, r'SignInState', 'isSuccess');
-    BuiltValueNullFieldError.checkNotNull(isError, r'SignInState', 'isError');
-    BuiltValueNullFieldError.checkNotNull(
-        signInEntity, r'SignInState', 'signInEntity');
-  }
-
+  _$SignInState._({
+    required this.passwordVisible,
+    required this.isLoading,
+    required this.isSuccess,
+    required this.isError,
+    required this.signInEntity,
+  }) : super._();
   @override
   SignInState rebuild(void Function(SignInStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  SignInStateBuilder toBuilder() => new SignInStateBuilder()..replace(this);
+  SignInStateBuilder toBuilder() => SignInStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -123,7 +112,6 @@ class SignInStateBuilder implements Builder<SignInState, SignInStateBuilder> {
 
   @override
   void replace(SignInState other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$SignInState;
   }
 
@@ -136,18 +124,34 @@ class SignInStateBuilder implements Builder<SignInState, SignInStateBuilder> {
   SignInState build() => _build();
 
   _$SignInState _build() {
-    final _$result = _$v ??
-        new _$SignInState._(
+    final _$result =
+        _$v ??
+        _$SignInState._(
           passwordVisible: BuiltValueNullFieldError.checkNotNull(
-              passwordVisible, r'SignInState', 'passwordVisible'),
+            passwordVisible,
+            r'SignInState',
+            'passwordVisible',
+          ),
           isLoading: BuiltValueNullFieldError.checkNotNull(
-              isLoading, r'SignInState', 'isLoading'),
+            isLoading,
+            r'SignInState',
+            'isLoading',
+          ),
           isSuccess: BuiltValueNullFieldError.checkNotNull(
-              isSuccess, r'SignInState', 'isSuccess'),
+            isSuccess,
+            r'SignInState',
+            'isSuccess',
+          ),
           isError: BuiltValueNullFieldError.checkNotNull(
-              isError, r'SignInState', 'isError'),
+            isError,
+            r'SignInState',
+            'isError',
+          ),
           signInEntity: BuiltValueNullFieldError.checkNotNull(
-              signInEntity, r'SignInState', 'signInEntity'),
+            signInEntity,
+            r'SignInState',
+            'signInEntity',
+          ),
         );
     replace(_$result);
     return _$result;

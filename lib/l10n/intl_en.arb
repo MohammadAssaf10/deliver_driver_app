@@ -96,5 +96,9 @@
   "tripInProgress": "Trip in progress",
   "tripCompletedSuccessfully": "Trip completed successfully",
   "confirmChanged": "Confirm Changed",
-  "changeStatusTo": "Change status to: {value}"
+  "changeStatusTo": "Change status to: {value}",
+  "history": "History",
+  "financial": "Financial",
+  "tripId":"Trip ID",
+  "value":"Value"
 }

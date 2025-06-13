@@ -68,12 +68,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "أدخل تفاصيل حسابك هنا.",
     ),
     "estimatedTime": MessageLookupByLibrary.simpleMessage("الوقت المتوقع"),
+    "financial": MessageLookupByLibrary.simpleMessage("المالي"),
     "from": MessageLookupByLibrary.simpleMessage("من"),
     "gallery": MessageLookupByLibrary.simpleMessage("المعرض"),
     "getStartWithDeliver": MessageLookupByLibrary.simpleMessage(
       "ابدأ مع Deliver",
     ),
     "haveAnAccount": MessageLookupByLibrary.simpleMessage("لديك حساب؟"),
+    "history": MessageLookupByLibrary.simpleMessage("السجل"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "kindlySignUpBelow": MessageLookupByLibrary.simpleMessage(
       "يرجى التسجيل أدناه.",
@@ -185,10 +187,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إنشاء الرحلة بنجاح",
     ),
     "tripDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الرحلة"),
+    "tripId": MessageLookupByLibrary.simpleMessage("معرف الرحلة"),
     "tripInProgress": MessageLookupByLibrary.simpleMessage("الرحلة قيد التقدم"),
     "tripNumber": MessageLookupByLibrary.simpleMessage("رقم الرحلة"),
     "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
     "usernameShort": MessageLookupByLibrary.simpleMessage("اسم المستخدم قصير"),
+    "value": MessageLookupByLibrary.simpleMessage("القيمة"),
     "vehicleImage": MessageLookupByLibrary.simpleMessage("صورة المركبة"),
     "weSentOTPCodeToVerifyYourNumber": MessageLookupByLibrary.simpleMessage(
       "لقد أرسلنا لك رمز OTP للتحقق من رقمك",

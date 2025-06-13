@@ -828,6 +828,26 @@ class S {
       args: [value],
     );
   }
+
+  /// `History`
+  String get history {
+    return Intl.message('History', name: 'history', desc: '', args: []);
+  }
+
+  /// `Financial`
+  String get financial {
+    return Intl.message('Financial', name: 'financial', desc: '', args: []);
+  }
+
+  /// `Trip ID`
+  String get tripId {
+    return Intl.message('Trip ID', name: 'tripId', desc: '', args: []);
+  }
+
+  /// `Value`
+  String get value {
+    return Intl.message('Value', name: 'value', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

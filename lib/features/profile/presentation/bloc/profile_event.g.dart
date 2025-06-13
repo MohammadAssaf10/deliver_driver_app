@@ -8,16 +8,15 @@ part of 'profile_event.dart';
 
 class _$GetProfile extends GetProfile {
   factory _$GetProfile([void Function(GetProfileBuilder)? updates]) =>
-      (new GetProfileBuilder()..update(updates))._build();
+      (GetProfileBuilder()..update(updates))._build();
 
   _$GetProfile._() : super._();
-
   @override
   GetProfile rebuild(void Function(GetProfileBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GetProfileBuilder toBuilder() => new GetProfileBuilder()..replace(this);
+  GetProfileBuilder toBuilder() => GetProfileBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -43,7 +42,6 @@ class GetProfileBuilder implements Builder<GetProfile, GetProfileBuilder> {
 
   @override
   void replace(GetProfile other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GetProfile;
   }
 
@@ -56,7 +54,7 @@ class GetProfileBuilder implements Builder<GetProfile, GetProfileBuilder> {
   GetProfile build() => _build();
 
   _$GetProfile _build() {
-    final _$result = _$v ?? new _$GetProfile._();
+    final _$result = _$v ?? _$GetProfile._();
     replace(_$result);
     return _$result;
   }

@@ -13,19 +13,15 @@ class _$ProfileState extends ProfileState {
   final Profile? profile;
 
   factory _$ProfileState([void Function(ProfileStateBuilder)? updates]) =>
-      (new ProfileStateBuilder()..update(updates))._build();
+      (ProfileStateBuilder()..update(updates))._build();
 
-  _$ProfileState._({required this.isLoading, this.profile}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        isLoading, r'ProfileState', 'isLoading');
-  }
-
+  _$ProfileState._({required this.isLoading, this.profile}) : super._();
   @override
   ProfileState rebuild(void Function(ProfileStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ProfileStateBuilder toBuilder() => new ProfileStateBuilder()..replace(this);
+  ProfileStateBuilder toBuilder() => ProfileStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -79,7 +75,6 @@ class ProfileStateBuilder
 
   @override
   void replace(ProfileState other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ProfileState;
   }
 
@@ -92,10 +87,14 @@ class ProfileStateBuilder
   ProfileState build() => _build();
 
   _$ProfileState _build() {
-    final _$result = _$v ??
-        new _$ProfileState._(
+    final _$result =
+        _$v ??
+        _$ProfileState._(
           isLoading: BuiltValueNullFieldError.checkNotNull(
-              isLoading, r'ProfileState', 'isLoading'),
+            isLoading,
+            r'ProfileState',
+            'isLoading',
+          ),
           profile: profile,
         );
     replace(_$result);

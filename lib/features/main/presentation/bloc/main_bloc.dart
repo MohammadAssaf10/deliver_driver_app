@@ -12,6 +12,8 @@ import '../../../../core/models/address.dart';
 import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_functions.dart';
 import '../../../../generated/l10n.dart';
+import '../../../activities/presentation/bloc/activities_bloc.dart';
+import '../../../activities/presentation/pages/activities_page.dart';
 import '../../../profile/presentation/bloc/profile_bloc.dart';
 import '../../../profile/presentation/pages/profile_page.dart';
 import '../../domain/repositories/main_repository.dart';
@@ -26,7 +28,10 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   final List<Widget> pages = [
     const HomeBody(),
-    Container(),
+    BlocProvider(
+      create: (context) => getIt<ActivitiesBloc>(),
+      child: const ActivitiesPage(),
+    ),
     BlocProvider(
       create: (context) => getIt<ProfileBloc>()..getProfile(),
       child: const ProfilePage(),
@@ -47,125 +52,137 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   void acceptTrip(int tripId) => add(AcceptTrip((b) => b..tripId = tripId));
 
-  MainBloc(
-    this._mainRepository,
-    this._location,
-  ) : super(MainState.initial()) {
+  MainBloc(this._mainRepository, this._location) : super(MainState.initial()) {
     on<SetPageIndex>((event, emit) {
       emit(state.rebuild((b) => b..pageIndex = event.pageIndex));
     });
-    on<GetCurrentLocation>(
-      (event, emit) async {
+    on<GetCurrentLocation>((event, emit) async {
+      if (event.onComplete != null) {
+        emit(state.rebuild((b) => b..acceptTripIsLoading = true));
+      }
+      final bool isLocationServiceEnabled =
+          await _ensureLocationServiceEnabled();
+      if (!isLocationServiceEnabled) {
         if (event.onComplete != null) {
-          emit(state.rebuild((b) => b..acceptTripIsLoading = true));
+          await Future.delayed(const Duration(seconds: 1));
+          emit(state.rebuild((b) => b..acceptTripIsLoading = false));
+          emit(state.rebuild((b) => b..acceptTripIsLoading = null));
         }
-        final bool isLocationServiceEnabled =
-            await _ensureLocationServiceEnabled();
-        if (!isLocationServiceEnabled) {
-          if (event.onComplete != null) {
-            await Future.delayed(const Duration(seconds: 1));
-            emit(state.rebuild((b) => b..acceptTripIsLoading = false));
-            emit(state.rebuild((b) => b..acceptTripIsLoading = null));
-          }
-          return;
+        return;
+      }
+
+      final LocationData locationData = await _location.getLocation();
+      if (locationData.latitude == null || locationData.longitude == null) {
+        if (event.onComplete != null) {
+          await Future.delayed(const Duration(seconds: 1));
+          emit(state.rebuild((b) => b..acceptTripIsLoading = false));
+          emit(state.rebuild((b) => b..acceptTripIsLoading = null));
         }
+        return;
+      }
 
-        final LocationData locationData = await _location.getLocation();
-        if (locationData.latitude == null || locationData.longitude == null) {
-          if (event.onComplete != null) {
-            await Future.delayed(const Duration(seconds: 1));
-            emit(state.rebuild((b) => b..acceptTripIsLoading = false));
-            emit(state.rebuild((b) => b..acceptTripIsLoading = null));
-          }
-          return;
-        }
+      final Address currentAddress = Address(
+        markerState: MarkerState.currentLocation,
+        latitude: locationData.latitude!,
+        longitude: locationData.longitude!,
+      );
 
-        final Address currentAddress = Address(
-          markerState: MarkerState.currentLocation,
-          latitude: locationData.latitude!,
-          longitude: locationData.longitude!,
-        );
-
-        emit(state.rebuild(
+      emit(
+        state.rebuild(
           (b) => b
             ..currentAddress = currentAddress
             ..acceptTripIsLoading = null,
-        ));
-        if (event.onComplete != null) {
-          event.onComplete!();
-        }
-      },
-      transformer: droppable(),
-    );
+        ),
+      );
+      if (event.onComplete != null) {
+        event.onComplete!();
+      }
+    }, transformer: droppable());
     on<GetCurrentTrip>((event, emit) async {
-      emit(state.rebuild(
-        (b) => b
-          ..isLoading = true
-          ..isError = false
-          ..acceptTripIsLoading = null
-          ..trips.replace(PaginationStateData.initial()),
-      ));
+      emit(
+        state.rebuild(
+          (b) => b
+            ..isLoading = true
+            ..isError = false
+            ..acceptTripIsLoading = null
+            ..trips.replace(PaginationStateData.initial()),
+        ),
+      );
       final result = await _mainRepository.getCurrentTrip();
-      result.fold((failure) {
-        emit(state.rebuild(
-          (b) => b
-            ..isLoading = false
-            ..isError = true,
-        ));
-      }, (data) {
-        emit(state.rebuild(
-          (b) => b
-            ..isLoading = false
-            ..currentTrip = data,
-        ));
-        if (data == null) {
-          getAvailableTrips();
-        }
-      });
+      result.fold(
+        (failure) {
+          emit(
+            state.rebuild(
+              (b) => b
+                ..isLoading = false
+                ..isError = true,
+            ),
+          );
+        },
+        (data) {
+          emit(
+            state.rebuild(
+              (b) => b
+                ..isLoading = false
+                ..currentTrip = data,
+            ),
+          );
+          if (data == null) {
+            getAvailableTrips();
+          }
+        },
+      );
     });
     on<GetAvailableTrips>((event, emit) async {
       if (state.trips.currentPage == 1) {
-        emit(state.rebuild(
-          (b) => b
-            ..isLoading = true
-            ..isError = false,
-        ));
+        emit(
+          state.rebuild(
+            (b) => b
+              ..isLoading = true
+              ..isError = false,
+          ),
+        );
       } else {
         emit(state.rebuild((b) => b..trips.isLoading = true));
       }
-      final result =
-          await _mainRepository.getAvailableTrips(state.trips.currentPage);
-      result.fold((failure) {
-        if (state.trips.currentPage > 1) {
-          showToastMessage(
-            failure.errorMessage,
-            isError: true,
+      final result = await _mainRepository.getAvailableTrips(
+        state.trips.currentPage,
+      );
+      result.fold(
+        (failure) {
+          if (state.trips.currentPage > 1) {
+            showToastMessage(failure.errorMessage, isError: true);
+          }
+          emit(
+            state.rebuild(
+              (b) => b
+                ..isLoading = false
+                ..trips.isLoading = false
+                ..isError = state.trips.currentPage > 1 ? state.isError : true,
+            ),
           );
-        }
-        emit(state.rebuild(
-          (b) => b
-            ..isLoading = false
-            ..trips.isLoading = false
-            ..isError = state.trips.currentPage > 1 ? state.isError : true,
-        ));
-      }, (data) {
-        emit(state.rebuild(
-          (b) => b
-            ..isLoading = false
-            ..trips.isLoading = false
-            ..trips.items.addAll(data.trips)
-            ..trips.currentPage = b.trips.currentPage! + 1
-            ..trips.isFinished = data.trips.isEmpty,
-        ));
-        if (!state.isListenerAdded) {
-          controller.addListener(() {
-            if (state.trips.shouldGetMoreData(controller)) {
-              getAvailableTrips();
-            }
-          });
-          emit(state.rebuild((b) => b..isListenerAdded = true));
-        }
-      });
+        },
+        (data) {
+          emit(
+            state.rebuild(
+              (b) => b
+                ..isLoading = false
+                ..trips.isLoading = false
+                ..trips.items.addAll(data.trips)
+                ..trips.currentPage = b.trips.currentPage! + 1
+                ..trips.isFinished = data.trips.isEmpty,
+            ),
+          );
+          if (!state.isListenerAdded) {
+            controller.addListener(() {
+              if (state.trips.shouldGetMoreData(controller)) {
+                getAvailableTrips();
+              }
+            });
+            emit(state.rebuild((b) => b..isListenerAdded = true));
+          }
+        },
+      );
     }, transformer: droppable());
 
     on<AcceptTrip>((event, emit) async {
@@ -174,13 +191,16 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         tripId: event.tripId,
         locationRequest: state.currentAddress!.toLocationRequest(),
       );
-      result.fold((failure) {
-        showToastMessage(failure.errorMessage, isError: true);
-        emit(state.rebuild((b) => b..acceptTripIsLoading = false));
-      }, (_) {
-        emit(state.rebuild((b) => b..acceptTripIsLoading = false));
-        getCurrentTrip();
-      });
+      result.fold(
+        (failure) {
+          showToastMessage(failure.errorMessage, isError: true);
+          emit(state.rebuild((b) => b..acceptTripIsLoading = false));
+        },
+        (_) {
+          emit(state.rebuild((b) => b..acceptTripIsLoading = false));
+          getCurrentTrip();
+        },
+      );
       emit(state.rebuild((b) => b..acceptTripIsLoading = null));
     }, transformer: droppable());
   }
@@ -200,7 +220,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       permissionGranted = await _location.requestPermission();
       if (permissionGranted != PermissionStatus.granted) {
         showToastMessage(
-            S.current.pleaseAllowAppToAccessYourCurrentLocationAndTryAgain);
+          S.current.pleaseAllowAppToAccessYourCurrentLocationAndTryAgain,
+        );
         return false;
       }
     }

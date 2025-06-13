@@ -13,20 +13,15 @@ class _$AppState extends AppState {
   final bool isAuth;
 
   factory _$AppState([void Function(AppStateBuilder)? updates]) =>
-      (new AppStateBuilder()..update(updates))._build();
+      (AppStateBuilder()..update(updates))._build();
 
-  _$AppState._({required this.appLanguage, required this.isAuth}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        appLanguage, r'AppState', 'appLanguage');
-    BuiltValueNullFieldError.checkNotNull(isAuth, r'AppState', 'isAuth');
-  }
-
+  _$AppState._({required this.appLanguage, required this.isAuth}) : super._();
   @override
   AppState rebuild(void Function(AppStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  AppStateBuilder toBuilder() => new AppStateBuilder()..replace(this);
+  AppStateBuilder toBuilder() => AppStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -79,7 +74,6 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
 
   @override
   void replace(AppState other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AppState;
   }
 
@@ -92,12 +86,19 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   AppState build() => _build();
 
   _$AppState _build() {
-    final _$result = _$v ??
-        new _$AppState._(
+    final _$result =
+        _$v ??
+        _$AppState._(
           appLanguage: BuiltValueNullFieldError.checkNotNull(
-              appLanguage, r'AppState', 'appLanguage'),
+            appLanguage,
+            r'AppState',
+            'appLanguage',
+          ),
           isAuth: BuiltValueNullFieldError.checkNotNull(
-              isAuth, r'AppState', 'isAuth'),
+            isAuth,
+            r'AppState',
+            'isAuth',
+          ),
         );
     replace(_$result);
     return _$result;

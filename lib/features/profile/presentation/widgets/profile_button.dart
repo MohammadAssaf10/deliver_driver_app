@@ -8,8 +8,11 @@ class ProfileButton extends StatelessWidget {
   final String title;
   final void Function() onPressed;
 
-  const ProfileButton(
-      {super.key, required this.title, required this.onPressed});
+  const ProfileButton({
+    super.key,
+    required this.title,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +20,8 @@ class ProfileButton extends StatelessWidget {
       onPressed: onPressed,
       alignment: AlignmentDirectional.centerStart,
       backgroundColor: ColorsManager.lightBlack,
-      outerPadding: const EdgeInsets.symmetric(vertical: 5),
-      child: Text(
-        title,
-        style: TextStyles.font14LightGreyMedium,
-      ),
+      outerPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 14),
+      child: Text(title, style: TextStyles.font14LightGreyMedium),
     );
   }
 }

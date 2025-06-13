@@ -1,50 +1,39 @@
+import 'package:deliver_driver_app/core/theming/colors_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/theming/text_styles.dart';
-import '../../../../generated/l10n.dart';
-import '../bloc/main_bloc.dart';
-import '../bloc/main_state.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MainAppBar({super.key});
+  final String title;
+  const MainAppBar({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(40),
-        child: Container(
-          margin: const EdgeInsetsDirectional.only(
-            start: 15,
-            end: 15,
-            bottom: 15,
-          ),
-          alignment: AlignmentDirectional.centerStart,
-          decoration: const BoxDecoration(
-            border: Border(
-              bottom: BorderSide(color: ColorsManager.darkWhite),
-            ),
-          ),
-          child: BlocBuilder<MainBloc, MainState>(
-            builder: (context, state) {
-              return state.isLoading
-                  ? Text(
-                      S.of(context).deliver,
-                      style: TextStyles.font33DarkWhiteBold,
-                    )
-                  : Text(
-                      state.pageIndex == 0
-                          ? state.currentTrip == null
-                              ? S.of(context).availableTrips
-                              : S.of(context).currentTrip
-                          : state.pageIndex == 1
-                              ? S.of(context).activities
-                              : S.of(context).account,
-                      style: TextStyles.font33DarkWhiteBold,
-                    );
-            },
+    return Container(
+      height: 110,
+      width: double.infinity,
+      padding: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      decoration: const BoxDecoration(
+        border: Border(bottom: BorderSide(color: ColorsManager.darkWhite)),
+      ),
+      child: AppBar(
+        toolbarHeight: 110,
+        titleTextStyle: TextStyles.font33DarkWhiteBold,
+        titleSpacing: 0,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 30),
+          child: Text(
+            title,
+            // state.pageIndex == 0
+            //     ? state.currentTrip == null
+            //           ? S.of(context).availableTrips
+            //           : S.of(context).currentTrip
+            //     : state.pageIndex == 1
+            //     ? S.of(context).activities
+            //     : S.of(context).account,
+            style: TextStyles.font33DarkWhiteBold,
+            textAlign: TextAlign.start,
           ),
         ),
       ),

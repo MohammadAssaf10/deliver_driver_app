@@ -20,6 +20,7 @@ class ProfileCard extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           alignment: Alignment.center,
           padding: const EdgeInsets.all(5),
+          margin: const EdgeInsets.all(14),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(

@@ -10,20 +10,19 @@ class _$GetCurrentLocation extends GetCurrentLocation {
   @override
   final void Function()? onComplete;
 
-  factory _$GetCurrentLocation(
-          [void Function(GetCurrentLocationBuilder)? updates]) =>
-      (new GetCurrentLocationBuilder()..update(updates))._build();
+  factory _$GetCurrentLocation([
+    void Function(GetCurrentLocationBuilder)? updates,
+  ]) => (GetCurrentLocationBuilder()..update(updates))._build();
 
   _$GetCurrentLocation._({this.onComplete}) : super._();
-
   @override
   GetCurrentLocation rebuild(
-          void Function(GetCurrentLocationBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GetCurrentLocationBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GetCurrentLocationBuilder toBuilder() =>
-      new GetCurrentLocationBuilder()..replace(this);
+      GetCurrentLocationBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -44,8 +43,7 @@ class _$GetCurrentLocation extends GetCurrentLocation {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GetCurrentLocation')
-          ..add('onComplete', onComplete))
-        .toString();
+      ..add('onComplete', onComplete)).toString();
   }
 }
 
@@ -71,7 +69,6 @@ class GetCurrentLocationBuilder
 
   @override
   void replace(GetCurrentLocation other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GetCurrentLocation;
   }
 
@@ -84,10 +81,7 @@ class GetCurrentLocationBuilder
   GetCurrentLocation build() => _build();
 
   _$GetCurrentLocation _build() {
-    final _$result = _$v ??
-        new _$GetCurrentLocation._(
-          onComplete: onComplete,
-        );
+    final _$result = _$v ?? _$GetCurrentLocation._(onComplete: onComplete);
     replace(_$result);
     return _$result;
   }
@@ -97,23 +91,19 @@ class _$ChangeIsPanelOpenState extends ChangeIsPanelOpenState {
   @override
   final bool isPanelOpen;
 
-  factory _$ChangeIsPanelOpenState(
-          [void Function(ChangeIsPanelOpenStateBuilder)? updates]) =>
-      (new ChangeIsPanelOpenStateBuilder()..update(updates))._build();
+  factory _$ChangeIsPanelOpenState([
+    void Function(ChangeIsPanelOpenStateBuilder)? updates,
+  ]) => (ChangeIsPanelOpenStateBuilder()..update(updates))._build();
 
-  _$ChangeIsPanelOpenState._({required this.isPanelOpen}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        isPanelOpen, r'ChangeIsPanelOpenState', 'isPanelOpen');
-  }
-
+  _$ChangeIsPanelOpenState._({required this.isPanelOpen}) : super._();
   @override
   ChangeIsPanelOpenState rebuild(
-          void Function(ChangeIsPanelOpenStateBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(ChangeIsPanelOpenStateBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   ChangeIsPanelOpenStateBuilder toBuilder() =>
-      new ChangeIsPanelOpenStateBuilder()..replace(this);
+      ChangeIsPanelOpenStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -132,8 +122,7 @@ class _$ChangeIsPanelOpenState extends ChangeIsPanelOpenState {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ChangeIsPanelOpenState')
-          ..add('isPanelOpen', isPanelOpen))
-        .toString();
+      ..add('isPanelOpen', isPanelOpen)).toString();
   }
 }
 
@@ -158,7 +147,6 @@ class ChangeIsPanelOpenStateBuilder
 
   @override
   void replace(ChangeIsPanelOpenState other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ChangeIsPanelOpenState;
   }
 
@@ -171,10 +159,14 @@ class ChangeIsPanelOpenStateBuilder
   ChangeIsPanelOpenState build() => _build();
 
   _$ChangeIsPanelOpenState _build() {
-    final _$result = _$v ??
-        new _$ChangeIsPanelOpenState._(
+    final _$result =
+        _$v ??
+        _$ChangeIsPanelOpenState._(
           isPanelOpen: BuiltValueNullFieldError.checkNotNull(
-              isPanelOpen, r'ChangeIsPanelOpenState', 'isPanelOpen'),
+            isPanelOpen,
+            r'ChangeIsPanelOpenState',
+            'isPanelOpen',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -186,18 +178,15 @@ class _$AcceptTrip extends AcceptTrip {
   final int tripId;
 
   factory _$AcceptTrip([void Function(AcceptTripBuilder)? updates]) =>
-      (new AcceptTripBuilder()..update(updates))._build();
+      (AcceptTripBuilder()..update(updates))._build();
 
-  _$AcceptTrip._({required this.tripId}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(tripId, r'AcceptTrip', 'tripId');
-  }
-
+  _$AcceptTrip._({required this.tripId}) : super._();
   @override
   AcceptTrip rebuild(void Function(AcceptTripBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  AcceptTripBuilder toBuilder() => new AcceptTripBuilder()..replace(this);
+  AcceptTripBuilder toBuilder() => AcceptTripBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -215,8 +204,8 @@ class _$AcceptTrip extends AcceptTrip {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'AcceptTrip')..add('tripId', tripId))
-        .toString();
+    return (newBuiltValueToStringHelper(r'AcceptTrip')
+      ..add('tripId', tripId)).toString();
   }
 }
 
@@ -240,7 +229,6 @@ class AcceptTripBuilder implements Builder<AcceptTrip, AcceptTripBuilder> {
 
   @override
   void replace(AcceptTrip other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AcceptTrip;
   }
 
@@ -253,10 +241,14 @@ class AcceptTripBuilder implements Builder<AcceptTrip, AcceptTripBuilder> {
   AcceptTrip build() => _build();
 
   _$AcceptTrip _build() {
-    final _$result = _$v ??
-        new _$AcceptTrip._(
+    final _$result =
+        _$v ??
+        _$AcceptTrip._(
           tripId: BuiltValueNullFieldError.checkNotNull(
-              tripId, r'AcceptTrip', 'tripId'),
+            tripId,
+            r'AcceptTrip',
+            'tripId',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -267,21 +259,18 @@ class _$GetAddressDetails extends GetAddressDetails {
   @override
   final Trip trip;
 
-  factory _$GetAddressDetails(
-          [void Function(GetAddressDetailsBuilder)? updates]) =>
-      (new GetAddressDetailsBuilder()..update(updates))._build();
+  factory _$GetAddressDetails([
+    void Function(GetAddressDetailsBuilder)? updates,
+  ]) => (GetAddressDetailsBuilder()..update(updates))._build();
 
-  _$GetAddressDetails._({required this.trip}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(trip, r'GetAddressDetails', 'trip');
-  }
-
+  _$GetAddressDetails._({required this.trip}) : super._();
   @override
   GetAddressDetails rebuild(void Function(GetAddressDetailsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GetAddressDetailsBuilder toBuilder() =>
-      new GetAddressDetailsBuilder()..replace(this);
+      GetAddressDetailsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -300,8 +289,7 @@ class _$GetAddressDetails extends GetAddressDetails {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GetAddressDetails')
-          ..add('trip', trip))
-        .toString();
+      ..add('trip', trip)).toString();
   }
 }
 
@@ -326,7 +314,6 @@ class GetAddressDetailsBuilder
 
   @override
   void replace(GetAddressDetails other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GetAddressDetails;
   }
 
@@ -339,10 +326,14 @@ class GetAddressDetailsBuilder
   GetAddressDetails build() => _build();
 
   _$GetAddressDetails _build() {
-    final _$result = _$v ??
-        new _$GetAddressDetails._(
+    final _$result =
+        _$v ??
+        _$GetAddressDetails._(
           trip: BuiltValueNullFieldError.checkNotNull(
-              trip, r'GetAddressDetails', 'trip'),
+            trip,
+            r'GetAddressDetails',
+            'trip',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -350,20 +341,19 @@ class GetAddressDetailsBuilder
 }
 
 class _$ChangeTripStatusToNext extends ChangeTripStatusToNext {
-  factory _$ChangeTripStatusToNext(
-          [void Function(ChangeTripStatusToNextBuilder)? updates]) =>
-      (new ChangeTripStatusToNextBuilder()..update(updates))._build();
+  factory _$ChangeTripStatusToNext([
+    void Function(ChangeTripStatusToNextBuilder)? updates,
+  ]) => (ChangeTripStatusToNextBuilder()..update(updates))._build();
 
   _$ChangeTripStatusToNext._() : super._();
-
   @override
   ChangeTripStatusToNext rebuild(
-          void Function(ChangeTripStatusToNextBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(ChangeTripStatusToNextBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   ChangeTripStatusToNextBuilder toBuilder() =>
-      new ChangeTripStatusToNextBuilder()..replace(this);
+      ChangeTripStatusToNextBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -390,7 +380,6 @@ class ChangeTripStatusToNextBuilder
 
   @override
   void replace(ChangeTripStatusToNext other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ChangeTripStatusToNext;
   }
 
@@ -403,7 +392,7 @@ class ChangeTripStatusToNextBuilder
   ChangeTripStatusToNext build() => _build();
 
   _$ChangeTripStatusToNext _build() {
-    final _$result = _$v ?? new _$ChangeTripStatusToNext._();
+    final _$result = _$v ?? _$ChangeTripStatusToNext._();
     replace(_$result);
     return _$result;
   }

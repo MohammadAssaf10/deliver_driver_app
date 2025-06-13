@@ -11,19 +11,15 @@ class _$SetPageIndex extends SetPageIndex {
   final int pageIndex;
 
   factory _$SetPageIndex([void Function(SetPageIndexBuilder)? updates]) =>
-      (new SetPageIndexBuilder()..update(updates))._build();
+      (SetPageIndexBuilder()..update(updates))._build();
 
-  _$SetPageIndex._({required this.pageIndex}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        pageIndex, r'SetPageIndex', 'pageIndex');
-  }
-
+  _$SetPageIndex._({required this.pageIndex}) : super._();
   @override
   SetPageIndex rebuild(void Function(SetPageIndexBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  SetPageIndexBuilder toBuilder() => new SetPageIndexBuilder()..replace(this);
+  SetPageIndexBuilder toBuilder() => SetPageIndexBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -42,8 +38,7 @@ class _$SetPageIndex extends SetPageIndex {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'SetPageIndex')
-          ..add('pageIndex', pageIndex))
-        .toString();
+      ..add('pageIndex', pageIndex)).toString();
   }
 }
 
@@ -68,7 +63,6 @@ class SetPageIndexBuilder
 
   @override
   void replace(SetPageIndex other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$SetPageIndex;
   }
 
@@ -81,10 +75,14 @@ class SetPageIndexBuilder
   SetPageIndex build() => _build();
 
   _$SetPageIndex _build() {
-    final _$result = _$v ??
-        new _$SetPageIndex._(
+    final _$result =
+        _$v ??
+        _$SetPageIndex._(
           pageIndex: BuiltValueNullFieldError.checkNotNull(
-              pageIndex, r'SetPageIndex', 'pageIndex'),
+            pageIndex,
+            r'SetPageIndex',
+            'pageIndex',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -93,17 +91,15 @@ class SetPageIndexBuilder
 
 class _$GetCurrentTrip extends GetCurrentTrip {
   factory _$GetCurrentTrip([void Function(GetCurrentTripBuilder)? updates]) =>
-      (new GetCurrentTripBuilder()..update(updates))._build();
+      (GetCurrentTripBuilder()..update(updates))._build();
 
   _$GetCurrentTrip._() : super._();
-
   @override
   GetCurrentTrip rebuild(void Function(GetCurrentTripBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GetCurrentTripBuilder toBuilder() =>
-      new GetCurrentTripBuilder()..replace(this);
+  GetCurrentTripBuilder toBuilder() => GetCurrentTripBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -130,7 +126,6 @@ class GetCurrentTripBuilder
 
   @override
   void replace(GetCurrentTrip other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GetCurrentTrip;
   }
 
@@ -143,26 +138,25 @@ class GetCurrentTripBuilder
   GetCurrentTrip build() => _build();
 
   _$GetCurrentTrip _build() {
-    final _$result = _$v ?? new _$GetCurrentTrip._();
+    final _$result = _$v ?? _$GetCurrentTrip._();
     replace(_$result);
     return _$result;
   }
 }
 
 class _$GetAvailableTrips extends GetAvailableTrips {
-  factory _$GetAvailableTrips(
-          [void Function(GetAvailableTripsBuilder)? updates]) =>
-      (new GetAvailableTripsBuilder()..update(updates))._build();
+  factory _$GetAvailableTrips([
+    void Function(GetAvailableTripsBuilder)? updates,
+  ]) => (GetAvailableTripsBuilder()..update(updates))._build();
 
   _$GetAvailableTrips._() : super._();
-
   @override
   GetAvailableTrips rebuild(void Function(GetAvailableTripsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GetAvailableTripsBuilder toBuilder() =>
-      new GetAvailableTripsBuilder()..replace(this);
+      GetAvailableTripsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -189,7 +183,6 @@ class GetAvailableTripsBuilder
 
   @override
   void replace(GetAvailableTrips other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GetAvailableTrips;
   }
 
@@ -202,7 +195,7 @@ class GetAvailableTripsBuilder
   GetAvailableTrips build() => _build();
 
   _$GetAvailableTrips _build() {
-    final _$result = _$v ?? new _$GetAvailableTrips._();
+    final _$result = _$v ?? _$GetAvailableTrips._();
     replace(_$result);
     return _$result;
   }
@@ -212,20 +205,19 @@ class _$GetCurrentLocation extends GetCurrentLocation {
   @override
   final void Function()? onComplete;
 
-  factory _$GetCurrentLocation(
-          [void Function(GetCurrentLocationBuilder)? updates]) =>
-      (new GetCurrentLocationBuilder()..update(updates))._build();
+  factory _$GetCurrentLocation([
+    void Function(GetCurrentLocationBuilder)? updates,
+  ]) => (GetCurrentLocationBuilder()..update(updates))._build();
 
   _$GetCurrentLocation._({this.onComplete}) : super._();
-
   @override
   GetCurrentLocation rebuild(
-          void Function(GetCurrentLocationBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GetCurrentLocationBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GetCurrentLocationBuilder toBuilder() =>
-      new GetCurrentLocationBuilder()..replace(this);
+      GetCurrentLocationBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -246,8 +238,7 @@ class _$GetCurrentLocation extends GetCurrentLocation {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GetCurrentLocation')
-          ..add('onComplete', onComplete))
-        .toString();
+      ..add('onComplete', onComplete)).toString();
   }
 }
 
@@ -273,7 +264,6 @@ class GetCurrentLocationBuilder
 
   @override
   void replace(GetCurrentLocation other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GetCurrentLocation;
   }
 
@@ -286,10 +276,7 @@ class GetCurrentLocationBuilder
   GetCurrentLocation build() => _build();
 
   _$GetCurrentLocation _build() {
-    final _$result = _$v ??
-        new _$GetCurrentLocation._(
-          onComplete: onComplete,
-        );
+    final _$result = _$v ?? _$GetCurrentLocation._(onComplete: onComplete);
     replace(_$result);
     return _$result;
   }
@@ -300,18 +287,15 @@ class _$AcceptTrip extends AcceptTrip {
   final int tripId;
 
   factory _$AcceptTrip([void Function(AcceptTripBuilder)? updates]) =>
-      (new AcceptTripBuilder()..update(updates))._build();
+      (AcceptTripBuilder()..update(updates))._build();
 
-  _$AcceptTrip._({required this.tripId}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(tripId, r'AcceptTrip', 'tripId');
-  }
-
+  _$AcceptTrip._({required this.tripId}) : super._();
   @override
   AcceptTrip rebuild(void Function(AcceptTripBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  AcceptTripBuilder toBuilder() => new AcceptTripBuilder()..replace(this);
+  AcceptTripBuilder toBuilder() => AcceptTripBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -329,8 +313,8 @@ class _$AcceptTrip extends AcceptTrip {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'AcceptTrip')..add('tripId', tripId))
-        .toString();
+    return (newBuiltValueToStringHelper(r'AcceptTrip')
+      ..add('tripId', tripId)).toString();
   }
 }
 
@@ -354,7 +338,6 @@ class AcceptTripBuilder implements Builder<AcceptTrip, AcceptTripBuilder> {
 
   @override
   void replace(AcceptTrip other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AcceptTrip;
   }
 
@@ -367,10 +350,14 @@ class AcceptTripBuilder implements Builder<AcceptTrip, AcceptTripBuilder> {
   AcceptTrip build() => _build();
 
   _$AcceptTrip _build() {
-    final _$result = _$v ??
-        new _$AcceptTrip._(
+    final _$result =
+        _$v ??
+        _$AcceptTrip._(
           tripId: BuiltValueNullFieldError.checkNotNull(
-              tripId, r'AcceptTrip', 'tripId'),
+            tripId,
+            r'AcceptTrip',
+            'tripId',
+          ),
         );
     replace(_$result);
     return _$result;

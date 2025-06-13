@@ -70,12 +70,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "Enter your account details here.",
     ),
     "estimatedTime": MessageLookupByLibrary.simpleMessage("Estimated time"),
+    "financial": MessageLookupByLibrary.simpleMessage("Financial"),
     "from": MessageLookupByLibrary.simpleMessage("From"),
     "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
     "getStartWithDeliver": MessageLookupByLibrary.simpleMessage(
       "Get Start With Deliver",
     ),
     "haveAnAccount": MessageLookupByLibrary.simpleMessage("Have an account?"),
+    "history": MessageLookupByLibrary.simpleMessage("History"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "kindlySignUpBelow": MessageLookupByLibrary.simpleMessage(
       "Kindly sign up below.",
@@ -193,10 +195,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Trip created successfully",
     ),
     "tripDetails": MessageLookupByLibrary.simpleMessage("Trip Details"),
+    "tripId": MessageLookupByLibrary.simpleMessage("Trip ID"),
     "tripInProgress": MessageLookupByLibrary.simpleMessage("Trip in progress"),
     "tripNumber": MessageLookupByLibrary.simpleMessage("Trip Number"),
     "userName": MessageLookupByLibrary.simpleMessage("Username"),
     "usernameShort": MessageLookupByLibrary.simpleMessage("Username is short"),
+    "value": MessageLookupByLibrary.simpleMessage("Value"),
     "vehicleImage": MessageLookupByLibrary.simpleMessage("Vehicle image"),
     "weSentOTPCodeToVerifyYourNumber": MessageLookupByLibrary.simpleMessage(
       "We sent OTP code to verify your number",

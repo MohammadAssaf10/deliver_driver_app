@@ -23,31 +23,23 @@ class _$MapState extends MapState {
   final GoogleMapController? googleMapController;
 
   factory _$MapState([void Function(MapStateBuilder)? updates]) =>
-      (new MapStateBuilder()..update(updates))._build();
+      (MapStateBuilder()..update(updates))._build();
 
-  _$MapState._(
-      {required this.isLoading,
-      this.currentAddress,
-      this.trip,
-      required this.markers,
-      required this.isPanelOpen,
-      required this.acceptTripIsLoading,
-      this.googleMapController})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(isLoading, r'MapState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(markers, r'MapState', 'markers');
-    BuiltValueNullFieldError.checkNotNull(
-        isPanelOpen, r'MapState', 'isPanelOpen');
-    BuiltValueNullFieldError.checkNotNull(
-        acceptTripIsLoading, r'MapState', 'acceptTripIsLoading');
-  }
-
+  _$MapState._({
+    required this.isLoading,
+    this.currentAddress,
+    this.trip,
+    required this.markers,
+    required this.isPanelOpen,
+    required this.acceptTripIsLoading,
+    this.googleMapController,
+  }) : super._();
   @override
   MapState rebuild(void Function(MapStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  MapStateBuilder toBuilder() => new MapStateBuilder()..replace(this);
+  MapStateBuilder toBuilder() => MapStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -107,8 +99,7 @@ class MapStateBuilder implements Builder<MapState, MapStateBuilder> {
   set trip(Trip? trip) => _$this._trip = trip;
 
   SetBuilder<Marker>? _markers;
-  SetBuilder<Marker> get markers =>
-      _$this._markers ??= new SetBuilder<Marker>();
+  SetBuilder<Marker> get markers => _$this._markers ??= SetBuilder<Marker>();
   set markers(SetBuilder<Marker>? markers) => _$this._markers = markers;
 
   bool? _isPanelOpen;
@@ -144,7 +135,6 @@ class MapStateBuilder implements Builder<MapState, MapStateBuilder> {
 
   @override
   void replace(MapState other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$MapState;
   }
 
@@ -159,17 +149,27 @@ class MapStateBuilder implements Builder<MapState, MapStateBuilder> {
   _$MapState _build() {
     _$MapState _$result;
     try {
-      _$result = _$v ??
-          new _$MapState._(
+      _$result =
+          _$v ??
+          _$MapState._(
             isLoading: BuiltValueNullFieldError.checkNotNull(
-                isLoading, r'MapState', 'isLoading'),
+              isLoading,
+              r'MapState',
+              'isLoading',
+            ),
             currentAddress: currentAddress,
             trip: trip,
             markers: markers.build(),
             isPanelOpen: BuiltValueNullFieldError.checkNotNull(
-                isPanelOpen, r'MapState', 'isPanelOpen'),
+              isPanelOpen,
+              r'MapState',
+              'isPanelOpen',
+            ),
             acceptTripIsLoading: BuiltValueNullFieldError.checkNotNull(
-                acceptTripIsLoading, r'MapState', 'acceptTripIsLoading'),
+              acceptTripIsLoading,
+              r'MapState',
+              'acceptTripIsLoading',
+            ),
             googleMapController: googleMapController,
           );
     } catch (_) {
@@ -178,8 +178,11 @@ class MapStateBuilder implements Builder<MapState, MapStateBuilder> {
         _$failedField = 'markers';
         markers.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'MapState', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'MapState',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

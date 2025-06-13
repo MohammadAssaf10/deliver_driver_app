@@ -25,32 +25,24 @@ class _$MainState extends MainState {
   final bool? acceptTripIsLoading;
 
   factory _$MainState([void Function(MainStateBuilder)? updates]) =>
-      (new MainStateBuilder()..update(updates))._build();
+      (MainStateBuilder()..update(updates))._build();
 
-  _$MainState._(
-      {required this.isLoading,
-      required this.isError,
-      required this.pageIndex,
-      this.currentTrip,
-      required this.trips,
-      required this.isListenerAdded,
-      this.currentAddress,
-      this.acceptTripIsLoading})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(isLoading, r'MainState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(isError, r'MainState', 'isError');
-    BuiltValueNullFieldError.checkNotNull(pageIndex, r'MainState', 'pageIndex');
-    BuiltValueNullFieldError.checkNotNull(trips, r'MainState', 'trips');
-    BuiltValueNullFieldError.checkNotNull(
-        isListenerAdded, r'MainState', 'isListenerAdded');
-  }
-
+  _$MainState._({
+    required this.isLoading,
+    required this.isError,
+    required this.pageIndex,
+    this.currentTrip,
+    required this.trips,
+    required this.isListenerAdded,
+    this.currentAddress,
+    this.acceptTripIsLoading,
+  }) : super._();
   @override
   MainState rebuild(void Function(MainStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  MainStateBuilder toBuilder() => new MainStateBuilder()..replace(this);
+  MainStateBuilder toBuilder() => MainStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -117,7 +109,7 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
 
   PaginationStateDataBuilder<Trip>? _trips;
   PaginationStateDataBuilder<Trip> get trips =>
-      _$this._trips ??= new PaginationStateDataBuilder<Trip>();
+      _$this._trips ??= PaginationStateDataBuilder<Trip>();
   set trips(PaginationStateDataBuilder<Trip>? trips) => _$this._trips = trips;
 
   bool? _isListenerAdded;
@@ -155,7 +147,6 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
 
   @override
   void replace(MainState other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$MainState;
   }
 
@@ -170,18 +161,31 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   _$MainState _build() {
     _$MainState _$result;
     try {
-      _$result = _$v ??
-          new _$MainState._(
+      _$result =
+          _$v ??
+          _$MainState._(
             isLoading: BuiltValueNullFieldError.checkNotNull(
-                isLoading, r'MainState', 'isLoading'),
+              isLoading,
+              r'MainState',
+              'isLoading',
+            ),
             isError: BuiltValueNullFieldError.checkNotNull(
-                isError, r'MainState', 'isError'),
+              isError,
+              r'MainState',
+              'isError',
+            ),
             pageIndex: BuiltValueNullFieldError.checkNotNull(
-                pageIndex, r'MainState', 'pageIndex'),
+              pageIndex,
+              r'MainState',
+              'pageIndex',
+            ),
             currentTrip: currentTrip,
             trips: trips.build(),
             isListenerAdded: BuiltValueNullFieldError.checkNotNull(
-                isListenerAdded, r'MainState', 'isListenerAdded'),
+              isListenerAdded,
+              r'MainState',
+              'isListenerAdded',
+            ),
             currentAddress: currentAddress,
             acceptTripIsLoading: acceptTripIsLoading,
           );
@@ -191,8 +195,11 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
         _$failedField = 'trips';
         trips.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'MainState', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'MainState',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

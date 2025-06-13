@@ -96,6 +96,9 @@
   "tripInProgress": "الرحلة قيد التقدم",
   "tripCompletedSuccessfully": "تمت الرحلة بنجاح",
   "confirmChanged": "تأكيد التغيير",
-  "changeStatusTo": "تغيير الحالة إلى: {value}"
-
+  "changeStatusTo": "تغيير الحالة إلى: {value}",
+  "history": "السجل",
+  "financial": "المالي",
+  "tripId": "معرف الرحلة",
+  "value": "القيمة"
 }

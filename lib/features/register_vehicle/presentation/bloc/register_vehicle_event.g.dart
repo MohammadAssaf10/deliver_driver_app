@@ -8,17 +8,15 @@ part of 'register_vehicle_event.dart';
 
 class _$RegisterVehicle extends RegisterVehicle {
   factory _$RegisterVehicle([void Function(RegisterVehicleBuilder)? updates]) =>
-      (new RegisterVehicleBuilder()..update(updates))._build();
+      (RegisterVehicleBuilder()..update(updates))._build();
 
   _$RegisterVehicle._() : super._();
-
   @override
   RegisterVehicle rebuild(void Function(RegisterVehicleBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  RegisterVehicleBuilder toBuilder() =>
-      new RegisterVehicleBuilder()..replace(this);
+  RegisterVehicleBuilder toBuilder() => RegisterVehicleBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -45,7 +43,6 @@ class RegisterVehicleBuilder
 
   @override
   void replace(RegisterVehicle other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RegisterVehicle;
   }
 
@@ -58,7 +55,7 @@ class RegisterVehicleBuilder
   RegisterVehicle build() => _build();
 
   _$RegisterVehicle _build() {
-    final _$result = _$v ?? new _$RegisterVehicle._();
+    final _$result = _$v ?? _$RegisterVehicle._();
     replace(_$result);
     return _$result;
   }
@@ -68,23 +65,19 @@ class _$SelectLicenseImage extends SelectLicenseImage {
   @override
   final ImageSource imageSource;
 
-  factory _$SelectLicenseImage(
-          [void Function(SelectLicenseImageBuilder)? updates]) =>
-      (new SelectLicenseImageBuilder()..update(updates))._build();
+  factory _$SelectLicenseImage([
+    void Function(SelectLicenseImageBuilder)? updates,
+  ]) => (SelectLicenseImageBuilder()..update(updates))._build();
 
-  _$SelectLicenseImage._({required this.imageSource}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        imageSource, r'SelectLicenseImage', 'imageSource');
-  }
-
+  _$SelectLicenseImage._({required this.imageSource}) : super._();
   @override
   SelectLicenseImage rebuild(
-          void Function(SelectLicenseImageBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(SelectLicenseImageBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   SelectLicenseImageBuilder toBuilder() =>
-      new SelectLicenseImageBuilder()..replace(this);
+      SelectLicenseImageBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -103,8 +96,7 @@ class _$SelectLicenseImage extends SelectLicenseImage {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'SelectLicenseImage')
-          ..add('imageSource', imageSource))
-        .toString();
+      ..add('imageSource', imageSource)).toString();
   }
 }
 
@@ -130,7 +122,6 @@ class SelectLicenseImageBuilder
 
   @override
   void replace(SelectLicenseImage other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$SelectLicenseImage;
   }
 
@@ -143,10 +134,14 @@ class SelectLicenseImageBuilder
   SelectLicenseImage build() => _build();
 
   _$SelectLicenseImage _build() {
-    final _$result = _$v ??
-        new _$SelectLicenseImage._(
+    final _$result =
+        _$v ??
+        _$SelectLicenseImage._(
           imageSource: BuiltValueNullFieldError.checkNotNull(
-              imageSource, r'SelectLicenseImage', 'imageSource'),
+            imageSource,
+            r'SelectLicenseImage',
+            'imageSource',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -157,23 +152,19 @@ class _$SelectVehicleImage extends SelectVehicleImage {
   @override
   final ImageSource imageSource;
 
-  factory _$SelectVehicleImage(
-          [void Function(SelectVehicleImageBuilder)? updates]) =>
-      (new SelectVehicleImageBuilder()..update(updates))._build();
+  factory _$SelectVehicleImage([
+    void Function(SelectVehicleImageBuilder)? updates,
+  ]) => (SelectVehicleImageBuilder()..update(updates))._build();
 
-  _$SelectVehicleImage._({required this.imageSource}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        imageSource, r'SelectVehicleImage', 'imageSource');
-  }
-
+  _$SelectVehicleImage._({required this.imageSource}) : super._();
   @override
   SelectVehicleImage rebuild(
-          void Function(SelectVehicleImageBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(SelectVehicleImageBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   SelectVehicleImageBuilder toBuilder() =>
-      new SelectVehicleImageBuilder()..replace(this);
+      SelectVehicleImageBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -192,8 +183,7 @@ class _$SelectVehicleImage extends SelectVehicleImage {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'SelectVehicleImage')
-          ..add('imageSource', imageSource))
-        .toString();
+      ..add('imageSource', imageSource)).toString();
   }
 }
 
@@ -219,7 +209,6 @@ class SelectVehicleImageBuilder
 
   @override
   void replace(SelectVehicleImage other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$SelectVehicleImage;
   }
 
@@ -232,10 +221,14 @@ class SelectVehicleImageBuilder
   SelectVehicleImage build() => _build();
 
   _$SelectVehicleImage _build() {
-    final _$result = _$v ??
-        new _$SelectVehicleImage._(
+    final _$result =
+        _$v ??
+        _$SelectVehicleImage._(
           imageSource: BuiltValueNullFieldError.checkNotNull(
-              imageSource, r'SelectVehicleImage', 'imageSource'),
+            imageSource,
+            r'SelectVehicleImage',
+            'imageSource',
+          ),
         );
     replace(_$result);
     return _$result;

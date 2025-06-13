@@ -7,20 +7,19 @@ part of 'verification_code_event.dart';
 // **************************************************************************
 
 class _$GenerateVerificationCode extends GenerateVerificationCode {
-  factory _$GenerateVerificationCode(
-          [void Function(GenerateVerificationCodeBuilder)? updates]) =>
-      (new GenerateVerificationCodeBuilder()..update(updates))._build();
+  factory _$GenerateVerificationCode([
+    void Function(GenerateVerificationCodeBuilder)? updates,
+  ]) => (GenerateVerificationCodeBuilder()..update(updates))._build();
 
   _$GenerateVerificationCode._() : super._();
-
   @override
   GenerateVerificationCode rebuild(
-          void Function(GenerateVerificationCodeBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GenerateVerificationCodeBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GenerateVerificationCodeBuilder toBuilder() =>
-      new GenerateVerificationCodeBuilder()..replace(this);
+      GenerateVerificationCodeBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -48,7 +47,6 @@ class GenerateVerificationCodeBuilder
 
   @override
   void replace(GenerateVerificationCode other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GenerateVerificationCode;
   }
 
@@ -61,27 +59,26 @@ class GenerateVerificationCodeBuilder
   GenerateVerificationCode build() => _build();
 
   _$GenerateVerificationCode _build() {
-    final _$result = _$v ?? new _$GenerateVerificationCode._();
+    final _$result = _$v ?? _$GenerateVerificationCode._();
     replace(_$result);
     return _$result;
   }
 }
 
 class _$GetVerificationCode extends GetVerificationCode {
-  factory _$GetVerificationCode(
-          [void Function(GetVerificationCodeBuilder)? updates]) =>
-      (new GetVerificationCodeBuilder()..update(updates))._build();
+  factory _$GetVerificationCode([
+    void Function(GetVerificationCodeBuilder)? updates,
+  ]) => (GetVerificationCodeBuilder()..update(updates))._build();
 
   _$GetVerificationCode._() : super._();
-
   @override
   GetVerificationCode rebuild(
-          void Function(GetVerificationCodeBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GetVerificationCodeBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GetVerificationCodeBuilder toBuilder() =>
-      new GetVerificationCodeBuilder()..replace(this);
+      GetVerificationCodeBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -108,7 +105,6 @@ class GetVerificationCodeBuilder
 
   @override
   void replace(GetVerificationCode other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GetVerificationCode;
   }
 
@@ -121,26 +117,25 @@ class GetVerificationCodeBuilder
   GetVerificationCode build() => _build();
 
   _$GetVerificationCode _build() {
-    final _$result = _$v ?? new _$GetVerificationCode._();
+    final _$result = _$v ?? _$GetVerificationCode._();
     replace(_$result);
     return _$result;
   }
 }
 
 class _$VerifyPhoneNumber extends VerifyPhoneNumber {
-  factory _$VerifyPhoneNumber(
-          [void Function(VerifyPhoneNumberBuilder)? updates]) =>
-      (new VerifyPhoneNumberBuilder()..update(updates))._build();
+  factory _$VerifyPhoneNumber([
+    void Function(VerifyPhoneNumberBuilder)? updates,
+  ]) => (VerifyPhoneNumberBuilder()..update(updates))._build();
 
   _$VerifyPhoneNumber._() : super._();
-
   @override
   VerifyPhoneNumber rebuild(void Function(VerifyPhoneNumberBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   VerifyPhoneNumberBuilder toBuilder() =>
-      new VerifyPhoneNumberBuilder()..replace(this);
+      VerifyPhoneNumberBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -167,7 +162,6 @@ class VerifyPhoneNumberBuilder
 
   @override
   void replace(VerifyPhoneNumber other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$VerifyPhoneNumber;
   }
 
@@ -180,7 +174,7 @@ class VerifyPhoneNumberBuilder
   VerifyPhoneNumber build() => _build();
 
   _$VerifyPhoneNumber _build() {
-    final _$result = _$v ?? new _$VerifyPhoneNumber._();
+    final _$result = _$v ?? _$VerifyPhoneNumber._();
     replace(_$result);
     return _$result;
   }

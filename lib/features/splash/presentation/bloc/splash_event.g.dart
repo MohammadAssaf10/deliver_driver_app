@@ -7,20 +7,19 @@ part of 'splash_event.dart';
 // **************************************************************************
 
 class _$CheckUserAuthentication extends CheckUserAuthentication {
-  factory _$CheckUserAuthentication(
-          [void Function(CheckUserAuthenticationBuilder)? updates]) =>
-      (new CheckUserAuthenticationBuilder()..update(updates))._build();
+  factory _$CheckUserAuthentication([
+    void Function(CheckUserAuthenticationBuilder)? updates,
+  ]) => (CheckUserAuthenticationBuilder()..update(updates))._build();
 
   _$CheckUserAuthentication._() : super._();
-
   @override
   CheckUserAuthentication rebuild(
-          void Function(CheckUserAuthenticationBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(CheckUserAuthenticationBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   CheckUserAuthenticationBuilder toBuilder() =>
-      new CheckUserAuthenticationBuilder()..replace(this);
+      CheckUserAuthenticationBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -48,7 +47,6 @@ class CheckUserAuthenticationBuilder
 
   @override
   void replace(CheckUserAuthentication other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$CheckUserAuthentication;
   }
 
@@ -61,26 +59,25 @@ class CheckUserAuthenticationBuilder
   CheckUserAuthentication build() => _build();
 
   _$CheckUserAuthentication _build() {
-    final _$result = _$v ?? new _$CheckUserAuthentication._();
+    final _$result = _$v ?? _$CheckUserAuthentication._();
     replace(_$result);
     return _$result;
   }
 }
 
 class _$TokenNeedRefresh extends TokenNeedRefresh {
-  factory _$TokenNeedRefresh(
-          [void Function(TokenNeedRefreshBuilder)? updates]) =>
-      (new TokenNeedRefreshBuilder()..update(updates))._build();
+  factory _$TokenNeedRefresh([
+    void Function(TokenNeedRefreshBuilder)? updates,
+  ]) => (TokenNeedRefreshBuilder()..update(updates))._build();
 
   _$TokenNeedRefresh._() : super._();
-
   @override
   TokenNeedRefresh rebuild(void Function(TokenNeedRefreshBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   TokenNeedRefreshBuilder toBuilder() =>
-      new TokenNeedRefreshBuilder()..replace(this);
+      TokenNeedRefreshBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -107,7 +104,6 @@ class TokenNeedRefreshBuilder
 
   @override
   void replace(TokenNeedRefresh other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$TokenNeedRefresh;
   }
 
@@ -120,7 +116,7 @@ class TokenNeedRefreshBuilder
   TokenNeedRefresh build() => _build();
 
   _$TokenNeedRefresh _build() {
-    final _$result = _$v ?? new _$TokenNeedRefresh._();
+    final _$result = _$v ?? _$TokenNeedRefresh._();
     replace(_$result);
     return _$result;
   }
@@ -128,16 +124,15 @@ class TokenNeedRefreshBuilder
 
 class _$RefreshToken extends RefreshToken {
   factory _$RefreshToken([void Function(RefreshTokenBuilder)? updates]) =>
-      (new RefreshTokenBuilder()..update(updates))._build();
+      (RefreshTokenBuilder()..update(updates))._build();
 
   _$RefreshToken._() : super._();
-
   @override
   RefreshToken rebuild(void Function(RefreshTokenBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  RefreshTokenBuilder toBuilder() => new RefreshTokenBuilder()..replace(this);
+  RefreshTokenBuilder toBuilder() => RefreshTokenBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -164,7 +159,6 @@ class RefreshTokenBuilder
 
   @override
   void replace(RefreshToken other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RefreshToken;
   }
 
@@ -177,7 +171,7 @@ class RefreshTokenBuilder
   RefreshToken build() => _build();
 
   _$RefreshToken _build() {
-    final _$result = _$v ?? new _$RefreshToken._();
+    final _$result = _$v ?? _$RefreshToken._();
     replace(_$result);
     return _$result;
   }

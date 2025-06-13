@@ -14,6 +14,7 @@ class Endpoints {
   static String registerVehicle = '/driver/profile/registerVehicle';
   static String nextTripStatus = '/driver/trip/next';
   static String finance = '/driver/finance';
+  static String history = '/driver/trip/history';
   static String generateVerificationCode = '/Account/generateVerificationCode';
   static String getVerificationCode = '/Account/getVerificationCode';
 }
