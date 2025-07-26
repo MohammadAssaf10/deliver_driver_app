@@ -12,3 +12,11 @@ abstract class GetDriverFinancialHistory extends ActivitiesEvent
     void Function(GetDriverFinancialHistoryBuilder) updates,
   ]) = _$GetDriverFinancialHistory;
 }
+
+abstract class GetDriverTripsHistory extends ActivitiesEvent
+    implements Built<GetDriverTripsHistory, GetDriverTripsHistoryBuilder> {
+  GetDriverTripsHistory._();
+  factory GetDriverTripsHistory([
+    void Function(GetDriverTripsHistoryBuilder) updates,
+  ]) = _$GetDriverTripsHistory;
+}

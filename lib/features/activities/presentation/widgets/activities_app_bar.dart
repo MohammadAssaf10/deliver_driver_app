@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../generated/l10n.dart';
-import '../bloc/activities_bloc.dart';
 
 class ActivitiesAppBar extends StatelessWidget {
   final TabController tabController;
@@ -27,12 +25,6 @@ class ActivitiesAppBar extends StatelessWidget {
           ),
         ),
         bottom: TabBar(
-          onTap: (index) {
-            if (index == 0) {
-            } else {
-              context.read<ActivitiesBloc>().getDriverFinancialHistory();
-            }
-          },
           controller: tabController,
           dividerColor: ColorsManager.darkWhite,
           indicatorColor: ColorsManager.white,

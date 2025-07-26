@@ -11,12 +11,20 @@ class _$ActivitiesState extends ActivitiesState {
   final BlocStatus financialStatus;
   @override
   final Financial? financial;
+  @override
+  final BlocStatus tripsHistoryStatus;
+  @override
+  final List<History> tripsHistory;
 
   factory _$ActivitiesState([void Function(ActivitiesStateBuilder)? updates]) =>
       (ActivitiesStateBuilder()..update(updates))._build();
 
-  _$ActivitiesState._({required this.financialStatus, this.financial})
-    : super._();
+  _$ActivitiesState._({
+    required this.financialStatus,
+    this.financial,
+    required this.tripsHistoryStatus,
+    required this.tripsHistory,
+  }) : super._();
   @override
   ActivitiesState rebuild(void Function(ActivitiesStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -29,7 +37,9 @@ class _$ActivitiesState extends ActivitiesState {
     if (identical(other, this)) return true;
     return other is ActivitiesState &&
         financialStatus == other.financialStatus &&
-        financial == other.financial;
+        financial == other.financial &&
+        tripsHistoryStatus == other.tripsHistoryStatus &&
+        tripsHistory == other.tripsHistory;
   }
 
   @override
@@ -37,6 +47,8 @@ class _$ActivitiesState extends ActivitiesState {
     var _$hash = 0;
     _$hash = $jc(_$hash, financialStatus.hashCode);
     _$hash = $jc(_$hash, financial.hashCode);
+    _$hash = $jc(_$hash, tripsHistoryStatus.hashCode);
+    _$hash = $jc(_$hash, tripsHistory.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -45,7 +57,9 @@ class _$ActivitiesState extends ActivitiesState {
   String toString() {
     return (newBuiltValueToStringHelper(r'ActivitiesState')
           ..add('financialStatus', financialStatus)
-          ..add('financial', financial))
+          ..add('financial', financial)
+          ..add('tripsHistoryStatus', tripsHistoryStatus)
+          ..add('tripsHistory', tripsHistory))
         .toString();
   }
 }
@@ -63,6 +77,16 @@ class ActivitiesStateBuilder
   Financial? get financial => _$this._financial;
   set financial(Financial? financial) => _$this._financial = financial;
 
+  BlocStatus? _tripsHistoryStatus;
+  BlocStatus? get tripsHistoryStatus => _$this._tripsHistoryStatus;
+  set tripsHistoryStatus(BlocStatus? tripsHistoryStatus) =>
+      _$this._tripsHistoryStatus = tripsHistoryStatus;
+
+  List<History>? _tripsHistory;
+  List<History>? get tripsHistory => _$this._tripsHistory;
+  set tripsHistory(List<History>? tripsHistory) =>
+      _$this._tripsHistory = tripsHistory;
+
   ActivitiesStateBuilder();
 
   ActivitiesStateBuilder get _$this {
@@ -70,6 +94,8 @@ class ActivitiesStateBuilder
     if ($v != null) {
       _financialStatus = $v.financialStatus;
       _financial = $v.financial;
+      _tripsHistoryStatus = $v.tripsHistoryStatus;
+      _tripsHistory = $v.tripsHistory;
       _$v = null;
     }
     return this;
@@ -98,6 +124,16 @@ class ActivitiesStateBuilder
             'financialStatus',
           ),
           financial: financial,
+          tripsHistoryStatus: BuiltValueNullFieldError.checkNotNull(
+            tripsHistoryStatus,
+            r'ActivitiesState',
+            'tripsHistoryStatus',
+          ),
+          tripsHistory: BuiltValueNullFieldError.checkNotNull(
+            tripsHistory,
+            r'ActivitiesState',
+            'tripsHistory',
+          ),
         );
     replace(_$result);
     return _$result;

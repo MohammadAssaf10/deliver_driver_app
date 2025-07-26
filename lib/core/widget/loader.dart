@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../theming/colors_manager.dart';
 
 class Loader extends StatelessWidget {
-  final Color? color;
+  final Color color;
   final double size;
   final EdgeInsetsGeometry padding;
 
@@ -20,10 +20,7 @@ class Loader extends StatelessWidget {
     return Center(
       child: Padding(
         padding: padding,
-        child: SpinKitFadingCircle(
-          color: color,
-          size: size,
-        ),
+        child: SpinKitFadingCircle(color: color, size: size),
       ),
     );
   }

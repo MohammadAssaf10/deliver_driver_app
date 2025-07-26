@@ -7,14 +7,10 @@ import 'app_text_button.dart';
 import 'custom_auto_size_text.dart';
 
 class CustomErrorWidget extends StatelessWidget {
-  final String errorMessage;
+  final String? errorMessage;
   final VoidCallback? onRetry;
 
-  const CustomErrorWidget({
-    super.key,
-    required this.errorMessage,
-    this.onRetry,
-  });
+  const CustomErrorWidget({super.key, this.errorMessage, this.onRetry});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +33,9 @@ class CustomErrorWidget extends StatelessWidget {
 
             // Error message
             CustomAutoSizeText(
-              text: errorMessage,
+              text:
+                  errorMessage ??
+                  S.of(context).oopsSomethingWentWrongPleaseTryAgain,
               minFontSize: 16,
               initialFontSize: 18,
               maxFontSize: 20,

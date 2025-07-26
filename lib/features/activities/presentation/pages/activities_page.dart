@@ -11,6 +11,8 @@ import '../../../../generated/l10n.dart';
 import '../bloc/activities_bloc.dart';
 import '../bloc/activities_state.dart';
 import '../widgets/activities_app_bar.dart';
+import '../widgets/financial_tab_view.dart';
+import '../widgets/history_tab_view.dart';
 
 class ActivitiesPage extends StatefulWidget {
   const ActivitiesPage({super.key});
@@ -25,7 +27,14 @@ class _ActivitiesPageState extends State<ActivitiesPage>
 
   @override
   void initState() {
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this)
+      ..addListener(() {
+        if (_tabController.index == 0) {
+          context.read<ActivitiesBloc>().getDriverTripsHistory();
+        } else if (_tabController.index == 1) {
+          context.read<ActivitiesBloc>().getDriverFinancialHistory();
+        }
+      });
     super.initState();
   }
 
@@ -46,78 +55,14 @@ class _ActivitiesPageState extends State<ActivitiesPage>
               return TabBarView(
                 controller: _tabController,
                 children: [
-                  Container(color: Colors.amber),
-                  state.financialStatus == BlocStatus.loading
-                      ? const Loader()
-                      : ListView.builder(
-                          itemCount: state.financial!.payments.length,
-                          padding: const EdgeInsets.all(14),
-                          itemBuilder: (context, index) {
-                            return AspectRatio(
-                              aspectRatio: 2.4,
-                              child: TicketWidget(
-                                width: double.infinity,
-                                height: 100,
-                                isCornerRounded: true,
-                                margin: const EdgeInsets.symmetric(
-                                  vertical: 10,
-                                ),
-                                color: ColorsManager.darkWhite,
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 30,
-                                      ),
-                                      child: Text(
-                                        "${S.of(context).tripId}\n${state.financial!.payments[index].tripId}",
-                                        textAlign: TextAlign.center,
-                                        style:
-                                            TextStyles.font16DarkGreySemiBold,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        padding:
-                                            const EdgeInsetsDirectional.only(
-                                              start: 15,
-                                            ),
-                                        decoration: const BoxDecoration(
-                                          border: BorderDirectional(
-                                            start: BorderSide(
-                                              color: ColorsManager.darkGrey,
-                                              width: 1.5,
-                                            ),
-                                          ),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              '${S.of(context).date}: ${state.financial!.payments[index].createdDate.toInt().convertToStringDateTime()}',
-                                              style: TextStyles
-                                                  .font15DarkWhiteMedium,
-                                              maxLines: 1,
-                                            ),
-                                            Text(
-                                              '${S.of(context).value}: ${S.of(context).syr(state.financial!.payments[index].value.toInt().toString())}',
-                                              style: TextStyles
-                                                  .font15DarkWhiteMedium,
-                                              maxLines: 1,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                  HistoryTabView(
+                    status: state.tripsHistoryStatus,
+                    tripsHistory: state.tripsHistory.toList(),
+                  ),
+                  FinancialTabView(
+                    status: state.financialStatus,
+                    financial: state.financial,
+                  ),
                 ],
               );
             },

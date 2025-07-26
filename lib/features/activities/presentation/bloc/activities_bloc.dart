@@ -12,6 +12,8 @@ class ActivitiesBloc extends Bloc<ActivitiesEvent, ActivitiesState> {
 
   void getDriverFinancialHistory() => add(GetDriverFinancialHistory());
 
+  void getDriverTripsHistory() => add(GetDriverTripsHistory());
+
   ActivitiesBloc(this._activitiesRepository)
     : super(ActivitiesState.initial()) {
     on<GetDriverFinancialHistory>((event, emit) async {
@@ -28,6 +30,25 @@ class ActivitiesBloc extends Bloc<ActivitiesEvent, ActivitiesState> {
               (b) => b
                 ..financial = data
                 ..financialStatus = BlocStatus.success,
+            ),
+          );
+        },
+      );
+    });
+    on<GetDriverTripsHistory>((event, emit) async {
+      if (state.tripsHistory.isNotEmpty) return;
+      emit(state.rebuild((b) => b..tripsHistoryStatus = BlocStatus.loading));
+      final result = await _activitiesRepository.getDriverTripsHistory();
+      result.fold(
+        (failure) {
+          emit(state.rebuild((b) => b..tripsHistoryStatus = BlocStatus.error));
+        },
+        (data) {
+          emit(
+            state.rebuild(
+              (b) => b
+                ..tripsHistory = data
+                ..tripsHistoryStatus = BlocStatus.success,
             ),
           );
         },

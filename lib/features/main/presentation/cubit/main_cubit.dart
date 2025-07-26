@@ -29,7 +29,7 @@ class MainCubit extends Cubit<MainState> {
       child: const HomePage(),
     ),
     BlocProvider(
-      create: (context) => getIt<ActivitiesBloc>(),
+      create: (context) => getIt<ActivitiesBloc>()..getDriverTripsHistory(),
       child: const ActivitiesPage(),
     ),
     BlocProvider(

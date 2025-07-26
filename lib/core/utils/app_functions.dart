@@ -47,7 +47,7 @@ void showLoadingDialog(
       builder: (_) => Dialog(
         key: getIt<GlobalKey<State>>(),
         backgroundColor: backgroundColor ?? Colors.transparent,
-        child: Loader(size: 50, color: loaderColor),
+        child: Loader(size: 50, color: loaderColor ?? ColorsManager.darkGrey),
       ),
     );
   }
