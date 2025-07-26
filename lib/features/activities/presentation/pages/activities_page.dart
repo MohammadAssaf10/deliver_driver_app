@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ticket_widget/ticket_widget.dart';
 
-import '../../../../core/theming/colors_manager.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/utils/app_enums.dart';
-import '../../../../core/utils/app_extensions.dart';
-import '../../../../core/widget/loader.dart';
-import '../../../../generated/l10n.dart';
 import '../bloc/activities_bloc.dart';
 import '../bloc/activities_state.dart';
 import '../widgets/activities_app_bar.dart';

@@ -1,27 +1,22 @@
-import 'package:deliver_driver_app/core/widget/app_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/utils/app_extensions.dart';
+import '../../../../core/widget/app_text_button.dart';
 import '../../../../generated/l10n.dart';
 import '../bloc/map_bloc.dart';
 
 class ConfirmDialog extends StatelessWidget {
   final String newStatus;
 
-  const ConfirmDialog({
-    super.key,
-    required this.newStatus,
-  });
+  const ConfirmDialog({super.key, required this.newStatus});
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: ColorsManager.darkWhite,
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -63,9 +58,10 @@ class ConfirmDialog extends StatelessWidget {
                       if (context.read<MapBloc>().state.currentAddress ==
                           null) {
                         context.read<MapBloc>().getCurrentLocation(
-                            onComplete: () {
-                          context.read<MapBloc>().changeTripStatusToNext();
-                        });
+                          onComplete: () {
+                            context.read<MapBloc>().changeTripStatusToNext();
+                          },
+                        );
                       } else {
                         context.read<MapBloc>().changeTripStatusToNext();
                       }

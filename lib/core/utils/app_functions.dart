@@ -14,15 +14,6 @@ void dPrint(String? message, {StringColor? stringColor}) {
   }
 }
 
-_isCurrentDialogShowing(BuildContext context) =>
-    ModalRoute.of(context)?.isCurrent != true;
-
-dismissDialog(BuildContext context) {
-  if (_isCurrentDialogShowing(context)) {
-    Navigator.of(context, rootNavigator: true).pop(true);
-  }
-}
-
 void showToastMessage(String? toastMessage, {bool isError = false}) {
   if (toastMessage.nullOrEmpty()) return;
   Fluttertoast.showToast(

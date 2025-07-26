@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/entities/trip.dart';
 import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/utils/app_extensions.dart';
 import '../../../../core/widget/trip_tile.dart';
@@ -19,8 +18,7 @@ class HistoryTripCard extends StatelessWidget {
     return Container(
       height: 215,
       width: double.infinity,
-      margin:
-          margin ?? const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      margin: margin ?? const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       decoration: BoxDecoration(
         color: ColorsManager.customPurple,
         borderRadius: BorderRadius.circular(20),
@@ -57,9 +55,7 @@ class HistoryTripCard extends StatelessWidget {
                       title: S.of(context).estimatedTime,
                       subtitle: S
                           .of(context)
-                          .minute(
-                            trip.calculatedDuration.removeDecimalZero(),
-                          ),
+                          .minute(trip.calculatedDuration.removeDecimalZero()),
                       icon: Icons.access_time,
                     ),
                     TripTile(

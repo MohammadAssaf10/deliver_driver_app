@@ -1,6 +1,6 @@
-import 'package:deliver_driver_app/core/theming/colors_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/theming/text_styles.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {

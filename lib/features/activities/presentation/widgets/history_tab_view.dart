@@ -5,7 +5,6 @@ import '../../../../core/theming/colors_manager.dart';
 import '../../../../core/utils/app_enums.dart';
 import '../../../../core/widget/custom_error_widget.dart';
 import '../../../../core/widget/loader.dart';
-import '../../../main/presentation/widgets/trip_card.dart';
 import '../../domain/entities/history.dart';
 import '../bloc/activities_bloc.dart';
 import 'history_trip_card.dart';
